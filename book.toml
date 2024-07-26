@@ -1,0 +1,9 @@
+[book]
+authors = ["JordiMateoUdL"]
+language = "ca"
+multilingual = false
+src = "src"
+title = "Laboratoris d'Administració i Manteniment de Sistemes i Aplicacions"
+
+[output.html.code.highlight]
+bash = "~"
