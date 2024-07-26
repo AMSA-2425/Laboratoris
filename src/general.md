@@ -4,13 +4,7 @@ Aquest llibre conté el recull de pràctiques ha realitzar a l'assignatura d'Adm
 
 ## Continguts
 
-- [LVM](./LVM/main.md)
-  - [Migració a LVM](./LVM/migration.md)
-  - [Anàlisi dels modes striped i linear](./LVM/striped-linear.md)
-  - [Desplegament d'una web amb LVM](./LVM/usage.md)
-  - [Gestió de fallades](./LVM/failures.md)
-  - [Snapshots](./LVM/snapshots.md)
-  - [Mirroring](./LVM/mirroring.md)
+- [Laboratori sobre Logical Volume Manager (LVM)](./LVM/main.md)
 
 ## Utilització
 
