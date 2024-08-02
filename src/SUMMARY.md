@@ -4,6 +4,11 @@
 
 ## Laboratoris
 
+- [Scripting](./Scripts/main.md)
+  - [Bash](./Scripts/bash.md)
+  - [Awk](./Scripts/awk.md)
+  - [Explorant /proc](./Scripts/proc.md)
+
 - [LVM](./LVM/main.md)
   - [Anàlisi dels modes striped i linear](./LVM/striped-linear.md)
   - [Migració a LVM](./LVM/migration.md)
