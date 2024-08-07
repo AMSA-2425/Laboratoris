@@ -18,240 +18,293 @@ a entendre la sintaxi avaluant i discutint un conjunt d'exemples dissenyat per m
     awk [-F] -f script-awk [ fitxer1 ... fitxerN ]
     ```
 
+En aquest laboratori utilitzarem el següent fitxer de dades com a conjunt de dades d'exemple. Aquest fitxer representa una pokedex i la podem obtenir amb la següent comanda:
 
-Per realitzar tots els exemples i moltes de les activitats plantejades utilitzarem el fitxer pokedex.csv que trobareu al repositori:
-
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08$ head pokedex.csv
-1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,0  
-2,Ivysaur,Grass,Poison,405,60,62,63,80,80,60,1,0  
-3,Venusaur,Grass,Poison,525,80,82,83,100,100,80,1,0  
-4,Charmander,Fire,-,309,39,52,43,60,50,65,1,0  
-5,Charmeleon,Fire,-,405,58,64,58,80,65,80,1,0  
-6,Charizard,Fire,Flying,534,78,84,78,109,85,100,1,0  
-7,Squirtle,Water,-,314,44,48,65,50,64,43,1,0  
-8,Wartortle,Water,-,405,59,63,80,65,80,58,1,0  
-9,Blastoise,Water,-,530,79,83,100,85,105,78,1,0  
-10,Caterpie,Bug,-,195,45,30,35,20,20,45,1,0
+```bash
+curl -O  https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv
 ```
 
-**Cerca de patrons>**. *AWK* processa elspatrons de cerca de fitxers línia per línia. En aquest exemple, volem cercar totes les línies que coincideixin amb un patró específic. D'aquesta manera, imprimirem totes les línies que contenen el patró **Char**. Per tant, únicament 3 pokémons han de satisfer aquest patró **Charmander, Charmeleon i Charizard**. Vegem com funciona:
+O bé podeu utilitzar la còpia hostejada en aquest repositori:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk '/Char/ {print}' pokedex.csv  
-4,Charmander,Fire,-,309,39,52,43,60,50,65,1,0  
-5,Charmeleon,Fire,-,405,58,64,58,80,65,80,1,0  
-6,Charizard,Fire,Flying,534,78,84,78,109,85,100,1,0
+```bash
+curl -O XXXXXXX
 ```
 
-Noteu que en aquesta instrucció estem cercant el patró... **NO** estem indicant que comencin pel patró, per exemple, podem buscar totes les línies del fitxer pokedex que contenen el patró **ois**:
+Aquest fitxer conté 801 línies (800 pokemons + 1 capçalera) i 13 columnes. Aquestes columnes són:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk '/ois/ {print}' pokedex.csv  
-1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,0  
-2,Ivysaur,Grass,Poison,405,60,62,63,80,80,60,1,0  
-3,Venusaur,Grass,Poison,525,80,82,83,100,100,80,1,0  
-9,Blastoise,Water,-,530,79,83,100,85,105,78,1,0  
-13,Weedle,Bug,Poison,195,40,35,30,20,20,50,1,0  
-14,Kakuna,Bug,Poison,205,45,25,50,25,25,35,1,0  
-15,Beedrill,Bug,Poison,395,65,90,40,45,80,75,1,0  
-23,Ekans,Poison,-,288,35,60,44,40,54,55,1,0  
-24,Arbok,Poison,-,438,60,85,69,65,79,80,1,0  
-29,Nidoran♀,Poison,-,275,55,47,52,40,40,41,1,0  
-30,Nidorina,Poison,-,365,70,62,67,55,55,56,1,0  
-31,Nidoqueen,Poison,Ground,505,90,92,87,75,85,76,1,0  
-32,Nidoran♂,Poison,-,273,46,57,40,40,40,50,1,0  
-33,Nidorino,Poison,-,365,61,72,57,55,55,65,1,0  
-34,Nidoking,Poison,Ground,505,81,102,77,85,75,85,1,0  
-41,Zubat,Poison,Flying,245,40,45,35,30,40,55,1,0  
-42,Golbat,Poison,Flying,455,75,80,70,65,75,90,1,0  
-43,Oddish,Grass,Poison,320,45,50,55,75,65,30,1,0  
-44,Gloom,Grass,Poison,395,60,65,70,85,75,40,1,0  
-45,Vileplume,Grass,Poison,490,75,80,85,110,90,50,1,0  
-48,Venonat,Bug,Poison,305,60,55,50,40,55,45,1,0  
-49,Venomoth,Bug,Poison,450,70,65,60,90,75,90,1,0  
-69,Bellsprout,Grass,Poison,300,50,75,35,70,30,40,1,0  
-70,Weepinbell,Grass,Poison,390,65,90,50,85,45,55,1,0  
-71,Victreebel,Grass,Poison,490,80,105,65,100,70,70,1,0  
-72,Tentacool,Water,Poison,335,40,40,35,50,100,70,1,0  
-73,Tentacruel,Water,Poison,515,80,70,65,80,120,100,1,0  
-88,Grimer,Poison,-,325,80,80,50,40,50,25,1,0  
-89,Muk,Poison,-,500,105,105,75,65,100,50,1,0  
-92,Gastly,Ghost,Poison,310,30,35,30,100,35,80,1,0  
-93,Haunter,Ghost,Poison,405,45,50,45,115,55,95,1,0  
-94,Gengar,Ghost,Poison,500,60,65,60,130,75,110,1,0  
-109,Koffing,Poison,-,340,40,65,95,60,45,35,1,0  
-110,Weezing,Poison,-,490,65,90,120,85,70,60,1,0
-```
+* **#**: Número de pokémon
+* **Name**: Nom del pokémon
+* **Type 1**: Tipus 1 del pokémon
+* **Type 2**: Tipus 2 del pokémon
+* **Total**: Total de punts de tots els atributs
+* **HP**: Punts de vida
+* **Attack**: Atac
+* **Defense**: Defensa
+* **Sp. Atk**: Atac especial
+* **Sp. Def**: Defensa especial
+* **Speed**: Velocitat
+* **Generation**: Generació
+* **Legendary**: Llegendari (0: No, 1: Sí)
 
-Com hem vist estem imprimint (print) {**ACCIÓ**}totes les línies que contenen el {**PATRÓ**}**Char**> o "**ois**. D'aquesta manera, també podem fer el mateix però imprimint el contingut d'una variable. Per exemple si fem `print $0` que denota la línia sencera obtindrem el mateix output.
+Per comprovar-ho podem fer servir les següents comandes:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk '/Char/ {print $0}' pokedex.csv  
-4,Charmander,Fire,-,309,39,52,43,60,50,65,1,0  
-5,Charmeleon,Fire,-,405,58,64,58,80,65,80,1,0  
-6,Charizard,Fire,Flying,534,78,84,78,109,85,100,1,0
-```
+* Utilitzeu la comanda **wc** per comptar el nombre de línies del fitxer:
 
-Què passa si no volem tota la informació! I només ens interessa un subconjunt d'informació. Per tant, ara no volem tota la línia. D'acord, cap problema, fem-ho.
-
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk '/Char/ {print $1}' pokedex.csv  
-4,Charmander,Fire,-,309,39,52,43,60,50,65,1,0  
-5,Charmeleon,Fire,-,405,58,64,58,80,65,80,1,0  
-6,Charizard,Fire,Flying,534,78,84,78,109,85,100,1,0
-```
-
-Ups! Això no funciona. En primer lloc, hem de dir a awk quin és el separador de línies **-F(fs)** per poder dividir la línia en cols i decidir en l'acció d'impressió quines columnes volem. En el nostre cas, indicarem que volem dividir el fitxer *pokedex.csv* amb "," i imprimirem només el nom del pokémon (columna nº 2).
-
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Char/ {print $1}' pokedex.csv  
-Charmander  
-Charmeleon  
-Charizard
-```
-
-----
-
-**Activitat 01**: Completeu la comanda per filtrar tots els pokémons de tipus foc (Fire) i imprimir el nom i els seus dos tipus.
-
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F,'?????' pokedex.csv  
-Charmander Fire -  
-Charmeleon Fire -  
-Charizard Fire Flying  
-Vulpix Fire -  
-Ninetales Fire -  
-Growlithe Fire -  
-Arcanine Fire -  
-Ponyta Fire -  
-Rapidash Fire -  
-Magmar Fire -  
-Flareon Fire -  
-Moltres Fire Flying
-```
-
----
-
-Una funcionalitat molt interessant del llengutatge **AWK**, són les expressions regulars (REGEX) que permeten definicions de patrons dinàmiques i complexes. No us limiteu a cercar cadenes simples, sinó també patrons dins dels patrons.
-
-* Imagineu que volem imprimir totes les línies que continguin una **'b'** o una **'B'** seguida de **"ut"**.
-
-    ```shell
-    root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/[bB]ut/ {print $2}' pokedex.csv  
-    Butterfree  
-    Kabuto  
-    Kabutops
+    ```bash
+    ~wc -l pokemon.csv
     ```
 
-* **!Compte:** Per defecte, les expressions regulars actuen sobre tota la línia **$0**. Imagineu que volem imprimir totes les línies que el nom del pokémon (**$2**) començin per una **'b'** o una **'B'** . Si apliquem la següent expressió regular no funcionarà, ja que el inici **^** de **$0** serà un enter.
+* Utilitzeu la comanda **head** per mostrar les primeres 10 línies del fitxer:
 
-    ```shell
-    root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F,'/^[bB]/ {print $2}' pokedex.csv
+    ```bash
+    ~head pokemon.csv
     ```
-    
-    Per tant, per aplicar o no aplicar la expressió regular a una columna determinada necessitem (**\~, !\~**):
 
-    ```shell
-    root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F,'$2 \~ /^[bB]/ {print $2}' pokedex.csv
-    Bulbasaur  
-    Blastoise  
-    Butterfree  
-    Beedrill  
-    Bellsprout
-    ``` 
+* Utilitzeu les comandes **wc** i **head** per comptar el nombre de columnes del fitxer. Recordeu que les columnes estan separades per comes:
 
-A més, podem cercar utilitzant diverses regles, per exemple, si volem obtenir els pokémons que coincideixin amb el *patró 1* o e*l patró 2*, com el tipus de *foc* o el tipus de *lluita*. 
+    ```bash
+    ~head -1 pokemon.csv | tr ',' '\n' | wc -l
+    ```
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Fire|Fight/ {print $2,$3,$4}' pokedex.csv  
-Charmander Fire -  
-Charmeleon Fire -  
-Charizard Fire Flying  
-Vulpix Fire -  
-Ninetales Fire -  
-Mankey Fighting -  
-Primeape Fighting -  
-Growlithe Fire -  
-Arcanine Fire -  
-Poliwrath Water Fighting  
-Machop Fighting -  
-Machoke Fighting -  
-Machamp Fighting -  
-Ponyta Fire -  
-Rapidash Fire -  
-Hitmonlee Fighting -  
-Hitmonchan Fighting -  
-Magmar Fire -  
-Flareon Fire -  
-Moltres Fire Flying
-```
+## Sintaxis Bàsica
 
-o:
+* Replicarem la comanda `cat` per mostrar el contingut del fitxer pokemon.csv:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Fire/ || /Fight/ {print $2,$3,$4}' pokedex.csv  
-Charmander Fire -  
-Charmeleon Fire -  
-Charizard Fire Flying  
-Vulpix Fire -  
-Ninetales Fire -  
-Mankey Fighting -  
-Primeape Fighting -  
-Growlithe Fire -  
-Arcanine Fire -  
-Poliwrath Water Fighting  
-Machop Fighting -  
-Machoke Fighting -  
-Machamp Fighting -  
-Ponyta Fire -  
-Rapidash Fire -  
-Hitmonlee Fighting -  
-Hitmonchan Fighting -  
-Magmar Fire -  
-Flareon Fire -  
-Moltres Fire Flying
-```
+    ```bash
+    awk '{print $0}' pokemon.csv
+    ```
 
-També podem fer servir l'operació **&&**, per filtrar pokémons que coincideixin amb els dos tipus:
+    Per defecte, **AWK** imprimeix totes les línies del fitxer. En aquest cas, estem utilitzant la variable **$0** que conté tota la línia. Això és equivalent a la comanda `cat`. Per assegurar-nos que la sortida és la mateixa, podem fer servir la comanda `diff`:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Fire/ && /Fight/ {print $2,$3,$4}' pokedex.csv  
-Charizard Fire Flying  
-Moltres Fire Flying
-```
+    ```bash
+    diff <(cat pokemon.csv) <(awk '{print $0}' pokemon.csv)
+    ```
 
-El patró predeterminat és quelcom que coincideix amb totes les línies com hem vist fins a aquest punt. No obstant això, **AWK** té altres dos patrons importants que s'especifiquen per les paraules clau:
+* Replicarem la comanda `grep` per mostrar totes les línies que contenen la paraula "Char" al fitxer pokemon.csv:
 
-* **{BEGIN}**: Accions que s'han de dur a terme abans de llegir qualsevol línia.
-* **{END}**: accions que s'han de dur a terme després de llegir l'última línia.
+    ```bash
+    awk '/Char/ {print}' pokemon.csv
+    ```
 
-Ara utilitzarem aquests patrons per implementar comptadors, primer de tot simularem el comportament de la comanda `wc -l < fitxer` que compta totes les línies del fitxer.
+    En aquest cas, estem utilitzant la variable **$0** que conté tota la línia i la variable **/Char/** que conté el patró a cercar. Això és equivalent a la comanda `grep`. Per assegurar-nos que la sortida és la mateixa, podem fer servir la comanda `diff`:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk ' \
-BEGIN { print "Counting pokemons..." } \
-{ ++n } \
-END{ print "There are ", n, "pokemons." }' pokedex.csv
-Counting pokemons...
-There are 151 pokemons.
-```
+    ```bash
+    diff <(grep Char pokemon.csv) <(awk '/Char/ {print}' pokemon.csv)
+    ```
 
-Tingueu en compte que la clàusula **{BEGIN}** s'executa ABANS de processar qualsevol línia, llavors el comptador **++n** s'executa al processsar cada línia i finalment **{END}** s'executa després de processar les línies. A més, el llenguatge **AWK** utilitza els operadors aritmètics comuns a l'hora d'avaluar expressions. En aquesta mostra, definim una variable **n** (el comptador) i incrementem 1 a cada iteració. Per tant, els operadors aritmètics segueixen les regles de precedència normals i funcionen com esperaries.
+    Noteu que  *AWK* processa els patrons de cerca de fitxers línia per línia. En aquest exemple, hem cercat totes les línies que coincideixin amb un patró específic **Char**.  Per tant, únicament 3 pokémons han de satisfer aquest patró **Charmander, Charmeleon i Charizard** amb les seves versions Mega.
 
-Ara, simularem el comportament del fitxer de filtre `grep pattern| wc -l` que compta totes les línies del fitxer que contenen el patró *pattern*.
+    ```bash
+    4,Charmander,Fire,,309,39,52,43,60,50,65,1,False
+    5,Charmeleon,Fire,,405,58,64,58,80,65,80,1,False
+    6,Charizard,Fire,Flying,534,78,84,78,109,85,100,1,False
+    6,CharizardMega Charizard X,Fire,Dragon,634,78,130,111,130,85,100,1,False
+    6,CharizardMega Charizard Y,Fire,Flying,634,78,104,78,159,115,100,1,False
+    ```
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk ' \
-BEGIN { print "Counting pokemons..." } \
-/Fire/ { ++n } \
-END{ print "There are ", n, "fire type pokemons." }' pokedex.csv
-Counting pokemons...
-There are 12 fire type pokemons.
-```
+  No us confoneu! **NO** estem indicant que comencin pel patró, per exemple, podem buscar totes les línies del fitxer pokedex que contenen el patró **ois**:
 
-Com hem vist *AWK** treballa dividint l'entrada en camps (columnes) i això fa que **AWK* inicialitzi un conjunt de variables internes:
+    ```bash
+    awk '/ois/ {print}' pokemon.csv
+    ```
 
+    En aquest exemple, hem cercat totes les línies que coincideixin amb un patró específic **ois**.
+
+    ```bash
+    1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False
+    9,Blastoise,Water,-,530,79,83,100,85,105,78,1,False
+    ...
+    71,Victreebel,Grass,Poison,490,80,105,65,100,70,70,1,False
+    ...
+    691,Dragalge,Poison,Dragon,494,65,75,90,97,123,44,6,False
+    ```
+
+    Hi ha 64 entrades que satisferan aquest patró.
+
+    ```bash
+    awk '/ois/ {print}' pokemon.csv | wc -l
+    ```
+
+* Replicarem la comanda `cut` per mostrar només la primera columna del fitxer pokemon.csv:
+
+    ```bash
+    awk -F, '{print $1}' pokemon.csv
+    ```
+
+    En aquest cas, estem indicant que el separador de camps és la coma **-F,** i únicament volem la primera columna **$1**. Això és equivalent a la comanda `cut`. Per assegurar-nos que la sortida és la mateixa, podem fer servir la comanda `diff`:
+
+    ```bash
+    diff <(cut -d, -f1 pokemon.csv) <(awk -F, '{print $1}' pokemon.csv)
+    ```
+
+### Separadors de camps
+
+El separador de camps per defecte és l'espai en blanc. Per tant, si no especifiquem el separador de camps, **AWK** utilitzarà l'espai en blanc com a separador de camps.
+
+* Imprimiu la columna 3 sense especificar el separador de camps:
+
+    ```bash
+    ~awk '{print $3}' pokemon.csv
+    ```
+
+    Podeu observar que la sortida no és correcta. Això és degut a que el separador de camps per defecte és l'espai en blanc i no la coma. Per tant, hem d'especificar el separador de camps amb l'opció **-F**:
+
+    ```bash
+    ~awk -F, '{print $3}' pokemon.csv
+    ```
+
+    Podem transformar el separador de camps a qualsevol caràcter que vulguem. Utilitzarem la comanda `sed` per canviar el separador de camps de la coma a un espai en blanc i després utilitzarem **AWK** per imprimir la columna 3:
+
+    ```bash
+    ~sed 's/,/ /g' pokemon.csv | awk '{print $3}'
+    ```
+
+Fins ara estem imprimint (print) {**ACCIÓ**} totes les línies que contenen el {**PATRÓ**}**Char**> o "**ois**. D'aquesta manera, també podem fer el mateix però imprimint el contingut d'una variable. Per exemple si fem `print $0` que denota la línia sencera obtindrem el mateix output. A més a més, per poder imprimir el contingut d'una columna determinada, podem fer servir la variable **$1, $2, $3, ...** que denoten la primera, segona, tercera columna, etc. Però sempre indicant el separador de camps amb **-F**. 
+
+Però quina avantatge té fer servir **AWK** en comptes de bash per fer aquestes tasques? **AWK** és molt més ràpid i eficient que bash per processar fitxers de text. Ara veure exemples de com **AWK** pot ser molt més eficient que bash.
+
+### Filtres i Patrons
+
+* Creeu una comanda per filtrar tots els pokemons de tipus foc (Foc) i imprimir el nom i els seus dos tipus.
+
+  * Per fer-ho en bash:
+
+    ```bash
+    ~grep Fire pokemon.csv | cut -d, -f2,3,4
+    ```
+
+  * Per fer-ho en **AWK**:
+
+    ```bash
+    ~awk -F, '/Fire/ {print $2,$3,$4}' pokemon.csv
+    ```
+
+* Imprimiu totes les línies que continguin una **'b'** o una **'B'** seguida de **"ut"**.
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, '/[bB]ut/ {print $2}' pokemon.csv
+    ```
+
+  * En bash, podeu fer servir l'argument **-i** per ignorar la diferència entre majúscules i minúscules amb la comanda **grep**:
+
+    ```bash
+    ~grep -i "but" pokemon.csv | cut -d, -f2
+    ```
+
+* Imprimiu totes les línies que el nom començi per un **"K"** majúscula. 
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, '$2 ~ /^K/ {print $2}' pokemon.csv
+    ```
+
+    **!Compte:** Per defecte, les expressions regulars actuen sobre tota la línia **$0**. Si voleu aplicar l'expressió regular a una columna determinada, necessiteu (**~**). Si intenteu aplicar awk -F,'/^K/ {print $2}' pokemon.csv no funcionarà ja que l'inici **^** de **$0** serà un enter.
+
+  * En bash:
+
+    ```bash
+    ~grep "^K" pokemon.csv | cut -d, -f2
+    ```
+
+### Operacions
+
+* Imprimiu tots els pokemons que siguin del tipus foc o lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **|** per crear l'expressió regular.
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, '/Fire|Fighting/ {print $2,$3,$4}' pokemon.csv
+    ```
+
+    * En bash, podeu fer servir l'argument **-E** per utilitzar expressions regulars exteses amb la comanda **grep**:
+
+    ```bash
+    ~grep -E "Fire|Fighting" pokemon.csv | cut -d, -f2,3,4
+    ```
+
+    Noteu que l'operador **|** és l'operador lògic OR que regula la expressió regular. També podem fer servir el mateix operador lògic **||** per aconseguir el mateix resultat però afectant a la comanda awk.
+
+    ```bash
+    ~awk -F, '/Fire/ || /Fighting/ {print $2,$3,$4}' pokemon.csv
+    ```
+
+* Imprimiu tots els pokemons que siguin del tipus foc i lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **&&** per crear l'expressió regular.
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, '/Fire/ && /Fighting/ {print $2,$3,$4}' pokemon.csv
+    ```
+
+* En bash, podeu fer servir l'argument **-E** per utilitzar expressions regulars exteses amb la comanda **grep**:
+
+    ```bash
+    ~grep -E "Fire.*Fighting|Fighting.*Fire" pokemon.csv | cut -d, -f2,3,4
+    ```
+
+
+## Patrons
+
+* Implimenteu un script que compti tots els pokemons que tenim a la pokedex i que tingui la sortida següent:
+
+    ```bash
+    Counting pokemons...
+    There are 151 pokemons.
+    ```
+
+  * Per fer-ho en bash:
+
+    ```bash
+    !/bin/bash
+    echo "Counting pokemons..." 
+    n=`wc -l pokemon.csv` 
+    n=`expr $n - 1`
+    echo "There are $n pokemons."
+    ```
+
+    * Per fer-ho en **AWK**:
+
+    ```bash
+    ~awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv
+    ```
+
+
+    Tingueu en compte que la clàusula **{BEGIN}** s'executa ABANS de processar qualsevol línia, llavors el comptador **++n** s'executa al processsar cada línia i finalment **{END}** s'executa després de processar les línies. A més, el llenguatge **AWK** utilitza els operadors aritmètics comuns a l'hora d'avaluar expressions. En aquesta mostra, definim una variable **n** (el comptador) i incrementem 1 a cada iteració. Per tant, els operadors aritmètics segueixen les regles de precedència normals i funcionen com esperaries.
+
+
+* Implementeu un comptador per saber tots els pokemons de tipus foc de la primera generació descartant els Mega pokemons i que tingui la sortida següent:
+
+    ```bash
+    Counting pokemons...
+    There are 12 fire type pokemons in the first generation without Mega evolutions.
+    ```
+
+  * Per fer-ho en bash, podeu combinar les comandes **grep, cut, wc** i **expr**. Nota, l'argyment **-v** de **grep** exclou les línies que contenen el patró i la generació s'indica a la columna 12 amb el valor 1:
+
+    ```bash
+    !/bin/bash
+    echo "Counting pokemons..."
+    n=`grep Fire pokemon.csv | grep -v "Mega" | cut -d, -f12 | grep 1 | wc -l`
+    n=`expr $n - 1`
+    echo "There are $n pokemons in the first generation without Mega evolutions."
+    ```
+
+    * Per fer-ho en **AWK**, teniu el negador **!** per negar el patró:
+
+    ```bash
+    ~awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first generation without Mega evolutions." }' pokemon.csv
+    ```
+
+    En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar els Mega pokemons del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la clàusula **{END}** per imprimir el resultat final.
+
+
+
+### Variables
+
+**AWK** té variables internes que són molt útils per a la manipulació de dades. Aquestes variables són:
 
 | Variable  | Contingut                                                                                                                                                 |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -262,97 +315,126 @@ Com hem vist *AWK** treballa dividint l'entrada en camps (columnes) i això fa q
 | FNR       | Índex del fitxer actual que estem processant.                                                                                                             |
 | FILENAME  | Nom del fitxer que estem processant.                                                                                                                      |
 
+* Simplifiqueu el script `awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv` per obtenir el mateix resultat utilitzant la variable **NR**:
 
-* Indicarem a quina línia es troba cada pokémon del tipus foc. Formatant també la seva sortida:
+    ```bash
+    awk 'BEGIN { print "Counting pokemons..." } END{ print "There are ", NR-1, "pokemons." }' pokemon.csv
+    ```
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Fire/ {print "Line: ", NR "\\t" $2}' pokedex.csv  
-Line: 4    Charmander  
-Line: 5    Charmeleon  
-Line: 6    Charizard  
-Line: 37    Vulpix  
-Line: 38    Ninetales  
-Line: 58    Growlithe  
-Line: 59    Arcanine  
-Line: 77    Ponyta  
-Line: 78    Rapidash  
-Line: 126   Magmar  
-Line: 136   Flareon  
-Line: 146   Moltres
-```
+* Indiqueu a quina línia es troba cada pokémon del tipus foc. Volem imprimir la línia i el nom del pokémon. La sortida ha de ser semblant a:
 
-Les sentències condicionals s'utilitzen en qualsevol llenguatge de programació per executar qualsevol sentència basada en una condició particular. Es basa en avaluar el valor true o false en les declaracions `if-else i if-elseif`. **AWK** admet tot tipus de sentències condicionals com altres llenguatges de programació. Suposem que volem conèixer tots els pokémons llegendaris al nostre conjunt de dades. Tingueu en compte que, a les nostres dades, un 0 a la columna número 13 indica tipus normal i 1 indica llegendari. Per destacar, filtrar o fer accions amb pokémons normals i llegendaris, podem utilitzar una declaració condicional com ara:
+    ```bash
+    Line:  6    Charmander
+    Line:  7    Charmeleon
+    Line:  8    Charizard
+    Line:  9    CharizardMega Charizard X
+    Line:  10   CharizardMega Charizard Y
+    ...
+    Line:  737  Litleo
+    Line:  738  Pyroar
+    Line:  801  Volcanion
+    ```
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \  
-'/Fire/ { if ($13 == 1)  
-  print $2 " => LEGENDARY"  
-else  
-  print $2 " => ORDINARY "  
-}' pokedex.csv  
-Charmander => ORDINARY  
-Charmeleon => ORDINARY  
-Charizard => ORDINARY  
-Vulpix => ORDINARY  
-Ninetales => ORDINARY  
-Growlithe => ORDINARY  
-Arcanine => ORDINARY  
-Ponyta => ORDINARY  
-Rapidash => ORDINARY  
-Magmar => ORDINARY  
-Flareon => ORDINARY  
-Moltres => LEGENDARY
-```
+    on el format de cada línia és **Line:  n\tNom del pokémon**.
 
-o utilitzant l'expressió:
+  * En **AWK** podem fer servir la variable **NR** per obtenir el número de línia actual. A més a més, podeu formatar la sortida amb `print cadena,variable,cadena,variable,...`:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \  
-'/Fire/ { print ($13 == 1) ? $2 " => LEGENDARY" : $2 " => ORDINARY" }' pokedex.csv  
-Charmander => ORDINARY  
-Charmeleon => ORDINARY  
-Charizard => ORDINARY  
-Vulpix => ORDINARY  
-Ninetales => ORDINARY  
-Growlithe => ORDINARY  
-Arcanine => ORDINARY  
-Ponyta => ORDINARY  
-Rapidash => ORDINARY  
-Magmar => ORDINARY  
-Flareon => ORDINARY  
-Moltres => LEGENDARY
-```
+    ```bash
+    ~awk -F, '/Fire/ {print "Line: ", NR, "\t" $2}' pokemon.csv
+    ```
 
----
+  * En bash:
 
-**Activitat 02:** Completeu la comanda per obtenir la següent sortida. Bàsicament ha de comptar tots els pokémons del tipus Dragon, Fire o others.
+    ```bash
+    #!/bin/bash
+    while IFS=, read -r col1 col2 rest; do
+    ((line_number++))
+    # Check if the line contains the word "Fire"
+    if [[ "$col1" == *"Fire"* ]]; then
+        echo "Line: $line_number    $col2"
+    fi
+    done < pokemon.csv
+    ```
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '?????' pokedex.csv  
-Fire:12  
-Dragon:3  
-Others:136
-```
+### Condicionals
 
----
+Les sentències condicionals s'utilitzen en qualsevol llenguatge de programació per executar qualsevol sentència basada en una condició particular. Es basa en avaluar el valor true o false en les declaracions `if-else i if-elseif`. **AWK** admet tot tipus de sentències condicionals com altres llenguatges de programació. 
 
-**Activitat 03:** Completeu la comanda per obtenir la següent sortida. Implementeu un filtre a
-***AWK*** per imprimir el nom dels pokémons que coincideixin amb la restricció següent: tipus Fire or Fight i que el seu nom comença amb M.
+* Implementeu una comanda que us indiqui quins pokemons de tipus foc són ordinaris o llegendaris. Busquem una sortida semblant a:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '?????' pokedex.csv  
-Mankey types[Fighting,-]  
-Machop types[Fighting,-]  
-Machoke types[Fighting,-]  
-Machamp types[Fighting,-]  
-Magmar types[Fire,-]  
-Moltres types[Fire,Flying]
-```
+    ```bash
+    Charmander => ORDINARY
+    Charmeleon => ORDINARY
+    Charizard => ORDINARY
+    Moltres => LEGENDARY
+    ```
 
----
+    Recordeu que la columna 13 indica si un pokémon és llegendari o no (0: No, 1: Sí).
 
+  * En **AWK**:
+  
+    ```bash
+    ~awk -F, '/Fire/ { if ($13 == 1) print $2 " => LEGENDARY"; else print $2 " => ORDINARY" }' pokemon.csv
+    ```
+
+  * En bash:
+
+    ```bash
+    #!/bin/bash
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    if [[ "$col3" == *"Fire"* ]]; then
+        if [[ "$col13" == "1" ]]; then
+        echo "$col2 => LEGENDARY"
+        else
+        echo "$col2 => ORDINARY"
+        fi
+    fi
+    done < pokemon.csv
+    ```
+
+* Es poden utilitzar expressions condicionals per simplificar el codi. Per exemple, la comanda anterior es pot simplificar amb l'expressió:
+
+    ```bash
+    awk -F, '/Fire/ { print ($13 == 1) ? $2 " => LEGENDARY" : $2 " => ORDINARY" }' pokemon.csv
+    ```
+
+* Implementeu una comanda per obtenir la següent sortida. 
+
+    ```bash
+    Fire:12  
+    Dragon:3  
+    Others:136
+    ```
+
+    Bàsicament, es vol comptar el nombre de pokemons de tipus foc, drac i altres.
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" dragon "\nOthers:" others }' pokemon.csv
+    ```
+
+  * En bash:
+
+    ```bash
+    #!/bin/bash
+    fire=0
+    dragon=0
+    others=0
+
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    if [[ "$col3" == *"Fire"* ]]; then
+        ((fire++))
+    elif [[ "$col3" == *"Dragon"* ]]; then
+        ((dragon++))
+    else
+        ((others++))
+    fi
+    done < pokemon.csv
+    ```
 
 ### Verificacions lògiques. 
+
 Es pot utilitzar com a criteri una expressió composta amb operadors i retornar *true* o *false*.
 
 | Operador | Significat                               |
@@ -392,53 +474,90 @@ Es pot utilitzar com a criteri una expressió composta amb operadors i retornar 
 
 Anem a veure com funcionen amb exemples:
 
-* Farem un script per revisar si la columna 5 de la pokédex que equival al total és equivalent a la suma de les columnes 6,7,8,9,10 i 11:
+* Implementeu un script que comprovi que el Total (*columna 5*) és la suma de tots els atributs (*columnes 6,7,8,9,10 i 11*). La sortida ha de ser semblant a:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Char/ { print $2"->Total="$5"=="($6+$7+$8+$9+$10+$11)}' pokedex.csv  
-Charmander->Total=309==309  
-Charmeleon->Total=405==405  
-Charizard->Total=534==534
-```
+    ```bash
+    Charmander->Total=309==309
+    Charmeleon->Total=405==405
+    Charizard->Total=534==534
+    ```
 
-* Farem ara el mateix script però per calcular la mitjana aritmètica del total:
+  * En **AWK**:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, '/Char/ { print $2"->Total="$5"=="(($6+$7+$8+$9+$10+$11)/6)"=="($5/6)}' pokedex.csv  
-Charmander->Total=309==309  
-Charmeleon->Total=405==405  
-Charizard->Total=534==534
-```
+    ```bash
+    ~awk -F, '{ print $2"->Total="$5"=="($6+$7+$8+$9+$10+$11)}' pokemon.csv
+    ```
 
-* Farem un script per obtenir quin és el pokémon més fort i més dèbil tenint en compte el valor de la columna 7 de tipus foc.
+  * En bash:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \
-' BEGIN{  
-    max=0  
-    min=100  
-}  
-{  
-    if ($3 =="Fire") {  
-        n++  
-        attack+=$7
-        
-        if ($7 \> max){  
-            pmax=$2  
-            max=$7  
-        }  
-        if ($7 \< min){  
-            pmin=$2
-            min=$7  
-        }  
-    }  
-}  
-END{ print "Avg(Attack):"attack/n "\nWeakest:" pmin "\nStrongest:" pmax "\n"
-}' pokedex.csv  
-Avg(Attack):83,9167  
-Weakest:Vulpix  
-Strongest:Flareon
-```
+    ```bash
+    #!/bin/bash
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    if [[ "$col5" == "$((col6+col7+col8+col9+col10+col11))" ]]; then
+        echo "$col2->Total=$col5==$((col6+col7+col8+col9+col10+col11))"
+    fi
+    done < pokemon.csv
+    ```
+
+* Imprimiu la pokedex amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada pokémon. La sortida ha de ser semblant a:
+
+     ```bash
+    #,Name,Type 1,Type 2,Total,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,Generation,Legendary,Avg
+    1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False,53
+    2,Ivysaur,Grass,Poison,405,60,62,63,80,80,60,1,False,67.5
+    3,Venusaur,Grass,Poison,525,80,82,83,100,100,80,1,False,87.5
+    ```
+
+  * En **AWK**:
+
+    ```bash
+    ~awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
+    ```
+
+  * En bash:
+
+    ```bash
+    #!/bin/bash
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    if [[ "$col1" == "#" ]]; then
+        echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,Avg"
+    else
+        echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$((col6+col7+col8+col9+col10+col11))/6"
+    fi
+    done < pokemon.csv
+    ```
+
+* Cerca el pokémon més fort i més feble tenint en compte el valor de la columna 7 dels pokemons de tipus foc de la primera generació.
+
+  * En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
+
+    ```bash
+    ~awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
+    ```
+
+  * En bash:
+
+    ```bash
+    #!/bin/bash
+    max=0
+    min=100
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    if [[ "$col3" == *"Fire"* ]] && [[ "$col12" == "1" ]]; then
+        if [[ "$col7" -gt "$max" ]]; then
+        max=$col7
+        pmax=$col2
+        fi
+        if [[ "$col7" -lt "$min" ]]; then
+        min=$col7
+        pmin=$col2
+        fi
+    fi
+    done < pokemon.csv
+    echo "Weakest: $pmin"
+    echo "Strongest: $pmax"
+    ```
+
+### Formatant la sortida
 
 **AWK** ens permet també utilitzar una funció semblant al printf de C. Permet imprimir la cadena
 amb diferents formats: `printf("cadena",expr1,,expr2,...)`
@@ -455,9 +574,9 @@ amb diferents formats: `printf("cadena",expr1,,expr2,...)`
 
 Per exemple:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \
-' BEGIN{  
+```bash
+ awk -F, \
+' BEGIN{ 
     max=0  
     min=100  
 }  
@@ -478,9 +597,6 @@ root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \
 }  
 END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pmax)
 }' pokedex.csv  
-Avg(Attack):83,9167  
-Weakest:Vulpix  
-Strongest:Flareon
 ```
 
 ### Variables definides quan executem AWK
@@ -495,13 +611,11 @@ Strongest:Flareon
 | ARGC     | \-                   | Nombre d'arguments.                                                                                      |
 | ENVIRON  | Variables entorn    | Taula amb les variables entorn exportades per la shell.                                                  |
 
-
-
 El llenguatge **AWK** també ens permet fer bucles. Anem a veure com podem fer un petit script que
 ens modifiqui el separador del csv (",") per un (";"). Com si féssim un search and replace:
 
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \
+```bash
+awk -F, \
 'BEGIN{OFS=";";}  
 {  
     for (i=1;i\<=NF;i++)  
@@ -509,97 +623,13 @@ root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08# awk -F, \
 }' pokedex.csv
 ```
 
----
+* Implementeu la mateixa funció però sense utilitzar el bucle `for`:
 
-**Activitat 04:** Realitzar la mateixa acció sense utilitzar una estructura de bucle..
-
-
----
-
-**Activitat 05:** Implementarem un parser per fitxers pokèdex de CSV a JSON. Aquests parser s'adaptarà de forma dinàmica al canvi en les capçaleres, el tipus de dades o la mida
-de les dades. El format de sortida ha de ser:
-
-```json
-{
-"pokedex":[  
- {  
- "#":1,  
- "Name":"Bulbasaur",  
- "Type 1":"Grass",  
- "Type 2":"Poison",  
- "Total":318,  
- "HP":45,  
- "Attack":49,  
- "Defense":49,  
- "Sp. Atk":65,  
- "Sp. Def":65,  
- "Speed":45,  
- "Generation":1,  
- "Legendary":"False"  
- },  
- {  
- "#":2,  
- "Name":"Ivysaur",  
- "Type 1":"Grass",  
- "Type 2":"Poison",  
- "Total":405,  
- "HP":60,  
- "Attack":62,  
- "Defense":63,  
- "Sp. Atk":80,  
- "Sp. Def":80,  
- "Speed":60,  
- "Generation":1,  
- "Legendary":"False"  
- },
- ...  
-]  
-}
+```bash
+awk -F, \
+'BEGIN{OFS=";";}  
+{  
+    $1=$1  
+    print  
+}' pokedex.csv
 ```
-
-Per fer-ho completeu el codi **act05/csv2json.sh**. Per testejar que funciona correctament podeu fer servir el script **act05/test.sh**.
-
-```shell
-root@os-102377-i-2122-debian-lab:\~/resources/HandsOn08/csv2json#./test.sh  
-+ Running Tests +++++++++++++++++++++  
-++ Running Test 1.  
-### SUCCESS: Test passed files are identical ###  
-++ Running Test 2.  
-### SUCCESS: Test passed files are identical ###  
-++ Running Test 3.  
-### SUCCESS: Test passed files are identical ###  
-+ Ending Tests +++++++++++++++++++++
-```
-
-Assumirem i no cal que assegureu que la primera línia està ben formatada i conté els headers. El vostre script no cal que ho testegi.
-
----
-
-**Activitat 06:**  Tv Shows. Implementeu un script podeu fer servir awk i bash per transformar la informació input en la informació output.
-
-* **Input**: act06/series.db
-* **Expected**:act06/expected.txt
-
----
-
-**Activitat 07:** Feu un script en *bash* utiltizant *awk* que crei un fitxer anomenat *mem_lliure.lst* (si no existeix) i si existeix no faci res. Aquest script per defecte
-guardarà durant 1 minut dades extretes del `/proc/meminfo`. Aquest temps 1 minut pot ser modificat passant al script un argument com a primer paràmetre.
-
-```sh
-./act07.sh -> Actuarà durant 60 segons
-./act07.sh 30 -> Actuarà durant 30 segons
-```
-
-Aquest fitxer mostrarà de forma tabulada l'evolució de la memòria total, lliure i disponible del sistema. Aquests valors s'hauran de mostrar en les unitats (Mb). Cada entrada a la taula anirà precedida d'una marca de temps. Podeu veure el fitxer sortida esperada.  
-  
-**Extra**: El fitxer hauria d'estar preparat per afegir i treure columnes del fitxer `/proc/meminfo`de forma relativamentsimple.</span>
-
-**Pistes:**
-
-* Per mostrar informació tabulada: `printf "%20s \t %12s \t %12s \t %12s \n" "Time" "MemFree" "MemTotal" "MemAvailable"`
-* Per. tenir valors per defecte: `output="${1:-"mem_lliure.lst"}"`
-
----
-
-
-![](https://lh3.googleusercontent.com/proxy/kXmvpyGoonDZe2sk-I1B4kNsP1mpw2NJ0sWb9QXsqoMT_vZv5KxbNcKQo-PkWlj-yotgJ8XMFk_qYPJU4EV92CwD9yDsn8UzyFY7Z2LxVymikPfNe97I5CNbMEt1sT_jUShWh0pv-GFmyAWkGbFpjqG-2A)
