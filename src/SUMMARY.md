@@ -7,6 +7,10 @@
 - [Scripting](./Scripts/main.md)
   - [Bash](./Scripts/bash.md)
   - [Awk](./Scripts/awk.md)
+    - [Awk - Bàsic](./Scripts/awk-basic.md)
+    - [Awk - Intermedi](./Scripts/awk-intermediate.md)
+    - [Awk - Avançat](./Scripts/awk-advanced.md)
+    - [Repositori d'exercicis](./Scripts/awk-repo.md)
 
 - [LVM](./LVM/main.md)
   - [Anàlisi dels modes striped i linear](./LVM/striped-linear.md)

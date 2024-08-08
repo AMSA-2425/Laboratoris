@@ -12,6 +12,8 @@ En aquest laboratori crearem una aplicació per gestionar una llista de pokemons
 
 ## Objectius
 
+- Repassar els conceptes bàsics de Bash.
+
 ## Tasques
 
 1. Creeu un esquelet pel vostre script Bash.
@@ -151,11 +153,3 @@ En aquest laboratori crearem una aplicació per gestionar una llista de pokemons
         return 1
     fi
     ```
-
-### Activitats
-
-1. Milloreu la funció `new` perquè comprovi que el pokemon no existeixi ja a la pokedex. Assumirem que el nom del pokemon és únic. Si el pokemon ja existeix, mostreu un missatge d'error.
-
-2. Afegiu una comanda `stats` que mostri les estadístiques dels pokemons de la pokedex. Les estadístiques han de ser la suma de les estadístiques de tots els pokemons.
-
-3. Afegiu una comanda `battle <name1> <name2>` que simuli una batalla entre dos pokemons. La batalla consistirà en comparar les velocitats dels dos pokemons. El pokemon amb més velocitat guanyarà la batalla.
