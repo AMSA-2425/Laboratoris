@@ -1,7 +1,6 @@
 # Awk - Avançat
 
-
-### Variables definides quan executem AWK
+## Variables definides quan executem AWK
 
 | Variable | Valor per defecte    | Significat                                                                                               |
 |----------|----------------------|----------------------------------------------------------------------------------------------------------|
@@ -35,7 +34,7 @@ Per exemple:
 
     on **$TYPE** és una variable entorn que conté el tipus de pokemons que volem comptar.
 
-### Bucles
+## Bucles
 
 El llenguatge **AWK** també ens permet fer bucles accepta les següents estructures:
 
@@ -80,7 +79,109 @@ Per exemple:
     END{print "There are ", n, "fire type pokemons."}' pokemon.csv
     ```
 
-### Exercicis Avançats AWK
+## Arrays
+
+**AWK** també ens permet fer servir arrays. Per exemple, podem fer servir un array per comptar el nombre de pokemons de cada tipus:
+
+```bash
+awk -F, '
+{
+    if (NR > 1) {
+        type1 = $3
+        type2 = $4
+        types[type1]++
+        if (type2 != "") {
+            types[type2]++
+        }
+    }
+}
+END {
+    for (type in types) {
+        print type, types[type]
+    }
+}' pokemon.csv
+```
+
+Els arrays en **AWK** són associatius, és a dir, no cal indicar la posició de l'element en l'array. Per exemple, si volem comptar el nombre de pokemons de cada tipus per generació:
+
+```bash
+awk -F, '
+{
+    if (NR > 1) {
+        type1 = $3
+        type2 = $4
+        gen = $12
+        types[type1][gen]++
+        if (type2 != "") {
+            types[type2][gen]++
+        }
+    }
+}
+END {
+    for (type in types) {
+        printf "%s\n", type
+        for (gen in types[type]) {
+            printf "  Gen %d: %d\n", gen, types[type][gen]
+        }
+    }
+}' pokemon.csv
+```
+
+## Exercicis Avançats AWK
+
+1. Implementeu un script que mostri la pokedex en ordre invers. Però mantenint la primera línia com a capçalera. 
+
+    ```bash
+    awk -F, '
+    {
+    ~    if (NR == 1) {
+    ~        print $0
+    ~    } else {
+    ~        lines[NR] = $0
+    ~    }
+    }
+    END {
+    ~    for (i = NR; i > 1; i--) {
+    ~        print lines[i]
+    ~    }
+    }' pokemon.csv
+    ```
+
+2. Implementeu un script que simuli la comanda `sort -t, -k5 -n pokemon.csv`. Aquesta comanda ordena el fitxer pokemon.csv pel camp Total de forma numèrica. Podeu fer servir la funció `asort` per ordenar els pokemons. Aquesta funció ordena un array i retorna el nombre d'elements de l'array ordenat. Per exemple:
+
+    ```bash
+    asort(array, sorted, "@val_num_asc")
+    ```
+  
+    ordena l'array **array** de forma numèrica ascendent i guarda el resultat a l'array **sorted**.
+
+    A més, podeu fer servir la funció `split` que ens permet dividir una cadena de text en un array. Per exemple:
+
+    ```bash
+    split("a,b,c,d", array, ",")
+    ```
+
+    divideix la cadena de text "a,b,c,d" en l'array **array** amb els valors "a", "b", "c" i "d".
+
+    ```bash
+    awk -F, '
+    {
+        ~if (NR == 1) {
+        ~    print $0
+        ~} else {
+        ~    lines[NR] = $0
+        ~    totals[NR] = $5 " " NR
+        ~}
+    }
+    END {
+        ~n = asort(totals, sorted, "@val_num_asc")
+        ~for (i = 1; i <= n; i++) {
+        ~    split(sorted[i], temp, " ")
+        ~    line = temp[2]
+        ~    print lines[line]
+        }
+    }' pokemon.csv
+    ```
 
 1. Implementeu un script que mostri una taula resum amb els pokemons de cada tipus a cada generació. Un exemple de la sortida esperada:
 
