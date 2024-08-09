@@ -20,7 +20,11 @@ Heu d’incorporar al repositori cinc exemples diferents, ordenats de menor a ma
 
 ## Rúbriques d'avaluació
 
-**Presentació d'un **Pull Request** amb els scripts realitzats**: 100% en format markdown al directori `Scripts` al fitxer repositori d'exercicis (awk-repo.md).
+**Presentació d'un Pull Request amb els scripts realitzats**: 100%
+
+- *Format*: Markdown
+- *Fitxer*: [`Scripts/awk-repo.md`](./awk-repo.md)
+
 
 En aquest laboratori s'avaluarà la capacitat de l'estudiant per a generar nous scripts en Bash i Awk. Aquest scripts hauran de ser funcionals i correctes, així com també hauran de ser ben documentats.
 
