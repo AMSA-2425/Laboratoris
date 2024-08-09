@@ -142,18 +142,18 @@ Per exemple:
         n++  
         attack+=$7
         
-        if ($7 \> max){  
+        if ($7 > max){  
             pmax=$2  
             max=$7  
         }  
-        if ($7 \< min){  
+        if ($7 < min){  
             pmin=$2
             min=$7  
         }  
     }  
 }  
-END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pmax)
-}' pokedex.csv  
+END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax)
+}' pokemon.csv 
 ```
 
 ### Exercicis Intermedis
@@ -234,10 +234,10 @@ END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pm
 
     ```bash
     #!/bin/bash
-    ~while IFS=, read -r col1 col2 rest; do
+    ~while IFS=, read -r col1 col2 col3 rest; do
     ~((line_number++))
     ~# Check if the line contains the word "Fire"
-    ~if [[ "$col1" == *"Fire"* ]]; then
+    ~if [[ "$col2" == *"Fire"*  || "$col3" == *"Fire"* ]]; then
     ~    echo "Line: $line_number    $col2"
     ~fi
     ~done < pokemon.csv
@@ -246,9 +246,9 @@ END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pm
 * Implementeu un script que permeti comptar el nombre de pokemons de tipus foc i drac. La sortida ha de ser semblant a:
 
     ```bash
-    Fire:12  
-    Dragon:3  
-    Others:136
+    Fire:64
+    Dragon:50
+    Others:689
     ```
 
   * En **AWK**:
@@ -266,14 +266,22 @@ END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pm
     others=0
 
     ~while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
-     ~if [[ "$col3" == *"Fire"* ]]; then
+     ~if [[ "$col3" == *"Fire"*  || "$col4" == *"Fire"* ]]; then
          ~((fire++))
-     ~elif [[ "$col3" == *"Dragon"* ]]; then
+     ~fi
+
+     ~if [[ "$col3" == *"Dragon"*  || "$col4" == *"Dragon"* ]]; then
          ~((dragon++))
-     ~else
+     ~fi
+     
+     ~if [[ "$col3" != *"Fire"*  && "$col4" != *"Fire"* && "$col3" != *"Dragon"*  && "$col4" != *"Dragon"* ]]; then
          ~((others++))
      ~fi
     ~done < pokemon.csv
+
+    echo "Fire:$fire"
+    echo "Dragon:$dragon"
+    echo "Others:$others"
     ```
 
 * Imprimiu la pokedex amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada pokémon. La sortida ha de ser semblant a:
@@ -299,10 +307,13 @@ END{ printf("Avg(Attack):%4.2f \n Weakest:%s \n Strongest:%s\n",attack/n,pmin,pm
     ~if [[ "$col1" == "#" ]]; then
     ~    echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,Avg"
     ~else
-    ~    echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$((col6+col7+col8+col9+col10+col11))/6"
+        ~avg=$((($col6+$col7+$col8+$col9+$col10+$col11)/6))
+        ~echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$avg"
     ~fi
     ~done < pokemon.csv
     ```
+
+    **Nota**: Bash de forma nativa no permet operacions aritmètiques amb nombres decimals. Per fer-ho, cal utilitzar una eina com `bc`. En aquest cas, podeu adaptar el codi per utilitzar `bc` quan calculeu la mitjana i fer servir `printf` per formatar la sortida amb el nombre de decimals que vulgueu.
 
 * Cerca el pokémon més fort i més feble tenint en compte el valor de la columna 7 dels pokemons de tipus foc de la primera generació.
 

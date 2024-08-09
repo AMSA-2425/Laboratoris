@@ -50,16 +50,10 @@ Per exemple:
 * Implementeu un script que ens mostri el nom dels pokemons de tipus foc:
 
     ```bash
-    awk -F, '{ for (i=1;i<=NF;i++) if ($3 == "Fire") print $2 }' pokemon.csv
+    awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire") { print $2; next } } }' pokemon.csv
     ```
 
-    on **NF** és el nombre de camps de la línia. En fitxers ben estructurats no té sentit, ja que sabem que el tipus de pokemon és a la tercera columna i podem simplificar la comanda:
-
-    ```bash
-    awk -F, '{ if ($3 == "Fire") print $2 }' pokemon.csv
-    ```
-
-    però en fitxers més complexos i desordenats ens pot ser útil.
+    on **NF** és el nombre de camps de la línia.
 
 * Transformeu el fitxer pokemon.csv en un fitxer amb els camps separats per **;** utilitzant un bucle **for**:
 
@@ -67,8 +61,8 @@ Per exemple:
     awk -F, \
     'BEGIN{OFS=";";}
     {  
-    for (i=1;i\<=NF;i++)  
-        printf("%s%s",$i,(i==NF)?"\\n":OFS)
+    for (i=1;i<=NF;i++)  
+        printf("%s%s",$i,(i==NF)?"\n":OFS)
     }' pokemon.csv
     ```
 
@@ -79,7 +73,7 @@ Per exemple:
     'BEGIN{print "Counting pokemons..."; n=0}  
     {  
     do {  
-        if ($3 == "Fire")  
+        if ($3 == "Fire" || $4 == "Fire")  
             n++  
     } while (getline)  
     }  
@@ -200,26 +194,30 @@ Per exemple:
     ```bash
     awk -F, '
     BEGIN {
-        ~print "["
+       ~print "["
     }
-    ~NR == 1 {
-    ~    for (i = 2; i <= NF; i++) {
-    ~        headers[i] = $i
-    ~    }
-    ~}
     {
-    ~    printf "  {\n"
-    ~    for (i = 2; i <= NF; i++) {
-    ~        if ($i ~ /^[0-9]+$/) {
-    ~            printf "    \"%s\": %d,\n", headers[i], $i
-    ~        } else {
-    ~            printf "    \"%s\": \"%s\",\n", headers[i], $i
-    ~        }
-    ~    }
-    ~    printf "  }%s\n", (NR == 1) ? "" : ","
+        ~if(NR == 1) {
+            ~for (i = 2; i <= NF; i++) {
+                ~headers[i] = $i
+            ~}
+        ~}
+        ~else {
+            ~if(NR != 2) {
+            ~    print "  },"
+            ~}
+            ~printf "  {\n"
+            ~for (i = 2; i <= NF; i++) {
+            ~    if ($i ~ /^[0-9]+$/) {
+            ~        printf "    \"%s\": %d,\n", headers[i], $i
+            ~    } else {
+            ~        printf "    \"%s\": \"%s\",\n", headers[i], $i
+            ~    }
+            ~}
+        ~}
     }
     END {
-    ~    print "]"
+        ~print "  }\n]"
     }' pokemon.csv > pokemon.json
     ```
 
@@ -242,12 +240,17 @@ Per exemple:
     #!/bin/bash
 
     # Get the pokemons from the command line arguments
-    ~pokemon1=$1
-    ~pokemon2=$2
+    pokemon1=$1
+    pokemon2=$2
+
+    # Function to get stats of a pokemon
+    ~get_stats() {
+    ~    awk -F, -v pokemon="$1" '$2 == pokemon { print $6, $7, $8, $9, $10, $11 }' pokemon.csv
+    ~}
 
     # Get the stats of the pokemons
-    ~stats1=$(awk -F, -v pokemon="$pokemon1" '$2 == pokemon { print $6, $7, $8, $9, $10, $11 }' pokemon.csv)
-    ~stats2=$(awk -F, -v pokemon="$pokemon2" '$2 == pokemon { print $6, $7, $8, $9, $10, $11 }' pokemon.csv)
+    ~stats1=$(get_stats $pokemon1)
+    ~stats2=$(get_stats $pokemon2)
 
     # Extract the stats
     ~read hp1 attack1 defense1 spatk1 spdef1 speed1 <<< $stats1
@@ -256,51 +259,46 @@ Per exemple:
     # Check who attacks first
     ~if [ $speed1 -gt $speed2 ]; then
     ~    attacker=$pokemon1
+    ~    hp=$hp2
     ~    defender=$pokemon2
+    ~    attack=$attack1
+    ~    defense=$defense2
     ~else
     ~    attacker=$pokemon2
     ~    defender=$pokemon1
+    ~    hp=$hp1
+    ~    attack=$attack2
+    ~    defense=$defense1
     ~fi
 
-    echo "$attacker attacks first!"
+    ~echo "$attacker attacks first!"
 
     # Start the battle
     while true; do
-        ~damage=$((($attack1 - $defense2) * $RANDOM / 32767))
-        ~if [ $damage -lt 0 ]; then
-        ~    damage=0
-        ~fi
-        ~hp2=$(($hp2 - $damage))
-        ~echo "$attacker attacks $defender with $damage damage!"
-        ~if [ $hp2 -le 0 ]; then
-        ~    echo "$defender has 0 HP left."
-        ~    echo "$defender fainted!"
-        ~    break
-        ~else
-        ~    echo "$defender has $hp2 HP left."
-        ~fi
+    ~    damage=$((($attack - $defense) * $RANDOM / 32767))
+    ~    damage=${damage#-}
+    ~    hp=$(($hp - $damage))
+    ~    echo "$attacker attacks $defender with $damage damage!"
+    ~    if [ $hp -le 0 ]; then
+    ~        echo "$defender has 0 HP left."
+    ~        echo "$defender fainted!"
+    ~        break
+    ~    else
+    ~        echo "$defender has $hp HP left."
+    ~    fi
 
-        # Swap the attacker and defender
-        ~tmp=$attacker
-        ~attacker=$defender
-        ~defender=$tmp
-        ~tmp=$hp1
-        ~hp1=$hp2
-        ~hp2=$tmp
-        ~tmp=$attack1
-        ~attack1=$attack2
-        ~attack2=$tmp
-        ~tmp=$defense1
-        ~defense1=$defense2
-        ~defense2=$tmp
-        ~tmp=$spatk1
-        ~spatk1=$spatk2
-        ~spatk2=$tmp
-        ~tmp=$spdef1
-        ~spdef1=$spdef2
-        ~spdef2=$tmp
-        ~tmp=$speed1
-        ~speed1=$speed2
-        ~speed2=$tmp
+         # Swap the attacker and defender
+    ~    tmp=$attacker
+    ~    attacker=$defender
+    ~    defender=$tmp
+    ~    tmp=$hp
+    ~    hp=$hp2
+    ~    hp2=$tmp
+    ~    tmp=$attack
+    ~    attack=$attack2
+    ~    attack2=$tmp
+    ~    tmp=$defense
+    ~    defense=$defense2
+    ~    defense2=$tmp
     done
     ```
