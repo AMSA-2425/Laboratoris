@@ -44,16 +44,6 @@ El llenguatge **AWK** també ens permet fer bucles accepta les següents estruct
 
 * `do { acció } while (condició)`: Aquest bucle executa l'acció una vegada i després avalua la condició. Si la condició és certa, torna a executar l'acció.
 
-Per exemple:
-
-* Implementeu un script que ens mostri el nom dels pokemons de tipus foc:
-
-    ```bash
-    awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire") { print $2; next } } }' pokemon.csv
-    ```
-
-    on **NF** és el nombre de camps de la línia.
-
 * Transformeu el fitxer pokemon.csv en un fitxer amb els camps separats per **;** utilitzant un bucle **for**:
 
     ```bash
@@ -78,6 +68,46 @@ Per exemple:
     }  
     END{print "There are ", n, "fire type pokemons."}' pokemon.csv
     ```
+
+Instruccions de control:
+
+* `break`: Finalitza el bucle actual.
+* `continue`: Salta a la següent iteració del bucle.
+* `next`: Salta a la següent línia de l'entrada.
+
+Per exemple:
+
+* Cerqueu la primera entrada que compleixi les següents condicions: el tipus de pokemon és "Fire" i la seva velocitat és més gran que 100:
+
+    ```bash
+    awk -F, 'BEGIN {found = 0} { if (found == 0) { for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print "El primer Pokémon de tipus Fire amb velocitat superior a 100 és: " $2; found = 1; break } } } }' pokemon.csv
+    ```
+
+    Observació: `break` finalitza el bucle actual que recorre els camps de la línia. Per tant, ens permet deixar de buscar en una línia quan ja hem trobat el que volem. 
+
+* Cerqueu totes les entrades que compleixen les següents condicions: el tipus de pokemon és "Fire" i la seva velocitat és més gran que 100:
+
+    ```bash
+    awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print $2 } } }' pokemon.csv
+    ```
+
+    o bé
+
+    ```bash
+    awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print $2; break } } }' pokemon.csv
+    ```
+
+    Observació: `break` ens permet que quan trobem un pokemon que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent. En aquest cas, `next` seria equivalent a `break`.
+
+* Cerqueu tots els pokemons que són voladors i de foc assumint que les columnes poden estar en qualsevol ordre i que cada entrada pot estar ordenada de forma diferent:
+
+    ```bash
+    awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire") { for (j=1; j<=NF; j++) { if ($j == "Flying") { print $2; next } } } } }' pokemon.csv
+    ```
+
+    Observació: `next` ens permet que quan trobem un pokemon que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent.
+
+    Observació: `break` ens donaria el mateix resultat en aquest cas. Però `next` és més eficient perquè no cal seguir recorrent els camps de la línia. La comanda `break` seguiria recorrent els camps al bucle de la variable **i**.
 
 ## Arrays
 
