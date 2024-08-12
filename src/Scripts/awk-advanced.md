@@ -40,34 +40,49 @@ El llenguatge **AWK** també ens permet fer bucles accepta les següents estruct
 
 * `for (expr1;expr2;expr3) { acció }`: Aquest bucle executa la primera expressió, després avalua la segona expressió i si és certa executa l'acció. Després executa la tercera expressió i torna a avaluar la segona expressió. Això es repeteix fins que la segona expressió sigui falsa.
 
+Per exemple, transformeu el fitxer `pokemon.csv` en un fitxer amb els camps separats per **;** utilitzant un bucle **for**:
+
+```bash
+awk -F, \
+BEGIN{OFS=";";}
+{  
+for (i=1;i<=NF;i++)  
+    printf("%s%s",$i,(i==NF)?"\n":OFS)
+}' pokemon.csv
+```
+
 * `while (condició) { acció }`: Aquest bucle executa l'acció mentre la condició sigui certa.
+
+Per exemple, substituïu els camps del tipus de pokemon per un camps tipus compost per els dos tipus de pokemon separats per un **/** dels primers 10 pokemons:
+
+```bash
+awk -F, \
+'BEGIN{OFS=",";}
+{
+while (NR>1 && NR <= 11) {
+    print $1, $2, $3 "/" $4, $5, $6, $7, $8, $9, $10, $11, $12, $13
+    getline
+}
+}' pokemon.csv
+```
+
+La comanda `getline` ens permet llegir la següent línia de l'entrada. Això ens permet llegir la següent línia dins del bucle **while**. Si no fem servir la comanda `getline`, el bucle **while** es quedaria en un bucle infinit ja que la condició `NR <= 11` sempre seria certa.
 
 * `do { acció } while (condició)`: Aquest bucle executa l'acció una vegada i després avalua la condició. Si la condició és certa, torna a executar l'acció.
 
-* Transformeu el fitxer pokemon.csv en un fitxer amb els camps separats per **;** utilitzant un bucle **for**:
+Per exemple, utilitzeu el bucle **do** per comptar el nombre de pokemons de tipus foc:
 
-    ```bash
-    awk -F, \
-    'BEGIN{OFS=";";}
-    {  
-    for (i=1;i<=NF;i++)  
-        printf("%s%s",$i,(i==NF)?"\n":OFS)
-    }' pokemon.csv
-    ```
-
-* Utilitzeu el bucle **do**, **while** per comptar el nombre de pokemons de tipus foc:
-
-    ```bash
-    awk -F, \
-    'BEGIN{print "Counting pokemons..."; n=0}  
-    {  
-    do {  
-        if ($3 == "Fire" || $4 == "Fire")  
-            n++  
-    } while (getline)  
-    }  
-    END{print "There are ", n, "fire type pokemons."}' pokemon.csv
-    ```
+```bash
+awk -F, \
+'BEGIN{print "Counting pokemons..."; n=0}  
+{
+do {  
+    if ($3 == "Fire" || $4 == "Fire")  
+        n++  
+} while (getline)  
+}  
+END{print "There are ", n, "fire type pokemons."}' pokemon.csv
+```
 
 Instruccions de control:
 
@@ -76,6 +91,7 @@ Instruccions de control:
 * `next`: Salta a la següent línia de l'entrada.
 
 Per exemple:
+
 
 * Cerqueu la primera entrada que compleixi les següents condicions: el tipus de pokemon és "Fire" i la seva velocitat és més gran que 100:
 
