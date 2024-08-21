@@ -74,7 +74,6 @@ Un cop el sistema s'hagi reiniciat, podeu iniciar una sessió de terminal i veur
 
 Si únicament voleu mostrar la informació del sistema quan s'inicia la sessió de l'usuari root, podeu afegir el script `system-info.sh` al fitxer `/root/.profile` en lloc de `/etc/profile.d/system-info.sh`. Això farà que la informació del sistema es mostri només quan s'inicia la sessió de l'usuari root.
 
-> Diferencia entre .bashrc i .bash_profile
+> ℹ️ Diferencia entre .bashrc i .bash_profile?
 >
 > El fitxer `.bashrc` s'executa cada vegada que s'inicia una sessió de terminal, mentre que el fitxer `.bash_profile` s'executa només quan s'inicia una sessió de terminal interactiva. Això significa que el fitxer `.bashrc` s'executarà cada vegada que s'obri una nova finestra de terminal, mentre que el fitxer `.bash_profile` s'executarà només quan s'inicia una sessió de terminal interactiva. Per tant, si voleu mostrar la informació del sistema només quan s'inicia la sessió de l'usuari, podeu afegir el script al fitxer `.bash_profile` en lloc de `.bashrc`.
-

@@ -47,7 +47,7 @@ Si volem saber exactament què fa aquest servei, podem consultar el manual amb l
 
 En el manual d'aquesta comanda us explicarà de forma detallada què aquest servei carrega una llavor aleatòria al espai del nucli quan arranca i la desa quan s'apaga. Aquesta llavor es guarda a `/var/lib/systemd/random-seed`. Per defecte, no s’assigna entropia quan s’escriu la llavor al nucli, però això es pot canviar amb `$SYSTEMD_RANDOM_SEED_CREDIT`. El servei s’executa després de muntar el sistema de fitxers `/var/`, per la qual cosa és recomanable utilitzar un carregador d’arrencada que passi una llavor inicial al nucli, com `systemd-boot`.
 
-> Observació:
+> 👁️ **Observació**:
 >
 > Amb aquesta informació podem identificar quina és la funció de cada servei i decidir si pel nostre sistema és necessari o no. En aquest cas, el servei `systemd-random-seed.service` és necessari per a la generació de nombres aleatoris, per tant, no és recomanable desactivar-lo.
 
@@ -91,7 +91,7 @@ TimeoutSec=10min
 
 Aquesta informació ens mostra la configuració de la unitat, incloent la descripció, la documentació, les dependències, les condicions, el tipus de servei, els comandaments d'inici i parada, i altres opcions de configuració. El servei té una dependència de muntatge per a `/var/lib/systemd/random-seed`, i s'executa després de `systemd-remount-fs.service` i abans de `first-boot-complete.target` i `shutdown.target`. A més, ens indica que és un servei de tipus `oneshot`, que s'executa una sola vegada i roman actiu després de la sortida. Els comandaments d'inici i parada són `/lib/systemd/systemd-random-seed load` i `/lib/systemd/systemd-random-seed save`, respectivament.
 
-> Nota:
+> 💡 Nota::
 >
 > Si ovserveu el paramètre **TimeoutSec=10min** aquesta unitat pot trigar fins a 10 minuts a carregar. Si el sistema està en un entorn amb poca entropia, aquesta unitat pot trigar més temps a carregar.
 
@@ -155,18 +155,24 @@ Un altra opció interessant és utilitzar la comanda `systemd-analyze plot` per 
     systemd-analyze --system plot > boot_system.svg
     ```
 
-> Compte: Com puc visualtizar una imatge SVG en un debian sense interfície gràfica?
+---
+> ⚠️ **Compte**: Com puc visualtizar una imatge SVG en un debian sense interfície gràfica?
 >
 > Per visualitzar una imatge SVG en un sistema sense interfície gràfica, podeu descarregar el fitxer SVG a la vostra màquina local i visualitzar-lo amb un visor d'imatges o un navegador web. Per exemple, podeu utilitzar la comanda `scp` per descarregar el fitxer SVG a la vostra màquina local:
+>
 > ```bash
 > scp user@remote:/path/to/boot.svg /path/to/local/boot.svg
 > ```
 
-> Compte: Debian no permet conexions remotes com a root per defecte.
+---
+
+> ⚠️ **Compte**: Debian no permet conexions remotes com a root per defecte.
 > Abans de fer-ho, com debian per defecte no permet l'execució de `scp` com a root, caldrà fer-ho com a usuari normal i després copiar el fitxer a la carpeta desitjada.
+>
 > ```bash
-> mv boot.svg /tmp  # Mover el fitxer a una carpeta temporal
-> chown user:user /tmp/boot.svg  # Canviar el propietari del fitxer, user és el nom del teu usuari
+> mv boot.svg /tmp 
+> chown user:user /tmp/boot.svg  
+> ```
 
 ![Gràfic d'arrencada](../figures/systemd/boot.svg)
 

@@ -68,6 +68,6 @@ En el meu cas, el temps d'arrencada ha augmentat lleugerament després de crear 
 |--------|----------------------------|------------|
 | 2.973s | 10.380s                    | +7.407s    |
 
-> Observació:
-> 
+> 👁️ Observació:
+>
 > Noteu que l'augment es produeix en l'espai d'usuari, ja que el servei de còpia de seguretat s'executa després de carregar les funcions del kernel. Això és normal, ja que el servei de còpia de seguretat pot trigar una estona a completar-se, especialment si els directoris `/etc` i `/var` són grans.

@@ -33,6 +33,6 @@ Actualitzant el GRUB de debian per a mostrar l'entrada d'almalinux
 
     ![Selecció de l'entrada d'almalinux](../figures/GRUB/dual-boot/grub-selection-almalinux.png)
 
-> **Reflexió**: *Quin GRUB és millor?*
+> 🤔 **Reflexió**: *Quin GRUB és millor?*
 >
 > Indiferent. Cada distribució GNU/Linux configura el GRUB de manera diferent per a adaptar-lo a les seves necessitats i requeriments. Això significa que cada distribució GNU/Linux pot tenir una configuració del GRUB diferent, amb diferents opcions i configuracions. La millor configuració del GRUB és aquella que millor s’adapta a les necessitats del teu sistema.

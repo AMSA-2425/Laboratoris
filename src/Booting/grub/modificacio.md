@@ -13,7 +13,7 @@ En aquesta pantalla, podeu observar 3 entrades:
 
    En el nostre cas, podem seleccionar entre la versió 6.1.0-23 i la 6.1.0-18 ambdues amb les opcions `recovery mode`.
 
-    > **Què és el mode de recuperació?**
+    > **ℹ️ Què és el mode de recuperació?**
     >
     > El mode de recuperació és un mode d'arrancada que carrega el sistema amb un conjunt de paràmetres mínims. Això permet accedir al sistema en un estat més bàsic i realitzar tasques de manteniment o recuperació del sistema.
 
@@ -29,7 +29,7 @@ En aquesta pantalla, podeu observar les opcions de l'arrencada del sistema. Si a
 
 1. Carreguem els mòduls del kernel:
 
-    > **Per què carreguem aquests mòduls?**
+    > **ℹ️ Per què carreguem aquests mòduls?**
     >
     > Els mòduls del kernel són programes que s'executen en l'espai del nucli del sistema operatiu. Aquests mòduls permeten al sistema operatiu interactuar amb el maquinari de l'ordinador. En aquest cas, carreguem els mòduls necessaris per a interactuar amb el disc dur i el sistema de fitxers.
 
@@ -56,7 +56,7 @@ En aquesta pantalla, podeu observar les opcions de l'arrencada del sistema. Si a
 
     - initrd /boot/initrd.img-6.1.0.23-arm64
   
-    > **Què és el sistema d'inicialització?**
+    > **ℹ️ Què és el sistema d'inicialització?**
     >
     > El sistema d'inicialització és el primer procés que s'executa en un sistema operatiu. En el cas de GNU/Linux, el sistema d'inicialització més comú és el systemd. Aquest sistema d'inicialització s'encarrega de carregar els serveis i els daemons del sistema operatiu.
 
@@ -88,9 +88,11 @@ Aquestes opcions només es mantindran durant l'arrencada actual del sistema. Per
 
 4. Busca la línia que comença amb `GRUB_CMDLINE_LINUX_DEFAULT` i modifica-la per a afegir les opcions que vulguis. Per exemple, per a mostrar els missatges del sistema durant l'arrencada, elimina l'opció `quiet`.
 
-    > **✏️ Nota**:
+    > **💡 Nota**:
     >
     > Les opcions del GRUB es separen per espais. Per a afegir una nova opció, simplement afegeix-la a la llista separada per un espai.
+
+    ---
 
     > **🔍 Pregunta**: *Quines altres opcions podries afegir al fitxer de configuració del GRUB?*
     >
@@ -111,7 +113,7 @@ Aquestes opcions només es mantindran durant l'arrencada actual del sistema. Per
     less /boot/grub/grub.cfg
     ```
 
-    > **Compte**:
+    > **⚠️ Compte**:
     >
     > No modifiquis manualment el fitxer `/boot/grub/grub.cfg`. Aquest fitxer es genera automàticament amb la comanda `update-grub` i qualsevol modificació manual es sobreescriurà en la propera generació del fitxer.
 

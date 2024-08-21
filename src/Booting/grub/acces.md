@@ -63,9 +63,13 @@ Assumeix que teniu un servidor instal·lat amb un carregar de sistema GRUB. Un a
 > * La principal manera de protegir els servidors d'aquest tipus d'atacs és assegurar-se que només les persones autoritzades poden accedir físicament al servidor.
 > * Configurar el GRUB perquè requereixi una contrasenya per a poder editar les opcions de l'arrencada és una bona pràctica. Això dificulta l'accés no autoritzat al sistema a través del GRUB.
 
+---
+
 > **👁️ Observació**:
 >
 > Malgrat l'ús d'una contrasenya per a protegir el GRUB, aquesta tècnica no és infal·lible. Un atacant amb accés físic pot montar un usb bootable i iniciar el sistema amb aquest dispositiu. Un cop iniciat el sistema, l'atacant podria montar el sistema de fitxers i modificar la contrasenya de l'usuari root. Ara bé, es podria configurar el BIOS o UEFI per a desactivar l'arrencada des de dispositius externs com els USBs. Això dificultaria l'accés no autoritzat al sistema a través d'aquesta tècnica.
+
+---
 
 > **🤔 Reflexió**:
 > En les dues situacions, si el disc dur està xifrat, l'atacant no podrà utilitzar aquestes tècniques per a accedir al sistema.

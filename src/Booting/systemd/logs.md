@@ -61,10 +61,10 @@ Crearem un servei amb bash i awk que monitoritzi l'estat del sistema i registri 
 
     Aquesta comanda ens mostrarà tots els registres associats amb el servei `system-monitor`, incloent els missatges de registre, les entrades de diari i altres informacions rellevants.
 
-    > Observació:
+    > 👁️ **Observació**:
     >
     > Tot i que `journalctl` sembla que ens mostra la mateixa informació que `systemctl status`, `journalctl` ens permet accedir a tots els registres del sistema, no només als registres de les unitats. Això ens permet analitzar els registres del sistema de forma més detallada i buscar informació específica. A més, no sempre podem veure tota la informació d'una unitat amb `systemctl status`, ja que aquesta comanda només ens mostra les dades més recents del registre del diari.
 
-> Nota:
+> 💡 **Nota**:
 >
 > `journalctl` és una eina molt potent que ens permet analitzar els registres del sistema de forma detallada. Podeu utilitzar opcions com `-f` per veure els registres en temps real, `-n` per limitar el nombre de línies mostrades, `-r` per mostrar els registres en ordre invers, `-p` per filtrar els registres per prioritat, i moltes altres opcions. Podeu consultar el manual de `journalctl` amb la comanda `man journalctl` per obtenir més informació sobre com utilitzar aquesta eina. Durant les vostres sessions administrant el sistema, `journalctl` serà una eina molt útil per analitzar els registres del sistema i poder identificar problemes o errors.

@@ -11,7 +11,7 @@
 
     En la figura anterior, he limitat la sortida amb la comanda `head` per mostrar només les 10 primeres línies de la sortida. La sortida completa mostrarà tot el contingut de la initramfs.
 
-    Si analitzeu la sortida completa al vostre servidor, podreu veure que la initramfs conté diversos scripts i binaris que s'utilitzen durant el procés d'arrencada. Aquests scripts i binaris són responsables de realitzar tasques com muntar dispositius de bloc, carregar mòduls del nucli, i configurar la xarxa. 
+    Si analitzeu la sortida completa al vostre servidor, podreu veure que la initramfs conté diversos scripts i binaris que s'utilitzen durant el procés d'arrencada. Aquests scripts i binaris són responsables de realitzar tasques com muntar dispositius de bloc, carregar mòduls del nucli, i configurar la xarxa.
 
     > 💡 **Nota**: La sortida de la comanda `lsinitramfs` pot ser molt extensa, ja que la initramfs conté molts scripts i binaris necessaris per l'arrencada del sistema. Si voleu veure la sortida completa, podeu redirigir-la a un fitxer o utilitzar la comanda `less` per navegar-hi.
 

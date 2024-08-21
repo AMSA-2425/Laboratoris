@@ -44,7 +44,7 @@ Anem a veure com podem programar l'actualització del sistema amb un servei `apt
     systemctl enable apt-update.timer
     ```
 
-    > Nota:
+    > 💡 **Nota**:
     >
     > Podeu utilitzar ```systemctl enable --now unitat``` per iniciar i habilitar una unitat al mateix temps.
 

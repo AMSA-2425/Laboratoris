@@ -17,6 +17,8 @@ En aquesta secció, personalitzarem la initramfs afegint un missatge personalitz
     unmkinitramfs /boot/initrd.img-$(uname -r) .
     ```
 
+    > ℹ️ **Nota**:
+    >
     > `unmkinitramfs` és una eina que permet descomprimir la imatge de la initramfs a un directori de treball. Això permet modificar els fitxers continguts en la initramfs.
 
 3. **Crea un nou fitxer de script amb un missatge personalitzat**:
@@ -40,6 +42,8 @@ En aquesta secció, personalitzarem la initramfs afegint un missatge personalitz
     find . | cpio -o -H newc | gzip > /boot/initrd.img-$(uname -r)-custom
     ```
 
+    > ℹ️ **Nota**:
+    >
     > Aquest pas utilitza `cpio` per empaquetar tots els fitxers del directori de treball en un sol arxiu, i `gzip` per comprimir-lo. La nova imatge es guarda a `/boot` amb un nom personalitzat.
 
 6. **Actualitza la configuració de GRUB per utilitzar la nova imatge de la initramfs**:
