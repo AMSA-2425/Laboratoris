@@ -1,9 +1,15 @@
 # Información general
 
+[![Build workflow](https://img.shields.io/github/actions/workflow/status/AMSA-2425/Laboratoris/mdbook.yml?style=flat-square)](https://github.com/AMSA-2425/Laboratoris/actions?query=branch%3Amain++)
+[![GitHub contributors](https://img.shields.io/github/contributors/AMSA-2425/Laboratoris?style=flat-square)](https://github.com/AMSA-2425/Laboratoris/graphs/contributors)
+[![GitHub stars](https://img.shields.io/github/stars/AMSA-2425/Laboratoris?style=flat-square)](https://github.com/AMSA-2425/Laboratoris/stargazers)
+
 Aquest llibre conté el recull de pràctiques ha realitzar a l'assignatura d'Administració i Manteniment de Sistemes i Aplicacions (AMSA). Aquestes pràctiques estan enfocades a l'administració de sistemes GNU/Linux, en concret, amb la distribucions [AlmaLinux](https://almalinux.org/) i [Debian](https://www.debian.org/).
 
 ## Continguts
 
+- [Laboratori 0: Scripting](./Scripts/main.md)
+- [Laboratori 1: Booting](./Booting/main.md)
 - [Laboratori sobre Logical Volume Manager (LVM)](./LVM/main.md)
 
 ## Utilització

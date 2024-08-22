@@ -10,3 +10,6 @@ bash = "~"
 
 [output.html]
 mathjax-support = true
+git-repository-url = "https://github.com/AMSA-2425/Laboratoris"
+git-repository-icon = "fa-github"
+
