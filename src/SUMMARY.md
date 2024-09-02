@@ -1,8 +1,14 @@
-# Continguts
+# Introducció
 
 - [Información general](./general.md)
 
-## Laboratoris
+# Laboratoris Generals
+
+- [Installing OS](./Install/main.md)
+  - [Debian](./Install/debian.md)
+  - [Hostname](./Install/hostname.md)
+  - [Hosts](./Install/hosts.md)
+  - [SSH i SFTP](./Install/ssh-sftp.md)
 
 - [Scripting](./Scripts/main.md)
   - [Bash](./Scripts/bash.md)
@@ -36,6 +42,15 @@
     - [Serveis programats](./Booting/systemd/programats.md)
     - [Anàlisi de logs](./Booting/systemd/logs.md)
     - [Afegint informació d'inici](./Booting/systemd/inici.md)
+
+# Laboratoris Sistema de Fitxers
+
+- [Sistema de Fitxers](./Filesystems/main.md)
+  - [Muntatge d'un disc extern per fer un backup](./Filesystems/backup.md)
+  - [Migració de directoris a particions diferents](./Filesystems/migration.md)
+  - [Simulant una corrupció a home i recuperant-la](./Filesystems/corruption.md)
+  - [Sistemes de fitxers temporals](./Filesystems/temporal.md)
+  - [Explorant d'un sistema de fitxers avançat: `zfs`](./Filesystems/zfs.md)
 
 - [LVM](./LVM/main.md)
   - [Anàlisi dels modes striped i linear](./LVM/striped-linear.md)

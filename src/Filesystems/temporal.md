@@ -1,0 +1,1 @@
+# Sistemes de fitxers temporals
