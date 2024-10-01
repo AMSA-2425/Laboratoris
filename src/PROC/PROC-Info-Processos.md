@@ -27,13 +27,13 @@
 
 ###  exe (enllaç simbòlic)‏
 
-- Enllaç a el fitxer binari que va ser executat a l'arrencar aquest procés.
+- Enllaça el fitxer binari que va ser executat a l'arrencar aquest procés.
 
 ###  fd (directori)‏
 
 - Subdirectori que conté una entrada per cada fitxer que té obert el procés. Cada entrada és un enllaç simbòlic a el fitxer real i utilitza com a nom el descriptor de l'arxiu.
 	
-	Exemple: 
+Exemple: 
 ```bash	
 # ls -la /proc/2354/fd
 lr-x------   1 Joan wheel  64 feb 24 09:35 0 -> /dev/null
@@ -49,7 +49,7 @@ lrwx------  1 Joan  wheel  64 feb 24 09:35 3 -> socket:[3634]
 - El format de l'arxiu és el següent :
 
 ```md
-| Adreça            | Perms | Desplaça | Disp  | Nodo-i | Pathname           |
+| Adreça            | Perms | Desplaça | Disp  | inode  | Pathname           |
 |-------------------|-------|----------|-------|--------|--------------------|
 | 08048000-0804b000 | r-xp  | 00000000 | 03:06 | 784954 | /bin/sleep         |
 | 0804b000-0804c000 | rw-p  | 00002000 | 03:06 | 784954 | /bin/sleep         |
@@ -90,7 +90,7 @@ PPid:   13371
 TracerPid:  0
 Uid:    501     501     501     501
 Gid:    501     501     501     501
-FDSize: 32
+FDSize: 32	 %Nombre màxim de fitxers oberts
 Groups: 501 4 6 10 19 22 80 81 101 102 103 104 
 VmSize: 1552 kB
 VmLck:  0 kB
