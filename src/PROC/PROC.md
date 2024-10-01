@@ -130,13 +130,13 @@ CapEff: 0000000000000000
 -Depenent de la configuració del nucli i dels mòduls carregats en el sistema, alguns dels fitxers enumerats a continuació poden no estar presents:
 
 ```md
-| cmdline      | loadavg     | stat   |
-| cpuinfo      | meminfo     | sys    |
-| devices      | modules     | version  |
-| filesystems  | mounts      |          |
-| interrupts   | net         |          |
-| kcore        | partitions   |          |
-| ksyms        | pci         |          |
+| cmdline      | loadavg     | stat    |
+| cpuinfo      | meminfo     | sys     |
+| devices      | modules     | version |
+| filesystems  | mounts      |         |
+| interrupts   | net         |         |
+| kcore        | partitions  |         |
+| ksyms        | pci         |         |
 ``` 
 
 ###  cmdline (fitxer)‏
@@ -195,8 +195,8 @@ Address sizes: 36 bits physical, 48 bits virtual
 - Mostra la càrrega mitjana del processador (nombre mitjà de treballs a la cua d'execució en els darrers 1, 5 i 15 minuts, processos en execució/total i últim procés executat). 
 	Exemple: 
 ```bash		
-	 > cat /proc/loadavg	
-	2.10 1.98 1.95 3/87 14020
+# cat /proc/loadavg	
+2.10 1.98 1.95 3/87 14020
 ``` 
 
 ###   meminfo (fitxer)‏

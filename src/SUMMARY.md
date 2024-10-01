@@ -42,6 +42,8 @@
  
   ## PROC
  - [PROC](./PROC/PROC.md)
+ 	- [PROC - Informadió de Procesos](./PROC/PROC-Info-Processos.md)
+ 	- [PROC - Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
     
  ## AWK
  - [Awk](./Scripts/awk.md)
