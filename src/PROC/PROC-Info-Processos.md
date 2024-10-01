@@ -71,6 +71,7 @@ lrwx------  1 Joan  wheel  64 feb 24 09:35 3 -> socket:[3634]
 - Conté informació d'estat del procés.
 
 - Entre altra informació conté: 
+
 ```bash		
 # more /proc/self/stat
 identificador del procés, 
@@ -89,8 +90,18 @@ etc.
 
 ###  statm (fitxer)‏
 
-- Aporta informació sobre la memòria del procés: mida total programa, mida conjunt resident, pàgines compartides, pàgines de codi, pàgines de dades/pila, pàgines de llibreria i pàgines modificades.
+- Aporta informació sobre la memòria del procés: 
 
+```bash		
+# more /proc/self/statm
+mida total programa, 
+mida conjunt resident, 
+pàgines compartides, 
+pàgines de codi, 
+pàgines de dades/pila, 
+pàgines de llibreria i 
+pàgines modificades.
+``` 
 ###  status (fitxer)‏
 
 - Conté part de la informació dels fitxers stat i statm, però en un format més amigable per a l'usuari.
