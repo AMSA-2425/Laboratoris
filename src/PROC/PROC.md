@@ -50,11 +50,11 @@
 	
 	Exemple: 
 ```bash	
-	> ls -la /proc/2354/fd
-	lr-x------   1 Joan wheel  64 feb 24 09:35 0 -> /dev/null
-	l-wx------  1 Joan  wheel  64 feb 24 09:35 1 -> /home/Joan/.xsession-errors
-	l-wx------  1 Joan  wheel  64 feb 24 09:35 2 -> /home/Joan/.xsession-errors
-	lrwx------  1 Joan  wheel  64 feb 24 09:35 3 -> socket:[3634]
+# ls -la /proc/2354/fd
+lr-x------   1 Joan wheel  64 feb 24 09:35 0 -> /dev/null
+l-wx------  1 Joan  wheel  64 feb 24 09:35 1 -> /home/Joan/.xsession-errors
+l-wx------  1 Joan  wheel  64 feb 24 09:35 2 -> /home/Joan/.xsession-errors
+lrwx------  1 Joan  wheel  64 feb 24 09:35 3 -> socket:[3634]
 ``` 
 
 ###  maps (fitxer)‏
@@ -97,7 +97,7 @@
 	Exemple:
 
 ```bash		
-	 > more /proc/self/status
+# more /proc/self/status
 Name:   more
 State:  R (running)‏
 Pid:    13717
@@ -149,7 +149,7 @@ CapEff: 0000000000000000
 
 Exemple: 
 ```bash		
-	 > cat /proc/cpuinfo
+# cat /proc/cpuinfo
 processor  	: 0
 vendor_id    	: GenuineIntel
 cpu family      : 6
@@ -205,7 +205,7 @@ Address sizes: 36 bits physical, 48 bits virtual
 
 	Exemple: 
 ```bash	
-> more /proc/meminfo
+# more /proc/meminfo
 MemTotal:      4044348 kB
 MemFree:       2036068 kB   Real free Memory
 MemAvailable: 3130212 kB  Estimation of available Memory for 
@@ -225,7 +225,7 @@ SwapFree:     978540 kB
 
 	Exemple: 
 ```bash	
-> more /proc/stat
+# more /proc/stat
 cpu  8736 7931 3293 238176 2157 0 714 0 0 0
 cpu0 8736 7931 3293 238176 2157 0 714 0 0 0
 ctxt 1692161
