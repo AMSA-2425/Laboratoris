@@ -2,7 +2,7 @@
 
 - La resta de fitxers del directori /proc pro-porcionen informació sobre el nucli i l'estat del sistema que s'està executant.
 
--Depenent de la configuració del nucli i dels mòduls carregats en el sistema, alguns dels fitxers enumerats a continuació poden no estar presents:
+- Depenent de la configuració del nucli i dels mòduls carregats en el sistema, alguns dels fitxers enumerats a continuació poden no estar presents:
 
 ```md
 | cmdline      | loadavg     | stat    |
@@ -26,23 +26,26 @@ Exemple:
 ```bash		
 # cat /proc/cpuinfo
 processor  	: 0
+Bogomips : 48.00
 vendor_id    	: GenuineIntel
 cpu family      : 6
 model       	: 42
 model name   	: Intel® Core(TM) i7-2620M CPU @ 2.70GHz
 CPU Mhz  	: 2693.860
 cache size   	: 4096 KB
-core id  	: 0
-cpu cores 	: 1
-fpu 	: 	yes
+fpu 		:  yes
+Address sizes: 36 bits physical, 48 bits virtual
 
---------------------------------------------------
-
-flags  	  : fpu vme de pse tsc msr pae mce cx8 sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm
-
-Bogomips : 5387.72
-
-Address sizes: 36 bits physical, 48 bits virtual	
+processor  	: 1
+Bogomips : 48.00
+vendor_id    	: GenuineIntel
+cpu family      : 6
+model       	: 42
+model name   	: Intel® Core(TM) i7-2620M CPU @ 2.70GHz
+CPU Mhz  	: 2693.860
+cache size   	: 4096 KB
+fpu 		:  yes
+Address sizes: 36 bits physical, 48 bits virtual
 ``` 
 
 ### devices (fitxer)‏
@@ -95,6 +98,7 @@ SwapFree:     978540 kB
 - Conté informació sobre (entre d'altra):
 	- cpu: temps d’usuari, baixa prioritat (nice), sistema, idle, espera de I/O, servint interrupcions h/w, servint interrupcions s/w, etc.
 	- ctxt: número de canvis de context
+	- btime: temps des de l'inici del sistema
 	- processes: # de forks
 	- procs_running: processos executant
 
@@ -102,8 +106,10 @@ SwapFree:     978540 kB
 ```bash	
 # more /proc/stat
 cpu  8736 7931 3293 238176 2157 0 714 0 0 0
-cpu0 8736 7931 3293 238176 2157 0 714 0 0 0
+cpu0 4326 2331 1073 008176 1037 0 101 0 0 0
+cpu1 4410 5600 2220 230000 1120 0 613 0 0 0
 ctxt 1692161
+btime 1727795318  
 processes 18451
 procs_running 3
 ``` 

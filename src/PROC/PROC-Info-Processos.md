@@ -78,7 +78,7 @@ identificador del procés,
 nom, 
 estat, 
 PPID, 
-distribució del temps d'execució (usuari/ sistema), 
+distribució del temps d'execució (usuari/sistema), 
 quantum,
 prioritat, 
 quan es va llançar el procés, 
@@ -100,7 +100,7 @@ pàgines compartides,
 pàgines de codi, 
 pàgines de dades/pila, 
 pàgines de llibreria i 
-pàgines modificades.
+pàgines modificades
 ``` 
 ###  status (fitxer)‏
 
