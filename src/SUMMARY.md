@@ -42,12 +42,12 @@
  
   ## PROC
  - [PROC](./PROC/PROC.md)
- 	- [PROC - Informadió de Procesos](./PROC/PROC-Info-Processos.md)
- 	- [PROC - Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
+ 	- [Informadió de Procesos](./PROC/PROC-Info-Processos.md)
+ 	- [Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
     
  ## AWK
  - [Awk](./Scripts/awk.md)
     - [Awk - Bàsic](./Scripts/awk-basic.md)
     - [Awk - Intermedi](./Scripts/awk-intermediate.md)
     - [Awk - Avançat](./Scripts/awk-advanced.md)
-    - [Altres Exemples](./Scripts/altres-exemples.md)
+    - [Awk - Altres Exemples](./Scripts/altres-exemples.md)

@@ -70,3 +70,13 @@ Per comprovar aquestes dades, podem fer servir les següents comandes:
     ```bash
     ~head -1 pokemon.csv | tr ',' '\n' | wc -l
     ```
+    
+    ## Contingut
+
+1. [Awk Bàsic](./awk-basic.md)
+2. [Awk Intermedi](./awk-intermediate.md)
+3. [Awk Avançat](./awk-advanced.md)
+4. [Awk - Altres Exemples](./awk-altres-exemples.md)
+
+
+
