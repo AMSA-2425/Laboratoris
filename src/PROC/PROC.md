@@ -261,6 +261,8 @@ procs_running 3
 
 - Aquesta cadena identifica la versió del nucli i de la distribució de Linux que s'està executant actualment. 
 
+- PROVA
+
 
 
 
