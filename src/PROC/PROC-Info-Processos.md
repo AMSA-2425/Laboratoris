@@ -70,7 +70,22 @@ lrwx------  1 Joan  wheel  64 feb 24 09:35 3 -> socket:[3634]
 
 - Conté informació d'estat del procés.
 
-- Entre altra informació conté: identificador del procés, nom, estat, PPID, distribució del temps d'execució (usuari/ sistema), quantum, prioritat, quan es va llançar el procés, mida de memòria del procés, valor actual del registre esp i eip, senyals pendents/bloquejades/ignorades/capturades, etc.
+- Entre altra informació conté: 
+```bash		
+# more /proc/self/stat
+identificador del procés, 
+nom, 
+estat, 
+PPID, 
+distribució del temps d'execució (usuari/ sistema), 
+quantum,
+prioritat, 
+quan es va llançar el procés, 
+mida de memòria del procés, 
+valor actual del registre esp i eip, 
+senyals pendents/bloquejades/ignorades/capturades, 
+etc.
+``` 
 
 ###  statm (fitxer)‏
 
@@ -90,7 +105,7 @@ PPid:   13371
 TracerPid:  0
 Uid:    501     501     501     501
 Gid:    501     501     501     501
-FDSize: 32	 %Nombre màxim de fitxers oberts
+FDSize: 32	 % Nombre màxim de fitxers oberts
 Groups: 501 4 6 10 19 22 80 81 101 102 103 104 
 VmSize: 1552 kB
 VmLck:  0 kB
