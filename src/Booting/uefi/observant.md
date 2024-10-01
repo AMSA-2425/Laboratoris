@@ -41,17 +41,3 @@ Aquesta comanda us mostrarà una llista de tots els dispositius disponibles i le
 En aquest cas, tenim 3 sistemes de fitxers (FS0, FS1, FS2) i diversos dispositius de bloc (BLK0, BLK2, BLK6, BLK4, BLK5, BLK8, BLK9).
 
 Els sistemes de fitxers representen dispositius que contenen un sistema de fitxers que la UEFI pot llegir. Això inclou dispositius com discos durs, SSDs, i CD-ROMs. Per exemple, FS0 representa un CD-ROM, mentre que FS1 i FS2 representen discos durs.
-
-Els dispositius de bloc representen dispositius de baix nivell que no necessàriament tenen un sistema de fitxers que la UEFI pot llegir. Això inclou dispositius com discos durs, SSDs, i CD-ROMs, així com particions individuals dins d’aquests dispositius.
-
-En els sistemes EFI, hi ha una partició especial anomenada Partició de Sistema EFI (ESP) que conté els fitxers d’arrancada del sistema operatiu. Aquesta partició es pot identificar pel seu tipus de sistema de fitxers EFI. Normalment utilitza un sistema de fitxers basat en FAT32. En aquest cas, els sistemes de fitxers FS1 i FS2 són les particions ESP dels discos durs NVMe1 i NVMe2 respectivament. A més, podem veure que els dos discos durs NVMe1 i NVMe2 tenen una taula de particions GPT i que la primera partició correspon a la partició ESP. Es pot veure el seu UUID, l’adreça d’inici i l’adreça final de la partició.
-
-> **👁️ Observació**
->
-> Les particions EFI sempre acostumen ser la primera partició de la taula de particions GPT. Això es deu a que UEFI sempre busca la partició EFI per carregar el gestor d’arrancada.
-
-Els dispositius de bloc representen els discos durs i les seves particions. En aquest cas, tenim dos discos durs NVMe1 i NVMe2 amb les seves particions. Fixeu-vos que podem identificar el disc NVMe1 o NVMe2 amb BLK2 o BLK6 respectivament. A més, podem veure les particions del disc NVMe1 amb BLK4 i BLK5 i les particions del disc NVMe2 amb BLK8 i BLK9. En totes les entrades es pot veure el UUID de la taula de particions GPT, l’adreça d’inici i l’adreça final de la partició.
-
-> **👁️ Observació**
->
-> La etiqueta NVMe indica que el disc és un disc NVMe. Si el disc fos un disc SATA, la etiqueta seria SATA. En funció del hardware de la màquina virtual, els discos poden tenir diferents etiquetes.

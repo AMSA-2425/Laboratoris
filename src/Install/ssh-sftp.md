@@ -1,6 +1,6 @@
 # Connexió SSH i SFTP
 
-En els nostres laboratoris, utilitzarem màquines virtuals per simular els nostres servidors. Per tant, sempre tindreu accés físic a les màquines virtuals a través de la interfície gràfica de *VMWare*. No obstant això, en un entorn de producció, no sempre tindreu accés físic als servidors o no us resultarà pràctic anar físicament a cada servidor per gestionar-los. Per tant, és important tenir una forma de connectar-vos als servidors de forma remota per poder gestionar-los de manera eficient.
+És important tenir una forma de connectar-vos als servidors de forma remota per poder gestionar-los de manera eficient.
 
 > ℹ️ Què és SSH?
 >
@@ -10,13 +10,13 @@ En els nostres laboratoris, utilitzarem màquines virtuals per simular els nostr
 
 > ℹ️ Què és SFTP?
 >
-> SFTP (SSH File Transfer Protocol) és un protocol de transferència de fitxers que permet als usuaris transferir fitxers de forma segura entre dos dispositius. SFTP utilitza SSH per autenticar els usuaris i xifrar les dades que es transmeten entre els dispositius. Això fa que SFTP sigui una eina molt útil per transferir fitxers de forma segura entre servidors remots.
+> SFTP (SSH File Transfer Protocol) és un protocol de transferència de fitxers que permet als usuaris transferir fitxers de forma segura entre dos dispositius. SFTP utilitza SSH per autenticar els usuaris i xifrar les dades que es transmeten entre els dispositius. 
 
 ---
 
 > ℹ️ Què és secure copy (SCP)?
 >
-> SCP (Secure Copy) és una eina que permet als usuaris copiar fitxers de forma segura entre dos dispositius utilitzant SSH. SCP utilitza SSH per autenticar els usuaris i xifrar les dades que es transmeten entre els dispositius.
+> SCP (Secure Copy) és una altra eina que permet als usuaris copiar fitxers de forma segura entre dos dispositius utilitzant SSH. 
 
 ## Connexió SSH entre la vostra màquina i la màquina virtual
 

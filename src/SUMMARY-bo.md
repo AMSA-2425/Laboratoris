@@ -1,0 +1,63 @@
+# Introducció
+
+- [Información general](./general.md)
+
+# Laboratoris Generals
+
+- [Instal·lació d'una màquina virtual](./Install/main.md)
+  - [Debian](./Install/debian.md)
+  - [Hostname](./Install/hostname.md)
+  - [Hosts](./Install/hosts.md)
+  - [SSH i SFTP](./Install/ssh-sftp.md)
+
+- [Scripting](./Scripts/main.md)
+  - [Bash](./Scripts/bash.md)
+  - [Awk](./Scripts/awk.md)
+    - [Awk - Bàsic](./Scripts/awk-basic.md)
+    - [Awk - Intermedi](./Scripts/awk-intermediate.md)
+    - [Awk - Avançat](./Scripts/awk-advanced.md)
+    - [Repositori d'exercicis](./Scripts/awk-repo.md)
+
+- [Booting](./Booting/main.md)
+  - [UEFI](./Booting/uefi.md)
+    - [Inciant la consola UEFI](./Booting/uefi/inciant.md)
+    - [Observant els Dispositius Disponibles](./Booting/uefi/observant.md)
+    - [Navegant per la Consola UEFI](./Booting/uefi/navegant.md)
+    - [Arrancant des d'una Partició EFI](./Booting/uefi/arrancant.md)
+    - [Automatitzant l'Arrancada](./Booting/uefi/automatitzant.md)
+    - [Creant una Entrada d’Arrancada Personalitzada](./Booting/uefi/entrada_personalitzada.md)
+  - [GRUB](./Booting/grub.md)
+    - [Modificació de les opcions del GRUB](./Booting/grub/modificacio.md)
+    - [Accés no autoritzat a través del GRUB](./Booting/grub/acces.md)
+    - [Dual Boot](./Booting/grub/dual-boot.md)
+    - [Anàlisi del procediment](./Booting/grub/analisi.md)
+    - [Actualitzant el GRUB](./Booting/grub/actualitzant.md)
+  - [lilo](./Booting/lilo/lilo.md)  
+  - [initramfs](./Booting/initramfs.md)
+    - [Examinant la initramfs](./Booting/initramfs/examinant.md)
+    - [Carregant un mòdul addicional](./Booting/initramfs/carregant.md)
+    - [Personalitzar la initramfs](./Booting/initramfs/personalitzar.md)
+  - [Systemd](./Booting/systemd.md)
+    - [Analitzant el procés d'arrancada](./Booting/systemd/analitzant.md)
+    - [Creant i Gestionant serveis](./Booting/systemd/servei.md)
+    - [Serveis programats](./Booting/systemd/programats.md)
+    - [Anàlisi de logs](./Booting/systemd/logs.md)
+    - [Afegint informació d'inici](./Booting/systemd/inici.md)
+  - [journalctl-dmesg](./Booting/journalctl-dmesg.md)    
+
+# Laboratoris Sistema de Fitxers
+
+- [Sistema de Fitxers](./Filesystems/main.md)
+  - [Muntatge d'un disc extern per fer un backup](./Filesystems/backup.md)
+  - [Migració de directoris a particions diferents](./Filesystems/migration.md)
+  - [Simulant una corrupció a home i recuperant-la](./Filesystems/corruption.md)
+  - [Sistemes de fitxers temporals](./Filesystems/temporal.md)
+  - [Explorant d'un sistema de fitxers avançat: `zfs`](./Filesystems/zfs.md)
+
+- [LVM](./LVM/main.md)
+  - [Anàlisi dels modes striped i linear](./LVM/striped-linear.md)
+  - [Migració a LVM](./LVM/migration.md)
+  - [Desplegament d'una web amb LVM](./LVM/usage.md)
+  - [Gestió de fallades](./LVM/failures.md)
+  - [Snapshots](./LVM/snapshots.md)
+  - [Mirroring](./LVM/mirroring.md)

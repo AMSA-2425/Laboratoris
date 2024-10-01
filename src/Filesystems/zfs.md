@@ -1,4 +1,4 @@
-# Explorant d'un sistema de fitxers avançat: zfs
+# Explorant un sistema de fitxers avançat: zfs
 
 1. Instal·la el repositori EPEL:
 

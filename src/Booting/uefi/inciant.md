@@ -2,7 +2,7 @@
 
 Per accedir a la consola UEFI, seguiu aquests passos:
 
-1. Inicieu la màquina virtual `VM1`.
+1. Inicieu una màquina virtual.
 2. Premeu la tecla ``ESC`durant l'arrencada de la màquina virtual per accedir a **Boot Manager**.
 
     ![Boot Manager](../figures/UEFI/BootManager.png)

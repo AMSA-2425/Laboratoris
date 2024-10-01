@@ -28,7 +28,7 @@ En aquesta secció, crearem un servei systemd per realitzar una còpia de segure
     WantedBy=multi-user.target
     ```
 
-    Aquest fitxer de servei defineix un servei `backup` que s'executarà un cop s'hagi carregat el sistema de fitxers. El servei executarà l'script de còpia de seguretat `backup.sh` al directori `/usr/local/bin`. El servei s'instal·larà a la unitat `multi-user.target`, de manera que s'executarà quan el sistema hagi carregat tots els serveis necessaris.
+    Aquest fitxer de servei defineix un servei `backup` que s'executarà un cop s'hagi carregat el sistema de fitxers. El servei executarà l'script de còpia de seguretat `backup.sh` al directori `/usr/local/bin`. El servei s'instal·larà a la unitat `multi-user.target`, de manera que s'executarà quan el sistema hagi carregat tots els serveis.
 
 3. **Inicia el servei**: Inicia el servei `backup` amb la comanda `systemctl start backup`.
 

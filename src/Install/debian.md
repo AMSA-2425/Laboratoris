@@ -1,7 +1,4 @@
-<!-- include: ./hostname.md -->
-<!-- include: ./hosts.md -->
-
-# Instal·lació del sistema operatiu Debian 12
+# Instal·lació d'una màquina virtual amb el sistema operatiu Debian 12.5
 
 En aquest laboratori, instal·larem el sistema operatiu Debian 12 en una màquina virtual i descriurem els components principals del sistema operatiu. Aquesta instal·lació és la base per a tots els laboratoris que realitzarem en aquest curs. En alguns, us demanaré que modifiqueu alguns paràmetres de configuració per adaptar-los a les necessitats del laboratori.
 
@@ -42,7 +39,7 @@ En aquest laboratori, instal·larem el sistema operatiu Debian 12 en una màquin
 
 6. Configura la xarxa.
 
-    - El primer pas és configurar el nom d'amfitrió o hostname. Aquest nom permet identificar de forma única el vostre sistema. Podeu deixar el nom per defecte o canviar-lo al vostre gust.
+    - El primer pas és configurar el nom d'amfitrió o **hostname**. Aquest nom permet identificar de forma única el vostre sistema. Podeu deixar el nom per defecte o canviar-lo al vostre gust.
   
     ![Hostname](./figures/debian12/install-09.png)
 
@@ -64,15 +61,8 @@ En aquest laboratori, instal·larem el sistema operatiu Debian 12 en una màquin
 
 7. Configura l'usuari administrador.
 
-    ![User](./figures/debian12/install-11.png)
-
     En aquest punt, heu de tenir en compte que si no poseu cap contrasenya, es crearà l'usuari normal amb permisos de `sudo` i això us permetra executar comandes amb privilegis d'administrador.
 
-    Si poseu una contrasenya, aquesta serà la contrasenya de l'usuari `root` i no es crearà un usuari normal amb permisos de `sudo`. I tampoc s'instal·larà el paquet `sudo`.
-
-    > ⚠️ **Compte**
-    >
-    > Com utilitzarem les màquines virtuals com a laboratoris de pràctiques, no cal que poseu una contrasenya molt segura. Podeu utilitzar una com a `1234`. Però, recordeu que en un entorn real, la seguretat és molt important i cal utilitzar contrasenyes segures.
 
 8. Configura un usuari normal.
 
@@ -121,8 +111,7 @@ En aquest laboratori, instal·larem el sistema operatiu Debian 12 en una màquin
     >
     > - Configurar un sistema RAID.
     > - Configurar un sistema LVM.
-    > - Configurar un sistema de xifrat.
-    > Tots aquests temes els veurem més endavant en el curs.
+    > Ho veurem més endavant en el curs.
 
     - Escriu els canvis al disc.
 

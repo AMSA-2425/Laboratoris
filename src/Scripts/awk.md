@@ -1,14 +1,5 @@
-# Introducció al llenguatge AWK
+# AWK
 
-## Objectius
-
-* Entendre la sintaxi bàsica d'**AWK**.
-* Aprendre a utilitzar **AWK** per processar fitxers de text.
-* Entendre les diferències entre **AWK** i **BASH**.
-
-## Prerequisits
-
-* Una màquina virtual amb sistema operatiu Linux, preferiblement AlmaLinux 9.4. Es recomana accedir a la màquina virtual mitjançant SSH.
 
 ## Què és AWK?
 

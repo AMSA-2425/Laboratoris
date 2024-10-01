@@ -4,7 +4,7 @@ Un altre eina útil que ens ofereix systemd és `journalctl`, que ens permet ana
 
 Crearem un servei amb bash i awk que monitoritzi l'estat del sistema i registri la informació en un fitxer de registre. A continuació, utilitzarem `journalctl` per analitzar els registres del sistema i buscar la informació del servei.
 
-1. **Crea un script de monitoratge**:
+1. **Crea un script de monitoratge (usr/local/bin/system-monitor.sh)**:
 
     ```bash
     #!/bin/bash
@@ -53,7 +53,7 @@ Crearem un servei amb bash i awk que monitoritzi l'estat del sistema i registri 
 
     ![systemctl status system-monitor](../figures/systemd/systemctl-status-system-monitor.png)
 
-5. Un altra forma d'accedir a la informació del servei és utilitzar la comanda `journalctl` amb l'opció `-u` seguida del nom de la unitat. Per exemple, per veure els registres del servei `system-monitor`, podem utilitzar la comanda:
+5. Una altra forma d'accedir a la informació del servei és utilitzar la comanda `journalctl` amb l'opció `-u` seguida del nom de la unitat. Per exemple, per veure els registres del servei `system-monitor`, podem utilitzar la comanda:
 
     ```bash
     journalctl -u system-monitor

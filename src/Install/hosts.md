@@ -1,10 +1,10 @@
-# Nom en xarxa
+# Hosts
 
 Hi ha dos maneres d'identificar un servidor o dispositiu connectat en una xarxa, o bé utilitzant la direcció IP del dispositiu o bé utilitzant el seu nom d'amfitrió. Per poder resoldre el nom d'amfitrió correctament, cal configurar-lo correctament en el sistema o disposar d'un servidor DNS que pugui resoldre el nom d'amfitrió en una adreça IP.
 
 ## Network Address Translation (NAT)
 
-Per defecte, VMWare utilitza una xarxa NAT per connectar les m,àquines virtuals. Per fer-ho, VMWare crea una xarxa privada a la qual es connecten les màquines virtuals i utilitza la xarxa de l'amfitrió per connectar-se a Internet. Això permet a les màquines virtuals connectar-se a Internet a través de l'amfitrió sense necessitat de configurar una xarxa addicional. Ara bé, això també significa que les màquines virtuals utilitzen una adreça IP privada que no és accessible des de l'exterior. Tot i això, aquesta configuració la podeu canviar si cal. Però, pels nostres laboratoris, aquesta configuració és suficient.
+Per defecte, VMWare utilitza una xarxa NAT per connectar les màquines virtuals. Per fer-ho, VMWare crea una xarxa privada a la qual es connecten les màquines virtuals i utilitza la xarxa de l'amfitrió per connectar-se a Internet. 
 
 > ℹ️ **Què és NAT?**
 >
@@ -14,13 +14,7 @@ Per defecte, VMWare utilitza una xarxa NAT per connectar les m,àquines virtuals
 
 La direcció IP és una forma única d'identificar un dispositiu en una xarxa. Cada dispositiu connectat a una xarxa ha d'estar configurat amb una adreça IP única per poder comunicar-se amb altres dispositius. Les adreces IP poden ser dinàmiques (assignades per un servidor DHCP) o estàtiques (configurades manualment).
 
-Quan es crea una màquina virtual utilitzant el programari VMWare per defecte, la màquina virtual obté una adreça IP a través del servidor DHCP de VMWare. Aquesta adreça IP es pot utilitzar per accedir a la màquina virtual des de l'amfitrió o altres dispositius de la xarxa.
-
-Per obtenir aquesta informació podeu consultar la interficie gràfica de VMWare o bé utilitzar la comanda `ip addr` en la terminal de la màquina virtual.
-
-- Interfície gràfica de VMWare:
-
-  ![Interfície gràfica de VMWare](./figures/hosts/vmware-network.png)
+Quan es crea una màquina virtual utilitzant el programari VMWare per defecte, la màquina virtual obté una adreça IP a través del servidor DHCP de VMWare. 
 
 - Comanda `ip addr`:
 
@@ -32,7 +26,7 @@ Per obtenir aquesta informació podeu consultar la interficie gràfica de VMWare
 
   ![Comanda `ip addr`](./figures/hosts/ip-addr.png)
 
-Podeu testar la connectivitat de la màquina virtual amb l'amfitrió o altres dispositius de la xarxa utilitzant la comanda `ping`. Per exemple, per provar la connectivitat amb l'amfitrió, podeu utilitzar la següent comanda:
+Podeu testar la connectivitat de la màquina virtual amb l'amfitrió o altres dispositius de la xarxa utilitzant la comanda `ping`. Per exemple, per provar la connectivitat amb l'amfitrió, podeu utilitzar la següent comanda (envia 4 paquets ICMP des de la terminal principal de la màquina a l'amfitrió):
 
 ```bash
 ping -c 4 <adreça IP de l'amfitrió>

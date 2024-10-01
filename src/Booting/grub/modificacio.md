@@ -1,6 +1,6 @@
 # Modificació de les opcions del GRUB
 
-Com heu pogut observar, la instal·lació del sistema operatiu Debian 12 ha configurat el GRUB de forma predeterminada.
+En la secció `Instal·lació d'una màquina virtual amb Debian 12.5`s'ha insta·lat una màquina virtual Debian.
 
 ![GRUB de Debian 12](../figures/GRUB/config/grub-debian.png)
 
@@ -98,7 +98,7 @@ Aquestes opcions només es mantindran durant l'arrencada actual del sistema. Per
     >
     > Algunes opcions comunes que es poden afegir al fitxer de configuració del GRUB són:
     > - `GRUB_TIMEOUT`: temps d'espera per a seleccionar una entrada del GRUB.
-    > - `GRUB_DISABLE_OS_PROBER`: per defecte, en debian es troba activada. Per tant, no detectarà altres sistemes operatius instal·lat en el sistema.
+    > - `GRUB_DISABLE_OS_PROBER`: per defecte, en debian es troba activada. Per tant, no detectarà altres sistemes operatius instal·lats en el sistema.
 
 5. Desa els canvis i surt de l'editor de text.
 6. Un cop hagis modificat el fitxer de configuració del GRUB, hauràs de regenerar el fitxer de configuració del GRUB amb la comanda següent:

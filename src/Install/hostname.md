@@ -1,6 +1,6 @@
 # Hostname
 
-El administrador de sistemes acostumen a administrar múltiples servidors i dispositius. Per tant, és important identificar cada dispositiu amb un nom únic per facilitar la gestió i la comunicació entre ells. El nom d'un dispositiu s'anomena **nom d'amfitrió** o **hostname**. Per a gestionar el nom d'amfitrió d'un sistema Linux, utilitzarem la comanda `hostnamectl`.
+Els administradors de sistemes acostumen a administrar múltiples servidors i dispositius. Per tant, és important identificar cada dispositiu amb un nom únic per facilitar la gestió i la comunicació entre ells. El nom d'un dispositiu s'anomena **nom d'amfitrió** o **hostname**. Per a gestionar el nom d'amfitrió d'un sistema Linux, utilitzarem la comanda `hostnamectl`.
 
 ## Comprovar el nom d'amfitrió actual
 

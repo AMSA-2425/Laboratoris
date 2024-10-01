@@ -1,4 +1,4 @@
-# Accés no autoritzat a través del GRUB
+# Canvi del password de root a través del GRUB
 
 Assumeix que teniu un servidor instal·lat amb un carregar de sistema GRUB. Un atacant ha conseguit accés físic al vostre servidor i vol modificar la contrasenya de l'usuari root per a poder accedir al sistema amb privilegis d'administrador. Per a fer-ho, l'atacant ha reiniciat el sistema i ha accedit al carregador de sistema GRUB. A continuació assumirem el rol i veurem com podem accedir al sistema operatiu i modificar la contrasenya de l'usuari root a través del carregador de sistema GRUB.
 
