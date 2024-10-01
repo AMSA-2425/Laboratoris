@@ -90,7 +90,7 @@ Una confusió  comuna es pensar que l'expressió `/Char/` indica que la línia c
 ~awk '/ois/ {print}' pokemon.csv
 ```
 
-En la sortida, veureu que tant les paraules "poison" del tipus de pokémon com els diferents noms de pokémon que contenen la paraula "ois" són mostrats.
+En la sortida, veureu que tant les paraules "poison" del tipus de figura com els diferents noms de figura que contenen la paraula "ois" són mostrats.
 
  ```bash
 1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False
@@ -168,31 +168,31 @@ awk 'patró { acció }' fitxer
 
 on el patró és una expressió composta amb operadors lògics i l'acció és el que es vol fer amb les línies que compleixen el patró. Per exemple:
 
-* Mostrar tots els pokemons que tenen més de 100 punts d'atac (valor de la columna 7):
+* Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7):
 
     ```bash
     awk -F, '$7 > 100 {print}' pokemon.csv
     ```
 
-* Mostrar tots els pokemons que tenen més de 100 punts d'atac (valor de la columna 7) i són de la primera generació (valor de la columna 12):
+* Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7) i són de la primera generació (valor de la columna 12):
 
     ```bash
     awk -F, '$7 > 100 && $12 == 1 {print}' pokemon.csv
     ```
 
-* Mostrar tots els pokemons que tenen més de 100 punts d'atac (valor de la columna 7) o són de la primera generació (valor de la columna 12):
+* Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7) o són de la primera generació (valor de la columna 12):
 
     ```bash
     awk -F, '$7 > 100 || $12 == 1 {print}' pokemon.csv
     ```
 
-* Mostrar tots els pokemons que són Mega pokemons (contenen la paraula "Mega" a la columna 2):
+* Mostrar totes les figures que són Mega figures (contenen la paraula "Mega" a la columna 2):
 
     ```bash
     awk -F, '$2 ~ /Mega/ {print}' pokemon.csv
     ```
 
-* Mostra tots els pokemons que no són Mega pokemons (no contenen la paraula "Mega" a la columna 2):
+* Mostra totes les figures  que no són Mega figures (no contenen la paraula "Mega" a la columna 2):
 
     ```bash
     awk -F, '$2 !~ /Mega/ {print}' pokemon.csv
@@ -202,7 +202,7 @@ on el patró és una expressió composta amb operadors lògics i l'acció és el
 
 Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vostre sistema per entendre com funcionen. Intenta resoldre primer els exercicis en **bash** i després en **AWK**. Un cop pensada la solució, podeu comparar-la amb la solució proporcionada.
 
-1. Implementeu una comanda que permeti filtrar tots els pokemon de tipus foc (Foc) i imprimir únicament per *stdout* el nom i els seus tipus (columnes 2, 3 i 4).
+1. Implementeu una comanda que permeti filtrar totes les figures de tipus foc (Foc) i imprimir únicament per *stdout* el nom i els seus tipus (columnes 2, 3 i 4).
 
     * En bash podem fer servir la comanda **grep** per filtrar les línies que contenen la paraula "Fire" i la comanda **cut** per extreure les columnes 2, 3 i 4:
 
@@ -216,7 +216,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     ~awk -F, '/Fire/ {print $2,$3,$4}' pokemon.csv
     ```
 
-2. Implementeu una comanda que permeti imprimir totes les línies que continguin una **'b'** o una **'B'** seguida de **"ut"**. Mostra només el nom del pokémon (columna 2).
+2. Implementeu una comanda que permeti imprimir totes les línies que continguin una **'b'** o una **'B'** seguida de **"ut"**. Mostra només el nom de la figura (columna 2).
 
     * En **AWk** podem fer servir l'expressió regular **[bB]ut**:
 
@@ -230,7 +230,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     ~grep -i "but" pokemon.csv | cut -d, -f2
     ```
 
-3. Implementeu una comanda que permeti imprimir totes les línies que comencin per un **"K"** majúscula. Mostra només el nom del pokémon (columna 2).
+3. Implementeu una comanda que permeti imprimir totes les línies que comencin per un **"K"** majúscula. Mostra només el nom de la figura (columna 2).
 
     * En **bash** podem fer servir la comanda **grep** amb el meta caràcter **^** per indicar que la línia comença per "K" majúscula:
 
@@ -247,7 +247,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     **!Compte:** Per defecte, les expressions regulars actuen sobre tota la línia **$0**. Si voleu aplicar l'expressió regular a una columna determinada, necessiteu l'operador (**~**). Si intenteu aplicar:
     `awk -F,'/^K/ {print $2}' pokemon.csv` no funcionarà ja que l'inici **^** de **$0** serà un enter.
 
-4. Imprimiu tots els pokemons que siguin del tipus foc o lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **|** per crear l'expressió regular.
+4. Imprimiu totes les figures que siguin del tipus foc o lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **|** per crear l'expressió regular.
 
    * En **AWK** podem fer servir l'operador **|** per combinar dos patrons:
 
@@ -261,7 +261,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     ~grep -E "Fire|Fighting" pokemon.csv | cut -d, -f2,3,4
     ```
 
-5. Imprimiu tots els pokemons que siguin del tipus foc i lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **&&** per crear l'expressió regular.
+5. Imprimiu tots les figures que siguin del tipus foc i lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **&&** per crear l'expressió regular.
 
    * En **AWK** podem fer servir l'operador **&&** per combinar dos patrons:
 
@@ -277,7 +277,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
 
     En aquest cas no podem fer servir l'operador **&&** ja que **grep** no permet aquesta funcionalitat. Per tant, hem de fer servir l'operador **|** per combinar els dos patrons. A més, hem de fer servir l'expressió regular **Fire.*Fighting|Fighting.*Fire** per indicar que volem les línies que contenen "Fire" seguit de "Fighting" o "Fighting" seguit de "Fire".
 
-6. Imprimiu el nom de tots els pokemons de la primera generació que siguin llegendaris. Per fer-ho utilitzeu les columnes 12 i 13. La columna 12 indica la generació amb valors númerics (1,2,3,...) i la columna 13 indica si un pokémon és llegendari o no (0: No, 1: Sí).
+6. Imprimiu el nom de totes les figures de la primera generació que siguin llegendaris. Per fer-ho utilitzeu les columnes 12 i 13. La columna 12 indica la generació amb valors númerics (1,2,3,...) i la columna 13 indica si una figura és llegendària o no (0: No, 1: Sí).
 
     * En **AWK** podem fer servir l'operador **&&** per combinar dos patrons:
 

@@ -20,19 +20,19 @@ Per exemple:
     awk -F, 'BEGIN{OFS="\t"} {print $0}' pokemon_tab.csv
     ```
 
-* Per fer servir el fitxer pokemon_tab.csv podem utilitzar els mateixos scripts que hem fet servir amb el fitxer pokemon.csv. Però indicant que el separador de camps és un tabulador. Per exemple, per comptar el nombre de pokemons lluitadors:
+* Per fer servir el fitxer pokemon_tab.csv podem utilitzar els mateixos scripts que hem fet servir amb el fitxer pokemon.csv. Però indicant que el separador de camps és un tabulador. Per exemple, per comptar el nombre de figures lluitadores:
 
     ```bash
     awk -F"\t" '/Fighting/ {print $2}' pokemon_tab.csv
     ```
 
-* Si volem fer servir una variable entorn per indicar el tipus de pokemons que volem comptar, podem fer-ho així:
+* Si volem fer servir una variable entorn per indicar el tipus de figures que volem comptar, podem fer-ho així:
 
     ```bash
     ~awk -F"\t" -v type=$TYPE '{ if ($3 == type) { print $2 } }' pokemon_tab.csv
     ```
 
-    on **$TYPE** és una variable entorn que conté el tipus de pokemons que volem comptar.
+    on **$TYPE** és una variable entorn que conté el tipus de figures que volem comptar.
 
 ## Bucles
 
@@ -53,7 +53,7 @@ for (i=1;i<=NF;i++)
 
 * `while (condició) { acció }`: Aquest bucle executa l'acció mentre la condició sigui certa.
 
-Per exemple, substituïu els camps del tipus de pokemon per un camps tipus compost per els dos tipus de pokemon separats per un **/** dels primers 10 pokemons:
+Per exemple, substituïu els camps del tipus de figura per un camp compost pels dos tipus de figura separats per un **/** de les primeres 10 figures:
 
 ```bash
 awk -F, \
@@ -70,7 +70,7 @@ La comanda `getline` ens permet llegir la següent línia de l'entrada. Això en
 
 * `do { acció } while (condició)`: Aquest bucle executa l'acció una vegada i després avalua la condició. Si la condició és certa, torna a executar l'acció.
 
-Per exemple, utilitzeu el bucle **do** per comptar el nombre de pokemons de tipus foc:
+Per exemple, utilitzeu el bucle **do** per comptar el nombre de figures de tipus foc:
 
 ```bash
 awk -F, \
@@ -93,7 +93,7 @@ Instruccions de control:
 Per exemple:
 
 
-* Cerqueu la primera entrada que compleixi les següents condicions: el tipus de pokemon és "Fire" i la seva velocitat és més gran que 100:
+* Cerqueu la primera entrada que compleixi les següents condicions: el tipus de figura és "Fire" i la seva velocitat és més gran que 100:
 
     ```bash
     awk -F, 'BEGIN {found = 0} { if (found == 0) { for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print "El primer Pokémon de tipus Fire amb velocitat superior a 100 és: " $2; found = 1; break } } } }' pokemon.csv
@@ -101,7 +101,7 @@ Per exemple:
 
     Observació: `break` finalitza el bucle actual que recorre els camps de la línia. Per tant, ens permet deixar de buscar en una línia quan ja hem trobat el que volem. 
 
-* Cerqueu totes les entrades que compleixen les següents condicions: el tipus de pokemon és "Fire" i la seva velocitat és més gran que 100:
+* Cerqueu totes les entrades que compleixen les següents condicions: el tipus de figura és "Fire" i la seva velocitat és més gran que 100:
 
     ```bash
     awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print $2 } } }' pokemon.csv
@@ -113,21 +113,21 @@ Per exemple:
     awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire" && $7 > 100) { print $2; break } } }' pokemon.csv
     ```
 
-    Observació: `break` ens permet que quan trobem un pokemon que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent. En aquest cas, `next` seria equivalent a `break`.
+    Observació: `break` ens permet que quan trobem una figura que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent. En aquest cas, `next` seria equivalent a `break`.
 
-* Cerqueu tots els pokemons que són voladors i de foc assumint que les columnes poden estar en qualsevol ordre i que cada entrada pot estar ordenada de forma diferent:
+* Cerqueu totes les figures que són voladors i de foc assumint que les columnes poden estar en qualsevol ordre i que cada entrada pot estar ordenada de forma diferent:
 
     ```bash
     awk -F, '{ for (i=1; i<=NF; i++) { if ($i == "Fire") { for (j=1; j<=NF; j++) { if ($j == "Flying") { print $2; next } } } } }' pokemon.csv
     ```
 
-    Observació: `next` ens permet que quan trobem un pokemon que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent.
+    Observació: `next` ens permet que quan trobem una figura que compleix les condicions, no cal seguir buscant en la mateixa línia i podem passar a la següent.
 
     Observació: `break` ens donaria el mateix resultat en aquest cas. Però `next` és més eficient perquè no cal seguir recorrent els camps de la línia. La comanda `break` seguiria recorrent els camps al bucle de la variable **i**.
 
 ## Arrays
 
-**AWK** també ens permet fer servir arrays. Per exemple, podem fer servir un array per comptar el nombre de pokemons de cada tipus:
+**AWK** també ens permet fer servir arrays. Per exemple, podem fer servir un array per comptar el nombre de figures de cada tipus:
 
 ```bash
 awk -F, '
@@ -148,7 +148,7 @@ END {
 }' pokemon.csv
 ```
 
-Els arrays en **AWK** són associatius, és a dir, no cal indicar la posició de l'element en l'array. Per exemple, si volem comptar el nombre de pokemons de cada tipus per generació:
+Els arrays en **AWK** són associatius, és a dir, no cal indicar la posició de l'element en l'array. Per exemple, si volem comptar el nombre de figures de cada tipus per generació:
 
 ```bash
 awk -F, '
@@ -175,7 +175,7 @@ END {
 
 ## Exercicis Avançats AWK
 
-1. Implementeu un script que mostri la pokedex en ordre invers. Però mantenint la primera línia com a capçalera. 
+1. Implementeu un script que mostri el fitxer pokemon.csv en ordre invers. Però mantenint la primera línia com a capçalera. 
 
     ```bash
     awk -F, '
@@ -193,7 +193,7 @@ END {
     }' pokemon.csv
     ```
 
-2. Implementeu un script que simuli la comanda `sort -t, -k5 -n pokemon.csv`. Aquesta comanda ordena el fitxer pokemon.csv pel camp Total de forma numèrica. Podeu fer servir la funció `asort` per ordenar els pokemons. Aquesta funció ordena un array i retorna el nombre d'elements de l'array ordenat. Per exemple:
+2. Implementeu un script que simuli la comanda `sort -t, -k5 -n pokemon.csv`. Aquesta comanda ordena el fitxer pokemon.csv pel camp Total de forma numèrica. Podeu fer servir la funció `asort` per ordenar les figures. Aquesta funció ordena un array i retorna el nombre d'elements de l'array ordenat. Per exemple:
 
     ```bash
     asort(array, sorted, "@val_num_asc")
@@ -229,7 +229,7 @@ END {
     }' pokemon.csv
     ```
 
-1. Implementeu un script que mostri una taula resum amb els pokemons de cada tipus a cada generació. Un exemple de la sortida esperada:
+1. Implementeu un script que mostri una taula resum amb les figures de cada tipus a cada generació. Un exemple de la sortida esperada:
 
     | Tipus      | Gen 1 | Gen 2 | Gen 3 | Gen 4 | Gen 5 | Gen 6 |
     |------------|-------|-------|-------|-------|-------|-------|
@@ -254,7 +254,7 @@ END {
 
     Notes:
 
-    1. Els tipus de pokemons es troben a la columna 3 i 4 i la generació a la columna 12.
+    1. Els tipus de figures es troben a la columna 3 i 4 i la generació a la columna 12.
     2. Utilitzeu printf per formatar la sortida.
 
    * En **AWK**:
@@ -368,7 +368,7 @@ END {
     }' pokemon.csv > pokemon.json
     ```
 
-3. Implementeu un script que permeti simular un combat entre dos pokémons. Els pokémons es passen com a variables d'entorn i han d'utilitzar el nom del pokémon a la pokedex. La lògica del combat és comparar els valors de velocitat per saber qui ataca primer. El pokémon que ataca primer és el que té més velocitat. Si els dos pokémons tenen la mateixa velocitat, el primer pokémon que s'ha passat com a variable d'entorn ataca primer. El combat es fa de forma alternada fins que un dels dos pokémons es queda sense punts de vida. El dany es mesura com (Atac - Defensa) multiplicat per un valor aleatori entre 0 i 1. Aquest es resta a la vida del pokémon oponent. La sortida ha de ser semblant a:
+3. Implementeu un script que permeti simular un combat entre dos figures. Les figures es passen com a variables d'entorn i han d'utilitzar el nom de la figura al fitxer pokemon.csv. La lògica del combat és comparar els valors de velocitat per saber qui ataca primer. La figura que ataca primer és el que té més velocitat. Si les dos figures tenen la mateixa velocitat, la primera figura que s'ha passat com a variable d'entorn ataca primer. El combat es fa de forma alternada fins que una de les dos figures es queda sense punts de vida. El dany es mesura com (Atac - Defensa) multiplicat per un valor aleatori entre 0 i 1. Aquest es resta a la vida de la figura oponent. La sortida ha de ser semblant a:
 
     ```bash
     Charizard attacks first!

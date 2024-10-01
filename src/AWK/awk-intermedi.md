@@ -84,7 +84,7 @@ Per exemple:
     awk 'NR==1 { $1="#"; $2="Nom"; $3="Tipus 1"; $4="Tipus 2"; $5="Total"; $6="HP"; $7="Atac"; $8="Defensa"; $9="Atac Especial"; $10="Defensa Especial"; $11="Velocitat"; $12="Generació"; $13="Llegendari"; print $0 } NR>1 {print}' pokemon.csv
     ```
 
-* Implementeu una comanda que permeti detectar entrades incorrectes a la pokedex. Un entrada incorrecta és aquella que no té 13 valors per línia. En cas de detectar una entrada incorrecta, la eliminarem de la sortida i comptarem el nombre de línies eliminades per mostrar-ho al final.
+* Implementeu una comanda que permeti detectar entrades incorrectes al fitxer pokemon.csv. Una entrada incorrecta és aquella que no té 13 valors per línia. En cas de detectar una entrada incorrecta, la eliminarem de la sortida i comptarem el nombre de línies eliminades per mostrar-ho al final.
 
     ```bash
     awk 'NF != 13 { n++ } NF == 13 { print } END{ print "There are ", n, "incorrect entries." }' pokemon.csv
@@ -94,7 +94,7 @@ Per exemple:
 
 Les sentències condicionals s'utilitzen en qualsevol llenguatge de programació per executar qualsevol sentència basada en una condició particular. Es basa en avaluar el valor true o false en les declaracions `if-else i if-elseif`. **AWK** admet tot tipus de sentències condicionals com altres llenguatges de programació.
 
-Implementeu una comanda que us indiqui quins pokemons de tipus foc són ordinaris o llegendaris. Busquem una sortida semblant a:
+Implementeu una comanda que us indiqui quines figures de tipus foc són ordinàries o llegendàries. Busquem una sortida semblant a:
 
 ```bash
 Charmander is a common pokemon.
@@ -102,7 +102,7 @@ Charizard is a legendary pokemon.
  ...
 ```
 
-La condició per ser un pokémon llegendari és que la columna 13 sigui **True**.
+La condició per ser una figura llegendària és que la columna 13 sigui **True**.
 
 ```bash
 awk -F, '/Fire/ { if ($13 == "True") { print $2, "is a legendary pokemon." } else { print $2, "is a common pokemon." } }' pokemon.csv
@@ -158,7 +158,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 
 ### Exercicis Intermedis
 
-* Implementeu un script que compti tots els pokemons que tenim a la pokedex i que tingui la sortida següent:
+* Implementeu un script que compti totes les figures que tenim al fitxer pokemon.csv i que tingui la sortida següent:
 
     ```bash
     Counting pokemons...
@@ -183,7 +183,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     ~awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv
     ```
 
-* Implementeu un comptador per saber tots els pokemons de tipus foc de la primera generació descartant els Mega pokemons i que tingui la sortida següent:
+* Implementeu un comptador per saber totes les figures de tipus foc de la primera generació descartant les Mega figures i que tingui la sortida següent:
 
     ```bash
     Counting pokemons...
@@ -206,9 +206,9 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     ~awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first generation without Mega evolutions." }' pokemon.csv
     ```
 
-    En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar els Mega pokemons del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la clàusula **{END}** per imprimir el resultat final.
+    En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar les Mega figures del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la clàusula **{END}** per imprimir el resultat final.
 
-* Indiqueu a quina línia es troba cada pokémon del tipus foc. Volem imprimir la línia i el nom del pokémon. La sortida ha de ser semblant a:
+* Indiqueu a quina línia es troba cada figura del tipus foc. Volem imprimir la línia i el nom de la figura. La sortida ha de ser semblant a:
 
     ```bash
     Line:  6    Charmander
@@ -222,7 +222,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     Line:  801  Volcanion
     ```
 
-    on el format de cada línia és **Line:  n\tNom del pokémon**.
+    on el format de cada línia és **Line:  n\tNom de la figura**.
 
   * En **AWK** podem fer servir la variable **NR** per obtenir el número de línia actual. A més a més, podeu formatar la sortida amb `print cadena,variable,cadena,variable,...`:
 
@@ -243,7 +243,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     ~done < pokemon.csv
     ```
 
-* Implementeu un script que permeti comptar el nombre de pokemons de tipus foc i drac. La sortida ha de ser semblant a:
+* Implementeu un script que permeti comptar el nombre de figures de tipus foc i drac. La sortida ha de ser semblant a:
 
     ```bash
     Fire:64
@@ -284,7 +284,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     echo "Others:$others"
     ```
 
-* Imprimiu la pokedex amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada pokémon. La sortida ha de ser semblant a:
+* Imprimiu el fitxer pokemon.csv amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada figura. La sortida ha de ser semblant a:
 
      ```bash
     #,Name,Type 1,Type 2,Total,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,Generation,Legendary,Avg
@@ -315,7 +315,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 
     **Nota**: Bash de forma nativa no permet operacions aritmètiques amb nombres decimals. Per fer-ho, cal utilitzar una eina com `bc`. En aquest cas, podeu adaptar el codi per utilitzar `bc` quan calculeu la mitjana i fer servir `printf` per formatar la sortida amb el nombre de decimals que vulgueu.
 
-* Cerca el pokémon més fort i més feble tenint en compte el valor de la columna 7 dels pokemons de tipus foc de la primera generació.
+* Cerca la figura més més forta i més feble tenint en compte el valor de la columna 7 de pokemon.csv de tipus foc de la primera generació.
 
   * En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
 

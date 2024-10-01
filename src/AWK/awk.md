@@ -29,18 +29,18 @@ En aquests exemples, [-F] és una opció que permet especificar el caràcter del
 
 ## Fitxer de Dades d'Exemple per utilitzar en aquest Laboratori
 
-En aquest laboratori, farem servir un fitxer de dades específic com a conjunt de dades d’exemple. Aquest fitxer representa una pokedex i es pot obtenir amb la següent comanda:
+En aquest laboratori, farem servir un fitxer de dades específic com a conjunt de dades d’exemple. Aquest fitxer representa un fittxer de figures i es pot obtenir amb la següent comanda:
 
 ```bash
 curl -O https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv
 ```
 
-Aquest fitxer conté 801 línies (800 pokemons + 1 capçalera) i 13 columnes. Les columnes són les següents:
+Aquest fitxer conté 801 línies (800 figures + 1 capçalera) i 13 columnes. Les columnes són les següents:
 
-* **#**: Número de pokémon
-* **Name**: Nom del pokémon
-* **Type 1**: Tipus 1 del pokémon
-* **Type 2**: Tipus 2 del pokémon
+* **#**: Número de figura
+* **Name**: Nom de la figura
+* **Type 1**: Tipus 1 de la figura
+* **Type 2**: Tipus 2 de la figura
 * **Total**: Total de punts de tots els atributs
 * **HP**: Punts de vida
 * **Attack**: Atac

@@ -46,8 +46,8 @@
  	- [Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
     
  ## AWK
- - [Awk](./Scripts/awk.md)
-    - [Awk - Bàsic](./Scripts/awk-basic.md)
-    - [Awk - Intermedi](./Scripts/awk-intermediate.md)
-    - [Awk - Avançat](./Scripts/awk-advanced.md)
-    - [Awk - Altres Exemples](./Scripts/altres-exemples.md)
+ - [Awk](./AWK/awk.md)
+    - [Awk - Bàsic](./AWK/awk-basic.md)
+    - [Awk - Intermedi](./AWK/awk-intermediate.md)
+    - [Awk - Avançat](./AWK/awk-advanced.md)
+    - [Awk - Altres Exemples](./AWK/altres-exemples.md)
