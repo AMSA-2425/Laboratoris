@@ -130,13 +130,13 @@ CapEff: 0000000000000000
 -Depenent de la configuració del nucli i dels mòduls carregats en el sistema, alguns dels fitxers enumerats a continuació poden no estar presents:
 
 ```md
-| cmdline      | loadavg     | stat     |
+| cmdline      | loadavg     | stat   |
 | cpuinfo      | meminfo     | sys    |
-| devices      | modules     | version     |
-| filesystems  | mounts     |          |
-| interrupts   | net        |            |
+| devices      | modules     | version  |
+| filesystems  | mounts      |          |
+| interrupts   | net         |          |
 | kcore        | partitions   |          |
-| ksyms        | pci        |          |
+| ksyms        | pci         |          |
 ``` 
 
 ###  cmdline (fitxer)‏
