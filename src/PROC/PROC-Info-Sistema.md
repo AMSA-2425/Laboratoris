@@ -26,7 +26,7 @@ Exemple:
 ```bash		
 # cat /proc/cpuinfo
 processor  	: 0
-Bogomips : 48.00
+Bogomips 	: 48.00
 vendor_id    	: GenuineIntel
 cpu family      : 6
 model       	: 42
@@ -34,10 +34,10 @@ model name   	: Intel® Core(TM) i7-2620M CPU @ 2.70GHz
 CPU Mhz  	: 2693.860
 cache size   	: 4096 KB
 fpu 		:  yes
-Address sizes: 36 bits physical, 48 bits virtual
+Address sizes	: 36 bits physical, 48 bits virtual
 
 processor  	: 1
-Bogomips : 48.00
+Bogomips 	: 48.00
 vendor_id    	: GenuineIntel
 cpu family      : 6
 model       	: 42
@@ -45,7 +45,7 @@ model name   	: Intel® Core(TM) i7-2620M CPU @ 2.70GHz
 CPU Mhz  	: 2693.860
 cache size   	: 4096 KB
 fpu 		:  yes
-Address sizes: 36 bits physical, 48 bits virtual
+Address sizes	: 36 bits physical, 48 bits virtual
 ``` 
 
 ### devices (fitxer)‏
@@ -98,7 +98,10 @@ SwapFree:     978540 kB
 - Conté informació sobre (entre d'altra):
 	- cpu: temps d’usuari, baixa prioritat (nice), sistema, idle, espera de I/O, servint interrupcions h/w, servint interrupcions s/w, etc.
 	- ctxt: número de canvis de context
-	- btime: temps des de l'inici del sistema
+	- btime: temps des de l'inici del sistema. Es pot convertir aquest temps en algo més comprensible amb la comanda:
+		```bash	
+		# date -d @
+		``` 
 	- processes: # de forks
 	- procs_running: processos executant
 
