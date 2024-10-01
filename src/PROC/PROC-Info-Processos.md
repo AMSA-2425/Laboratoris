@@ -8,7 +8,7 @@
 ```md
 | cmdline    | fd         | stat     |
 | cwd        | maps       | statm    |
-| cpu        | mem        | stat     |
+| cpu        | mem        | status   |
 | environ    | mounts     |          |
 | exe        | root       |          |
 ``` 

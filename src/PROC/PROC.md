@@ -8,7 +8,7 @@
 
 - La major part d'aquest sistema de fitxers s'utilitza per obtenir informació sobre el sistema (accés només-lectura), però alguns fitxers permeten canviar certs paràmetres del nucli en temps d'execució.
 
-- El sistema consta de dos grans grups d'infor-mació:
+- El sistema consta de dos grans grups d'informació:
 	- Informació dels processos en execució.
 	- Informació del sistema.
 
