@@ -1,6 +1,6 @@
 ## 7.2. Informació del Sistema 
 
-- La resta de fitxers del directori /proc pro-porcionen informació sobre el nucli i l'estat del sistema que s'està executant.
+- La resta de fitxers del directori /proc proporcionen informació sobre el nucli i l'estat del sistema que s'està executant.
 
 - Depenent de la configuració del nucli i dels mòduls carregats en el sistema, alguns dels fitxers enumerats a continuació poden no estar presents:
 

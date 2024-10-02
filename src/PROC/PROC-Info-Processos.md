@@ -1,7 +1,7 @@
 ## 7.1. Informació de Processos‏
 - El directori /proc conté un subdirectori per cada procés que s'estigui executant en el sistema.
 
-- Aquests subdirectoris s'identifiquen amb el pid del procés en execució. Per exemple, la infor-mació corresponden al procés init es localitza en el directori “/proc/1”.
+- Aquests subdirectoris s'identifiquen amb el pid del procés en execució. Per exemple, la informació correspondent al procés init es localitza en el directori “/proc/1”.
 
 - Cada un d'aquests subdirectoris contenen els pseudo-fitxers i directoris següents:
 
