@@ -53,4 +53,4 @@
     - [Awk - Intermedi](./AWK/awk-intermediate.md)
     - [Awk - Avançat](./AWK/awk-advanced.md)
     - [Awk - Altres Exemples](./AWK/altres-exemples.md)
--  [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
+- [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
