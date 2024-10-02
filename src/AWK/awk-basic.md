@@ -1,7 +1,7 @@
-# Awk - Bàsic
+## Awk - Bàsic
 
 
-## Estrucutra Bàsica d'AWK
+### Estrucutra Bàsica d'AWK
 
 El llenguatge **AWK** s'organitza amb duples de la forma `patró { acció }`. El patró pot ser una expressió regular o una condició lògica. L’acció és el que es vol realitzar amb les línies que compleixen el patró. Per tant, AWK processa els fitxers línia per línia. Per cada línia del fitxer, AWK avalua el patró. Si el patró és cert, executa l’acció. Si el patró és fals, passa a la següent línia.
 
@@ -32,13 +32,13 @@ awk '
 ' fitxer
 ```
 
-## Aprenent a utilitzar AWK amb Exemples
+### Aprenent a utilitzar AWK amb Exemples
 
-### Sintaxis Bàsica
+#### Sintaxis Bàsica
 
 En aquesta secció veurem com podem utiltizar AWK per substituir algunes comandes bàsiques de bash com `cat, grep, cut`.
 
-#### `cat`
+##### `cat`
 
 La comanda `cat` ens permet mostrar el contingut d'un fitxer. Per exemple, per mostrar el contingut del fitxer pokemon.csv:
 
@@ -68,7 +68,7 @@ Podeu comparar les sortides de les comandes `cat` i `awk` per assegurar-vos que 
 ~diff <(cat pokemon.csv) <(awk '{print $0}' pokemon.csv)
 ```
 
-#### `grep`
+##### `grep`
 
 La comanda `grep` ens permet cercar patrons en un fitxer. Per exemple, per mostrar totes les línies que contenen la paraula "Char" al fitxer pokemon.csv:
 
@@ -109,7 +109,7 @@ Conteu quantes línies compleixen aquest patró, combinant **AWK** amb la comand
 
 En aquest cas, hi ha 64 entrades que satisfan aquest patró.
 
-#### `cut`
+##### `cut`
 
 La comanda `cut` ens permet extreure columnes d'un fitxer. Per exemple, per mostrar només la primera columna del fitxer pokemon.csv:
 
@@ -141,7 +141,7 @@ sed 's/,/ /g' pokemon.csv | awk '{print $3}'
 
 En aquest cas, estem substituint totes les comes per espais en blanc i després utilitzant **AWK** per imprimir la tercera columna.
 
-### Verificacions lògiques
+#### Verificacions lògiques
 
 Es pot utilitzar com a patró una expressió composta amb operadors i retornar *true* o *false*.
 
@@ -198,7 +198,7 @@ on el patró és una expressió composta amb operadors lògics i l'acció és el
     awk -F, '$2 !~ /Mega/ {print}' pokemon.csv
     ```
 
-### Exercicis Bàsics
+#### Exercicis Bàsics
 
 Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vostre sistema per entendre com funcionen. Intenta resoldre primer els exercicis en **bash** i després en **AWK**. Un cop pensada la solució, podeu comparar-la amb la solució proporcionada.
 

@@ -45,9 +45,11 @@
  	- [Informadió de Procesos](./PROC/PROC-Info-Processos.md)
  	- [Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
     
- ## AWK
- - [Awk](./AWK/awk.md)
+ ## Tractament de Fitxers
+ - [SED](./SED/sed.md)
+ - [AWK](./AWK/awk.md)
     - [Awk - Bàsic](./AWK/awk-basic.md)
     - [Awk - Intermedi](./AWK/awk-intermediate.md)
     - [Awk - Avançat](./AWK/awk-advanced.md)
     - [Awk - Altres Exemples](./AWK/altres-exemples.md)
+- - [Expressions Regulars](./ExpressionsRegulars/sed.md)

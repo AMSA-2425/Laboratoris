@@ -1,6 +1,6 @@
-# Awk - Avançat
+## Awk - Avançat
 
-## Variables definides quan executem AWK
+### Variables definides quan executem AWK
 
 | Variable | Valor per defecte    | Significat                                                                                               |
 |----------|----------------------|----------------------------------------------------------------------------------------------------------|
@@ -34,7 +34,7 @@ Per exemple:
 
     on **$TYPE** és una variable entorn que conté el tipus de figures que volem comptar.
 
-## Bucles
+### Bucles
 
 El llenguatge **AWK** també ens permet fer bucles accepta les següents estructures:
 
@@ -125,7 +125,7 @@ Per exemple:
 
     Observació: `break` ens donaria el mateix resultat en aquest cas. Però `next` és més eficient perquè no cal seguir recorrent els camps de la línia. La comanda `break` seguiria recorrent els camps al bucle de la variable **i**.
 
-## Arrays
+### Arrays
 
 **AWK** també ens permet fer servir arrays. Per exemple, podem fer servir un array per comptar el nombre de figures de cada tipus:
 
@@ -173,7 +173,7 @@ END {
 }' pokemon.csv
 ```
 
-## Exercicis Avançats AWK
+### Exercicis Avançats AWK
 
 1. Implementeu un script que mostri el fitxer pokemon.csv en ordre invers. Però mantenint la primera línia com a capçalera. 
 
@@ -193,7 +193,7 @@ END {
     }' pokemon.csv
     ```
 
-2. Implementeu un script que simuli la comanda `sort -t, -k5 -n pokemon.csv`. Aquesta comanda ordena el fitxer pokemon.csv pel camp Total de forma numèrica. Podeu fer servir la funció `asort` per ordenar les figures. Aquesta funció ordena un array i retorna el nombre d'elements de l'array ordenat. Per exemple:
+2. Implemented un script que simuli la comanda `sort -t, -k5 -n pokemon.csv`. Aquesta comanda ordena el fitxer pokemon.csv pel camp Total de forma numèrica. Podeu fer servir la funció `asort` per ordenar les figures. Aquesta funció ordena un array i retorna el nombre d'elements de l'array ordenat. Per exemple:
 
     ```bash
     asort(array, sorted, "@val_num_asc")
