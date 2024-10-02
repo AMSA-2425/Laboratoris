@@ -25,3 +25,5 @@ $	matches the end of a string, or the end position of a line. For example: p$ ma
     wh{3}y matches `whhhy’ 
     wh{3,5}y matches `whhhy' or `whhhhy' or `whhhhhy’
     wh{2,}y matches `whhy' or `whhhy', and so on.
+    
+    ----------------------
