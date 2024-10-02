@@ -46,6 +46,7 @@
  	- [Informadió del Sistema](./PROC/PROC-Info-Sistema.md)
     
  ## Tractament de Fitxers
+ - [TF](./TF.md)
  - [SED](./SED/sed.md)
  - [AWK](./AWK/awk.md)
     - [Awk - Bàsic](./AWK/awk-basic.md)
