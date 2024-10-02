@@ -1,5 +1,7 @@
 # Tractament de Fitxers
 
+-  En aquest capótol veurem formes avnaçades de tractament de fitxers.
+
 ## Contingut
 
 
