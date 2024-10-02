@@ -47,10 +47,10 @@
     
  ## Tractament de Fitxers
  - [TF](./TF.md)
- - [SED](./SED/sed.md)
- - [AWK](./AWK/awk.md)
-    - [Awk - Bàsic](./AWK/awk-basic.md)
-    - [Awk - Intermedi](./AWK/awk-intermediate.md)
-    - [Awk - Avançat](./AWK/awk-advanced.md)
-    - [Awk - Altres Exemples](./AWK/altres-exemples.md)
-- [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
+ 	- [SED](./SED/sed.md)
+	- [AWK](./AWK/awk.md)
+   		 - [Awk - Bàsic](./AWK/awk-basic.md)
+   		 - [Awk - Intermedi](./AWK/awk-intermediate.md)
+   		 - [Awk - Avançat](./AWK/awk-advanced.md)
+    		- [Awk - Altres Exemples](./AWK/altres-exemples.md)
+	- [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
