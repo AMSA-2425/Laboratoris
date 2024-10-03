@@ -1,1 +1,0 @@
-# Compilant el Kernel
