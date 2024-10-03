@@ -52,5 +52,15 @@
 		- [Awk - Bàsic](./AWK/awk-basic.md)
 		- [Awk - Intermedi](./AWK/awk-intermediate.md)
 		- [Awk - Avançat](./AWK/awk-advanced.md)
-		- [Awk - Altres Exemples](./AWK/awk-awk-altres-exemples.md)
+		- [Awk - Altres Exemples](./AWK/awk-altres-exemples.md)
 	- [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
+
+# Kernel de Linux
+
+- [Kernel](./kernel/main.md)
+  - [Analitzant les crides a sistema](./kernel/syscalls.md)
+  - [Espiant el Kernel](./kernel/kernel-spy.md)
+  - [Programació de mòduls](./kernel/modules.md)
+  - [Compilant el Kernel](./lab3/kernel.md)
+  - [Crides a sistema personalitzades](./kernel/add-syscalls.md)
+  - [Rootkit: Escalada de Privilegis](./kernel/rootkit.md)

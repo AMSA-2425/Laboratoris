@@ -49,31 +49,29 @@ Exemples:
  - Eliminar totes les línies en blanc:
 
 ```sh
-	> sed  '/^$/d’ fic
+	$ sed  '/^$/d’ fic
 ```
 	
 - Imprimir totes les línies des del principi fins la primera línia en blanc:
 
 ```sh
-	> sed  –n  '1,/^$/p’ fic
+	$  sed  –n  '1,/^$/p’ fic
 ```
 
 - Substituir la primera ocurrència de la paraula Windows per la paraula Linux en cadascuna de las línies del fitxer:
 
 ```sh
-	> sed  's/Windows/Linux/’ fic
+	$ sed  's/Windows/Linux/’ fic
 ```
 
 - Esborrar tots els espais en blanc al final de cada línia: 
 
 ```sh
-	> sed  's/*$//’ fic
+	$ sed  's/*$//’ fic
 ```
 
-- Canvia totes les seqüències d’un o més zeros per un únic 0. La g permet múltiples substitucions en una mateixa línia:
+- Canvas totes les seqüències d’un o més zeros per un únic 0. La g permet múltiples substitucions en una mateixa línia:
 
 ```sh
-	> sed  's/00*/0/g’ fic
+	$ sed  's/00*/0/g’ fic
 ```
-
-
