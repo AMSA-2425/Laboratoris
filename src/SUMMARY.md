@@ -55,7 +55,10 @@
 		- [Awk - Altres Exemples](./AWK/awk-altres-exemples.md)
 	- [Expressions Regulars](./ExpressionsRegulars/ExpressionsRegulars.md)
 
-## Kernel de Linux
+  ## Xarxa
+ - [Configuració de la Xarxa](./Xarxa.md)
+    
+ ## Kernel de Linux
 - [Kernel de Linux](./Kernel/main.md)
   - [Analitzant les crides a sistema](./Kernel/syscalls.md)
   - [Espiant el Kernel](./Kernel/kernel-spy.md)
@@ -63,3 +66,4 @@
   - [Compilant el Kernel](./Kernel/kernel.md)
   - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
   - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
+  
