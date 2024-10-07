@@ -56,7 +56,7 @@ WantedBy=multi-user.target
 ```
 
 
-## Resum del paassos en la configuració de la xarxa
+## Resum del passos en la configuració de la xarxa
 
 Bàsicament, els passos que realitza el servei de xarxa, són els següents:
 
