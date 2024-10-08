@@ -1,0 +1,801 @@
+#Name
+1Bulbasaur
+2Ivysaur
+3Venusaur
+3VenusaurMega Venusaur
+4Charmander
+5Charmeleon
+6Charizard
+6CharizardMega Charizard X
+6CharizardMega Charizard Y
+7Squirtle
+8Wartortle
+9Blastoise
+9BlastoiseMega Blastoise
+10Caterpie
+11Metapod
+12Butterfree
+13Weedle
+14Kakuna
+15Beedrill
+15BeedrillMega Beedrill
+16Pidgey
+17Pidgeotto
+18Pidgeot
+18PidgeotMega Pidgeot
+19Rattata
+20Raticate
+21Spearow
+22Fearow
+23Ekans
+24Arbok
+25Pikachu
+26Raichu
+27Sandshrew
+28Sandslash
+29Nidoran♀
+30Nidorina
+31Nidoqueen
+32Nidoran♂
+33Nidorino
+34Nidoking
+35Clefairy
+36Clefable
+37Vulpix
+38Ninetales
+39Jigglypuff
+40Wigglytuff
+41Zubat
+42Golbat
+43Oddish
+44Gloom
+45Vileplume
+46Paras
+47Parasect
+48Venonat
+49Venomoth
+50Diglett
+51Dugtrio
+52Meowth
+53Persian
+54Psyduck
+55Golduck
+56Mankey
+57Primeape
+58Growlithe
+59Arcanine
+60Poliwag
+61Poliwhirl
+62Poliwrath
+63Abra
+64Kadabra
+65Alakazam
+65AlakazamMega Alakazam
+66Machop
+67Machoke
+68Machamp
+69Bellsprout
+70Weepinbell
+71Victreebel
+72Tentacool
+73Tentacruel
+74Geodude
+75Graveler
+76Golem
+77Ponyta
+78Rapidash
+79Slowpoke
+80Slowbro
+80SlowbroMega Slowbro
+81Magnemite
+82Magneton
+83Farfetch'd
+84Doduo
+85Dodrio
+86Seel
+87Dewgong
+88Grimer
+89Muk
+90Shellder
+91Cloyster
+92Gastly
+93Haunter
+94Gengar
+94GengarMega Gengar
+95Onix
+96Drowzee
+97Hypno
+98Krabby
+99Kingler
+100Voltorb
+101Electrode
+102Exeggcute
+103Exeggutor
+104Cubone
+105Marowak
+106Hitmonlee
+107Hitmonchan
+108Lickitung
+109Koffing
+110Weezing
+111Rhyhorn
+112Rhydon
+113Chansey
+114Tangela
+115Kangaskhan
+115KangaskhanMega Kangaskhan
+116Horsea
+117Seadra
+118Goldeen
+119Seaking
+120Staryu
+121Starmie
+122Mr. Mime
+123Scyther
+124Jynx
+125Electabuzz
+126Magmar
+127Pinsir
+127PinsirMega Pinsir
+128Tauros
+129Magikarp
+130Gyarados
+130GyaradosMega Gyarados
+131Lapras
+132Ditto
+133Eevee
+134Vaporeon
+135Jolteon
+136Flareon
+137Porygon
+138Omanyte
+139Omastar
+140Kabuto
+141Kabutops
+142Aerodactyl
+142AerodactylMega Aerodactyl
+143Snorlax
+144Articuno
+145Zapdos
+146Moltres
+147Dratini
+148Dragonair
+149Dragonite
+150Mewtwo
+150MewtwoMega Mewtwo X
+150MewtwoMega Mewtwo Y
+151Mew
+152Chikorita
+153Bayleef
+154Meganium
+155Cyndaquil
+156Quilava
+157Typhlosion
+158Totodile
+159Croconaw
+160Feraligatr
+161Sentret
+162Furret
+163Hoothoot
+164Noctowl
+165Ledyba
+166Ledian
+167Spinarak
+168Ariados
+169Crobat
+170Chinchou
+171Lanturn
+172Pichu
+173Cleffa
+174Igglybuff
+175Togepi
+176Togetic
+177Natu
+178Xatu
+179Mareep
+180Flaaffy
+181Ampharos
+181AmpharosMega Ampharos
+182Bellossom
+183Marill
+184Azumarill
+185Sudowoodo
+186Politoed
+187Hoppip
+188Skiploom
+189Jumpluff
+190Aipom
+191Sunkern
+192Sunflora
+193Yanma
+194Wooper
+195Quagsire
+196Espeon
+197Umbreon
+198Murkrow
+199Slowking
+200Misdreavus
+201Unown
+202Wobbuffet
+203Girafarig
+204Pineco
+205Forretress
+206Dunsparce
+207Gligar
+208Steelix
+208SteelixMega Steelix
+209Snubbull
+210Granbull
+211Qwilfish
+212Scizor
+212ScizorMega Scizor
+213Shuckle
+214Heracross
+214HeracrossMega Heracross
+215Sneasel
+216Teddiursa
+217Ursaring
+218Slugma
+219Magcargo
+220Swinub
+221Piloswine
+222Corsola
+223Remoraid
+224Octillery
+225Delibird
+226Mantine
+227Skarmory
+228Houndour
+229Houndoom
+229HoundoomMega Houndoom
+230Kingdra
+231Phanpy
+232Donphan
+233Porygon2
+234Stantler
+235Smeargle
+236Tyrogue
+237Hitmontop
+238Smoochum
+239Elekid
+240Magby
+241Miltank
+242Blissey
+243Raikou
+244Entei
+245Suicune
+246Larvitar
+247Pupitar
+248Tyranitar
+248TyranitarMega Tyranitar
+249Lugia
+250Ho-oh
+251Celebi
+252Treecko
+253Grovyle
+254Sceptile
+254SceptileMega Sceptile
+255Torchic
+256Combusken
+257Blaziken
+257BlazikenMega Blaziken
+258Mudkip
+259Marshtomp
+260Swampert
+260SwampertMega Swampert
+261Poochyena
+262Mightyena
+263Zigzagoon
+264Linoone
+265Wurmple
+266Silcoon
+267Beautifly
+268Cascoon
+269Dustox
+270Lotad
+271Lombre
+272Ludicolo
+273Seedot
+274Nuzleaf
+275Shiftry
+276Taillow
+277Swellow
+278Wingull
+279Pelipper
+280Ralts
+281Kirlia
+282Gardevoir
+282GardevoirMega Gardevoir
+283Surskit
+284Masquerain
+285Shroomish
+286Breloom
+287Slakoth
+288Vigoroth
+289Slaking
+290Nincada
+291Ninjask
+292Shedinja
+293Whismur
+294Loudred
+295Exploud
+296Makuhita
+297Hariyama
+298Azurill
+299Nosepass
+300Skitty
+301Delcatty
+302Sableye
+302SableyeMega Sableye
+303Mawile
+303MawileMega Mawile
+304Aron
+305Lairon
+306Aggron
+306AggronMega Aggron
+307Meditite
+308Medicham
+308MedichamMega Medicham
+309Electrike
+310Manectric
+310ManectricMega Manectric
+311Plusle
+312Minun
+313Volbeat
+314Illumise
+315Roselia
+316Gulpin
+317Swalot
+318Carvanha
+319Sharpedo
+319SharpedoMega Sharpedo
+320Wailmer
+321Wailord
+322Numel
+323Camerupt
+323CameruptMega Camerupt
+324Torkoal
+325Spoink
+326Grumpig
+327Spinda
+328Trapinch
+329Vibrava
+330Flygon
+331Cacnea
+332Cacturne
+333Swablu
+334Altaria
+334AltariaMega Altaria
+335Zangoose
+336Seviper
+337Lunatone
+338Solrock
+339Barboach
+340Whiscash
+341Corphish
+342Crawdaunt
+343Baltoy
+344Claydol
+345Lileep
+346Cradily
+347Anorith
+348Armaldo
+349Feebas
+350Milotic
+351Castform
+352Kecleon
+353Shuppet
+354Banette
+354BanetteMega Banette
+355Duskull
+356Dusclops
+357Tropius
+358Chimecho
+359Absol
+359AbsolMega Absol
+360Wynaut
+361Snorunt
+362Glalie
+362GlalieMega Glalie
+363Spheal
+364Sealeo
+365Walrein
+366Clamperl
+367Huntail
+368Gorebyss
+369Relicanth
+370Luvdisc
+371Bagon
+372Shelgon
+373Salamence
+373SalamenceMega Salamence
+374Beldum
+375Metang
+376Metagross
+376MetagrossMega Metagross
+377Regirock
+378Regice
+379Registeel
+380Latias
+380LatiasMega Latias
+381Latios
+381LatiosMega Latios
+382Kyogre
+382KyogrePrimal Kyogre
+383Groudon
+383GroudonPrimal Groudon
+384Rayquaza
+384RayquazaMega Rayquaza
+385Jirachi
+386DeoxysNormal Forme
+386DeoxysAttack Forme
+386DeoxysDefense Forme
+386DeoxysSpeed Forme
+387Turtwig
+388Grotle
+389Torterra
+390Chimchar
+391Monferno
+392Infernape
+393Piplup
+394Prinplup
+395Empoleon
+396Starly
+397Staravia
+398Staraptor
+399Bidoof
+400Bibarel
+401Kricketot
+402Kricketune
+403Shinx
+404Luxio
+405Luxray
+406Budew
+407Roserade
+408Cranidos
+409Rampardos
+410Shieldon
+411Bastiodon
+412Burmy
+413WormadamPlant Cloak
+413WormadamSandy Cloak
+413WormadamTrash Cloak
+414Mothim
+415Combee
+416Vespiquen
+417Pachirisu
+418Buizel
+419Floatzel
+420Cherubi
+421Cherrim
+422Shellos
+423Gastrodon
+424Ambipom
+425Drifloon
+426Drifblim
+427Buneary
+428Lopunny
+428LopunnyMega Lopunny
+429Mismagius
+430Honchkrow
+431Glameow
+432Purugly
+433Chingling
+434Stunky
+435Skuntank
+436Bronzor
+437Bronzong
+438Bonsly
+439Mime Jr.
+440Happiny
+441Chatot
+442Spiritomb
+443Gible
+444Gabite
+445Garchomp
+445GarchompMega Garchomp
+446Munchlax
+447Riolu
+448Lucario
+448LucarioMega Lucario
+449Hippopotas
+450Hippowdon
+451Skorupi
+452Drapion
+453Croagunk
+454Toxicroak
+455Carnivine
+456Finneon
+457Lumineon
+458Mantyke
+459Snover
+460Abomasnow
+460AbomasnowMega Abomasnow
+461Weavile
+462Magnezone
+463Lickilicky
+464Rhyperior
+465Tangrowth
+466Electivire
+467Magmortar
+468Togekiss
+469Yanmega
+470Leafeon
+471Glaceon
+472Gliscor
+473Mamoswine
+474Porygon-Z
+475Gallade
+475GalladeMega Gallade
+476Probopass
+477Dusknoir
+478Froslass
+479Rotom
+479RotomHeat Rotom
+479RotomWash Rotom
+479RotomFrost Rotom
+479RotomFan Rotom
+479RotomMow Rotom
+480Uxie
+481Mesprit
+482Azelf
+483Dialga
+484Palkia
+485Heatran
+486Regigigas
+487GiratinaAltered Forme
+487GiratinaOrigin Forme
+488Cresselia
+489Phione
+490Manaphy
+491Darkrai
+492ShayminLand Forme
+492ShayminSky Forme
+493Arceus
+494Victini
+495Snivy
+496Servine
+497Serperior
+498Tepig
+499Pignite
+500Emboar
+501Oshawott
+502Dewott
+503Samurott
+504Patrat
+505Watchog
+506Lillipup
+507Herdier
+508Stoutland
+509Purrloin
+510Liepard
+511Pansage
+512Simisage
+513Pansear
+514Simisear
+515Panpour
+516Simipour
+517Munna
+518Musharna
+519Pidove
+520Tranquill
+521Unfezant
+522Blitzle
+523Zebstrika
+524Roggenrola
+525Boldore
+526Gigalith
+527Woobat
+528Swoobat
+529Drilbur
+530Excadrill
+531Audino
+531AudinoMega Audino
+532Timburr
+533Gurdurr
+534Conkeldurr
+535Tympole
+536Palpitoad
+537Seismitoad
+538Throh
+539Sawk
+540Sewaddle
+541Swadloon
+542Leavanny
+543Venipede
+544Whirlipede
+545Scolipede
+546Cottonee
+547Whimsicott
+548Petilil
+549Lilligant
+550Basculin
+551Sandile
+552Krokorok
+553Krookodile
+554Darumaka
+555DarmanitanStandard Mode
+555DarmanitanZen Mode
+556Maractus
+557Dwebble
+558Crustle
+559Scraggy
+560Scrafty
+561Sigilyph
+562Yamask
+563Cofagrigus
+564Tirtouga
+565Carracosta
+566Archen
+567Archeops
+568Trubbish
+569Garbodor
+570Zorua
+571Zoroark
+572Minccino
+573Cinccino
+574Gothita
+575Gothorita
+576Gothitelle
+577Solosis
+578Duosion
+579Reuniclus
+580Ducklett
+581Swanna
+582Vanillite
+583Vanillish
+584Vanilluxe
+585Deerling
+586Sawsbuck
+587Emolga
+588Karrablast
+589Escavalier
+590Foongus
+591Amoonguss
+592Frillish
+593Jellicent
+594Alomomola
+595Joltik
+596Galvantula
+597Ferroseed
+598Ferrothorn
+599Klink
+600Klang
+601Klinklang
+602Tynamo
+603Eelektrik
+604Eelektross
+605Elgyem
+606Beheeyem
+607Litwick
+608Lampent
+609Chandelure
+610Axew
+611Fraxure
+612Haxorus
+613Cubchoo
+614Beartic
+615Cryogonal
+616Shelmet
+617Accelgor
+618Stunfisk
+619Mienfoo
+620Mienshao
+621Druddigon
+622Golett
+623Golurk
+624Pawniard
+625Bisharp
+626Bouffalant
+627Rufflet
+628Braviary
+629Vullaby
+630Mandibuzz
+631Heatmor
+632Durant
+633Deino
+634Zweilous
+635Hydreigon
+636Larvesta
+637Volcarona
+638Cobalion
+639Terrakion
+640Virizion
+641TornadusIncarnate Forme
+641TornadusTherian Forme
+642ThundurusIncarnate Forme
+642ThundurusTherian Forme
+643Reshiram
+644Zekrom
+645LandorusIncarnate Forme
+645LandorusTherian Forme
+646Kyurem
+646KyuremBlack Kyurem
+646KyuremWhite Kyurem
+647KeldeoOrdinary Forme
+647KeldeoResolute Forme
+648MeloettaAria Forme
+648MeloettaPirouette Forme
+649Genesect
+650Chespin
+651Quilladin
+652Chesnaught
+653Fennekin
+654Braixen
+655Delphox
+656Froakie
+657Frogadier
+658Greninja
+659Bunnelby
+660Diggersby
+661Fletchling
+662Fletchinder
+663Talonflame
+664Scatterbug
+665Spewpa
+666Vivillon
+667Litleo
+668Pyroar
+669Flabébé
+670Floette
+671Florges
+672Skiddo
+673Gogoat
+674Pancham
+675Pangoro
+676Furfrou
+677Espurr
+678MeowsticMale
+678MeowsticFemale
+679Honedge
+680Doublade
+681AegislashBlade Forme
+681AegislashShield Forme
+682Spritzee
+683Aromatisse
+684Swirlix
+685Slurpuff
+686Inkay
+687Malamar
+688Binacle
+689Barbaracle
+690Skrelp
+691Dragalge
+692Clauncher
+693Clawitzer
+694Helioptile
+695Heliolisk
+696Tyrunt
+697Tyrantrum
+698Amaura
+699Aurorus
+700Sylveon
+701Hawlucha
+702Dedenne
+703Carbink
+704Goomy
+705Sliggoo
+706Goodra
+707Klefki
+708Phantump
+709Trevenant
+710PumpkabooAverage Size
+710PumpkabooSmall Size
+710PumpkabooLarge Size
+710PumpkabooSuper Size
+711GourgeistAverage Size
+711GourgeistSmall Size
+711GourgeistLarge Size
+711GourgeistSuper Size
+712Bergmite
+713Avalugg
+714Noibat
+715Noivern
+716Xerneas
+717Yveltal
+718Zygarde50% Forme
+719Diancie
+719DiancieMega Diancie
+720HoopaHoopa Confined
+720HoopaHoopa Unbound
+721Volcanion

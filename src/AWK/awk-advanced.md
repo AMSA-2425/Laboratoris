@@ -17,19 +17,19 @@ Per exemple:
 * Transformeu el fitxer pokemon.csv en un fitxer amb els camps separats per tabulacions:
 
     ```bash
-    awk -F, 'BEGIN{OFS="\t"} {print $0}' pokemon_tab.csv
+    $ awk -F, 'BEGIN{OFS="\t"} {print $0}' pokemon_tab.csv
     ```
 
 * Per fer servir el fitxer pokemon_tab.csv podem utilitzar els mateixos scripts que hem fet servir amb el fitxer pokemon.csv. Però indicant que el separador de camps és un tabulador. Per exemple, per comptar el nombre de figures lluitadores:
 
     ```bash
-    awk -F"\t" '/Fighting/ {print $2}' pokemon_tab.csv
+    $ awk -F"\t" '/Fighting/ {print $2}' pokemon_tab.csv
     ```
 
 * Si volem fer servir una variable entorn per indicar el tipus de figures que volem comptar, podem fer-ho així:
 
     ```bash
-    ~awk -F"\t" -v type=$TYPE '{ if ($3 == type) { print $2 } }' pokemon_tab.csv
+    $ awk -F"\t" -v type=$TYPE '{ if ($3 == type) { print $2 } }' pokemon_tab.csv
     ```
 
     on **$TYPE** és una variable entorn que conté el tipus de figures que volem comptar.

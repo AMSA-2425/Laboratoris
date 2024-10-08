@@ -62,13 +62,13 @@ Bàsicament, els passos que realitza el servei de xarxa, són els següents:
 
 1. Aquest servei executa `ifup -a`, la qual inicialitza tots (opció  `-a`) els dispositius de xarxa.
 
-2. Per configurar els dispositius de xarxa, la comanda ifup té en compte el fitxer de configuració /etc/network/interfaces
+2. Per configurar els dispositius de xarxa, la comanda ifup té en compte el fitxer de configuració `/etc/network/interfaces`
 
-3. El fitxer /etc/network/interfaces informa de com s'ha de configurar la xarxa. Per fer-ho s'utilitza les paraules clau següents:
+3. El fitxer `/etc/network/interfaces` informa de com s'ha de configurar la xarxa. Per fer-ho s'utilitza les paraules clau següents:
 
-	(a) auto: configuració automàtica (en l'arranc del sistema, quan es fa “ifup -a”)
+	(a) `auto`: configuració automàtica (en l'arranc del sistema, quan es fa `ifup -a`
 
-	(b) dhcp (static): configuració d'adreces de forma dinàmica (dhcp) o de forma stàtica (static)
+	(b) `dhcp (static)`: configuració d'adreces de forma dinàmica (dhcp) o de forma stàtica (static)
 
 
 

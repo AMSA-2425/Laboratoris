@@ -80,21 +80,25 @@ Per exemple:
 
 * Traduïu la capçalera del fitxer pokemon.csv al catala. La capçalera és la següent: **# Name Type 1 Type 2 Total HP Attack Defense Sp. Atk Sp. Def Speed Generation Legendary**. La traducció és la següent: **# Nom Tipus 1 Tipus 2 Total HP Atac Defensa Atac Especial Defensa Especial Velocitat Generació Llegendari**. I després imprimiu la resta de línies del fitxer.
 
-    ```bash
- $ awk 'NR==1 { $1="#"; $2="Nom"; $3="Tipus 1"; $4="Tipus 2"; $5="Total"; $6="HP"; $7="Atac"; $8="Defensa"; $9="Atac Especial"; $10="Defensa Especial"; $11="Velocitat"; $12="Generació"; $13="Llegendari"; print $0 } NR>1 {print}' pokemon.csv
-    ```
+```bash
+ $ awk 'NR==1 { $1="#"; $2="Nom"; $3="Tipus 1"; $4="Tipus 2"; $5="Total"; $6="HP"; \
+ $7="Atac"; $8="Defensa"; $9="Atac Especial"; $10="Defensa Especial"; \
+ $11="Velocitat"; $12="Generació"; $13="Llegendari"; print $0 } NR>1 {print}' \
+ pokemon.csv
+```
 
 * Implementeu una comanda que permeti detectar entrades incorrectes al fitxer pokemon.csv. Una entrada incorrecta és aquella que no té 13 valors per línia. En cas de detectar una entrada incorrecta, la eliminarem de la sortida i comptarem el nombre de línies eliminades per mostrar-ho al final.
 
-    ```bash
- $ awk 'NF != 13 { n++ } NF == 13 { print } END{ print "There are ", n, "incorrect entries." }' pokemon.csv
-    ```
+```bash
+ $ awk 'NF != 13 { n++ } NF == 13 { print } END{ print "There are ", n, \
+ "incorrect entries." }' pokemon.csv
+```
 
 ### Condicionals
 
 Les sentències condicionals s'utilitzen en qualsevol llenguatge de programació per executar qualsevol sentència basada en una condició particular. Es basa en avaluar el valor true o false en les declaracions `if-else i if-elseif`. **AWK** admet tot tipus de sentències condicionals com altres llenguatges de programació.
 
-Implementeu una comanda que us indiqui quines figures de tipus foc són ordinàries o llegendàries. Busquem una sortida semblant a:
+Implementeu una comanda que us indiqui quines figures de tipus `Fire` són ordinàries o llegendàries. Busquem una sortida semblant a:
 
 ```bash
 Charmander is a common pokemon.
@@ -105,13 +109,15 @@ Charizard is a legendary pokemon.
 La condició per ser una figura llegendària és que la columna 13 sigui **True**.
 
 ```bash
-$ awk -F, '/Fire/ { if ($13 == "True") { print $2, "is a legendary pokemon." } else { print $2, "is a common pokemon." } }' pokemon.csv
+$ awk -F, '/Fire/ { if ($13 == "True") { print $2, "is a legendary pokemon." }\ 
+else { print $2, "is a common pokemon." } }' pokemon.csv
 ```
 
 Es pot simplificar la comanda anterior amb l'ús de l'operador  `?`:
 
 ```bash
-$ awk -F, '/Fire/ { print $2, "is a", ($13 == "True" ? "legendary" : "common"), "pokemon." }' pokemon.csv
+$ awk -F, '/Fire/ { print $2, "is a", ($13 == "True" ? "legendary" : "common"), \
+"pokemon." }'  pokemon.csv
 ```
 
 ### Formatant la sortida
@@ -167,48 +173,50 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 
     Recordeu que la primera línia és la capçalera i no la volem comptar.
 
-  * En bash:
+	* En bash:
 
     ```bash
     !/bin/bash
     echo "Counting pokemons..." 
-    ~n=`wc -l pokemon.csv` 
-    ~n=`expr $n - 1`
+    n=`wc -l pokemon.csv` 
+    n=`expr $n - 1`
     echo "There are $n pokemons."
     ```
 
-  * En **AWK**:
+	* En **AWK**:
 
     ```bash
-    $ awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv
+    $ awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ",\
+     n-1, "pokemons." }' pokemon.csv
     ```
 
-* Implementeu un comptador per saber totes les figures de tipus foc de la primera generació descartant les Mega figures i que tingui la sortida següent:
+* Implementeu un comptador per saber totes les figures de tipus `Fire` de la primera generació descartant les figures `Mega`  i que tingui la sortida següent:
 
     ```bash
     Counting pokemons...
     There are 12 fire type pokemons in the first generation without Mega evolutions.
     ```
 
-  * Per fer-ho en bash, podeu combinar les comandes **grep, cut, wc** i **expr**. Nota, l'argyment **-v** de **grep** exclou les línies que contenen el patró i la generació s'indica a la columna 12 amb el valor 1:
+	* Per fer-ho en bash, podeu combinar les comandes **grep, cut, wc** i **expr**. Nota, l'argument **-v** de **grep** exclou les línies que contenen el patró i la generació s'indica a la columna 12 amb el valor 1:
 
     ```bash
     !/bin/bash
     echo "Counting pokemons..."
-    ~n=`grep Fire pokemon.csv | grep -v "Mega" | cut -d, -f12 | grep 1 | wc -l`
-    ~n=`expr $n - 1`
+    n=`grep Fire pokemon.csv | grep -v "Mega" | cut -d, -f12 | grep 1 | wc -l`
     echo "There are $n pokemons in the first generation without Mega evolutions."
     ```
 
-    * Per fer-ho en **AWK**, teniu el negador **!** per negar el patró:
+	* Per fer-ho en **AWK**, teniu el negador **!** per negar el patró:
 
     ```bash
-    $ awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first generation without Mega evolutions." }' pokemon.csv
+    $ awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && \
+    $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first\
+     generation without Mega evolutions." }'  pokemon.csv
     ```
 
-    En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar les Mega figures del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la clàusula **{END}** per imprimir el resultat final.
+    En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar les Mega figures del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la cláusula **{END}** per imprimir el resultat final.
 
-* Indiqueu a quina línia es troba cada figura del tipus foc. Volem imprimir la línia i el nom de la figura. La sortida ha de ser semblant a:
+* Indiqueu a quina línia es troba cada figura del tipus `Fire`. Volem imprimir la línia i el nom de la figura. La sortida ha de ser semblant a:
 
     ```bash
     Line:  6    Charmander
@@ -222,28 +230,28 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     Line:  801  Volcanion
     ```
 
-    on el format de cada línia és **Line:  n\tNom de la figura**.
+    on el format de cada línia és **Line:  n     Nom de la figura**.
 
-  * En **AWK** podem fer servir la variable **NR** per obtenir el número de línia actual. A més a més, podeu formatar la sortida amb `print cadena,variable,cadena,variable,...`:
+	* En **AWK** podem fer servir la variable **NR** per obtenir el número de línia actual. A més a més, podeu formatar la sortida amb `print cadena,variable,cadena,variable,...`:
 
-    ```bash
-   $ awk -F, '/Fire/ {print "Line: ", NR, "\t" $2}' pokemon.csv
-    ```
+	```bash
+  	 $ awk -F, '/Fire/ {print "Line: ", NR, "\t" $2}' pokemon.csv
+	```
 
-  * En bash:
+	* En bash:
 
-    ```bash
-    #!/bin/bash
-    ~while IFS=, read -r col1 col2 col3 rest; do
-    ~((line_number++))
-    ~# Check if the line contains the word "Fire"
-    ~if [[ "$col2" == *"Fire"*  || "$col3" == *"Fire"* ]]; then
-    ~    echo "Line: $line_number    $col2"
-    ~fi
-    ~done < pokemon.csv
-    ```
+	    ```bash
+	    #!/bin/bash
+	    while IFS=, read -r col1 col2 col3 rest; do
+	    ((line_number++))
+	    # Check if the line contains the word "Fire"
+	    if [[ "$col3" == "Fire"  || "$col4" == "Fire" ]]; then
+	        echo "Line: $line_number    $col2"
+	    fi
+	    done < pokemon.csv
+	     ```
 
-* Implementeu un script que permeti comptar el nombre de figures de tipus foc i drac. La sortida ha de ser semblant a:
+* Implementeu un script que permeti comptar el nombre de figures de tipus `Fire` i `Dragon`. La sortida ha de ser semblant a:
 
     ```bash
     Fire:64
@@ -251,38 +259,40 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     Others:689
     ```
 
-  * En **AWK**:
+	* En **AWK**:
 
-    ```bash
-   $ awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" dragon "\nOthers:" others }' pokemon.csv
-    ```
+		```bash
+   		$ awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ \
+  		 { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" \
+  		 dragon "\nOthers:" others }' pokemon.csv
+		 ```
 
-  * En bash:
+	* En bash:
 
-    ```bash
-    #!/bin/bash
-    fire=0
-    dragon=0
-    others=0
-
-    ~while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
-     ~if [[ "$col3" == *"Fire"*  || "$col4" == *"Fire"* ]]; then
-         ~((fire++))
-     ~fi
-
-     ~if [[ "$col3" == *"Dragon"*  || "$col4" == *"Dragon"* ]]; then
-         ~((dragon++))
-     ~fi
-     
-     ~if [[ "$col3" != *"Fire"*  && "$col4" != *"Fire"* && "$col3" != *"Dragon"*  && "$col4" != *"Dragon"* ]]; then
-         ~((others++))
-     ~fi
-    ~done < pokemon.csv
-
-    echo "Fire:$fire"
-    echo "Dragon:$dragon"
-    echo "Others:$others"
-    ```
+    	```bash
+   		#!/bin/bash
+		fire=0
+		dragon=0
+		others=0
+		
+		while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+		if [[ "$col3" == "Fire"  || "$col4" == "Fire" ]]; then
+         		((fire++))
+		fi
+		
+		if [[ "$col3" == "Dragon"  || "$col4" == "Dragon" ]]; then
+         		((dragon++))
+		fi
+		
+		if [[ "$col3" != "Fire"  && "$col4" != "Fire" && "$col3" != "Dragon"  && "$col4" != "Dragon" ]]; then
+         		((others++))
+		fi
+		done < pokemon.csv
+		
+		echo "Fire:$fire"
+		echo "Dragon:$dragon"
+		echo "Others:$others"
+		```
 
 * Imprimiu el fitxer pokemon.csv amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada figura. La sortida ha de ser semblant a:
 
@@ -293,54 +303,56 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     3,Venusaur,Grass,Poison,525,80,82,83,100,100,80,1,False,87.5
     ```
 
-  * En **AWK**:
+	* En **AWK**:
 
-    ```bash
-   $ awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
-    ```
+	```bash
+	$ awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
+	```
 
-  * En bash:
+	* En bash:
 
-    ```bash
-    #!/bin/bash
-    ~while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
-    ~if [[ "$col1" == "#" ]]; then
-    ~    echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,Avg"
-    ~else
-        ~avg=$((($col6+$col7+$col8+$col9+$col10+$col11)/6))
-        ~echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$avg"
-    ~fi
-    ~done < pokemon.csv
-    ```
+	```bash
+	#!/bin/bash
+	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+	if [[ "$col1" == "#" ]]; then
+		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,Avg"
+	else
+		avg=$((($col6+$col7+$col8+$col9+$col10+$col11)/6))
+		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$avg"
+	fi
+	done < pokemon.csv
+	```
 
     **Nota**: Bash de forma nativa no permet operacions aritmètiques amb nombres decimals. Per fer-ho, cal utilitzar una eina com `bc`. En aquest cas, podeu adaptar el codi per utilitzar `bc` quan calculeu la mitjana i fer servir `printf` per formatar la sortida amb el nombre de decimals que vulgueu.
 
-* Cerca la figura més més forta i més feble tenint en compte el valor de la columna 7 de pokemon.csv de tipus foc de la primera generació.
 
-  * En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
+* Cerca la figura més més forta i més feble tenint en compte el valor de la columna 7 de pokemon.csv de tipus `Fire` de la primera generació.
 
-    ```bash
-   $ awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
-    ```
+	* En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
 
-  * En bash:
+	```bash
+	$ awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } \
+	if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
+	```
 
-    ```bash
-    #!/bin/bash
-    max=0
-    min=100
-    ~while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
-    ~if [[ "$col3" == *"Fire"* ]] && [[ "$col12" == "1" ]]; then
-    ~    if [[ "$col7" -gt "$max" ]]; then
-    ~    max=$col7
-    ~    pmax=$col2
-    ~    fi
-    ~    if [[ "$col7" -lt "$min" ]]; then
-    ~    min=$col7
-    ~    pmin=$col2
-    ~    fi
-    ~fi
-    ~done < pokemon.csv
-    echo "Weakest: $pmin"
-    echo "Strongest: $pmax"
-    ```
+	* En bash:
+
+	```bash
+	#!/bin/bash
+	max=0
+	min=100
+	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+	if [[ "$col3" == "Fire" ]] && [[ "$col12" == "1" ]]; then
+		if [[ "$col7" -gt "$max" ]]; then
+			max=$col7
+			pmax=$col2
+		fi
+		if [[ "$col7" -lt "$min" ]]; then
+			min=$col7
+			pmin=$col2
+		fi
+	fi
+	done < pokemon.csv
+	echo "Weakest: $pmin"
+	echo "Strongest: $pmax"
+	```
