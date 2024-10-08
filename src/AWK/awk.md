@@ -32,7 +32,7 @@ En aquests exemples, [-F] és una opció que permet especificar el caràcter del
 En aquest laboratori, farem servir un fitxer de dades específic com a conjunt de dades d’exemple. Aquest fitxer representa un fittxer de figures i es pot obtenir amb la següent comanda:
 
 ```bash
-curl -O https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv
+$ curl -O https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv
 ```
 
 Aquest fitxer conté 801 línies (800 figures + 1 capçalera) i 13 columnes. Les columnes són les següents:
@@ -56,19 +56,19 @@ Per comprovar aquestes dades, podem fer servir les següents comandes:
 * Utilitzeu la comanda `wc` per comptar el nombre de línies del fitxer:
 
     ```bash
-    ~wc -l pokemon.csv
+    $ wc -l pokemon.csv
     ```
 
 * Utilitzeu la comanda `head` per mostrar les primeres 10 línies del fitxer:
 
     ```bash
-    ~head pokemon.csv
+    $ head pokemon.csv
     ```
 
 * Utilitzeu les comandes `wc` i `head` per comptar el nombre de columnes del fitxer. Recordeu que les columnes estan separades per comes:
 
     ```bash
-    ~head -1 pokemon.csv | tr ',' '\n' | wc -l
+    $ head -1 pokemon.csv | tr ',' '\n' | wc -l
     ```
     
     ## Contingut

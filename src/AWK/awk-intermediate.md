@@ -7,7 +7,7 @@ El llenguatge de programació AWK ens permet definir variables i utilitzar-les e
 Per exemple, si volem comptar el nombre de línies que hi ha al fitxer pokemon.csv, podem fer servir una variable per a emmagatzemar el nombre de línies. A continuació, mostrem un exemple de com comptar el nombre de línies del fitxer pokemon.csv:
 
 ```bash
-awk 'BEGIN { n=0 } { ++n } END{ print n }' pokemon.csv
+awk 'BEGIN { n=0 } { ++n } END { print n }' pokemon.csv
 ```
 
 On **n** és la variable que utilitzem per emmagatzemar el nombre de línies. Per començar, inicialitzem la variable **n** a 0 amb la clàusula **{BEGIN}**. Aquesta clausula és opcional, ja que les variables en **AWK** són dinàmiques i no necessiten ser declarades prèviament. Després, incrementem la variable **n** per a cada línia amb la clàusula **{++n}**. Finalment, utilitzem la clàusula **{END}** per imprimir el valor de la variable **n** després de processar totes les línies.

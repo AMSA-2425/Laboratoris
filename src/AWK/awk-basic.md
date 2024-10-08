@@ -9,7 +9,7 @@ El llenguatge **AWK** s'organitza amb duples de la forma `patró { acció }`. El
 Per exemple, si volem imprimir totes les línies d'un fitxer (**acció**) que contenten una expressió regular definida a *regex* (**ExpressióRegular**), podem fer servir la següent sintaxi:
 
 ```bash
-awk '/ExpressióRegular/ { print }' fitxer
+$ awk '/ExpressióRegular/ { print }' fitxer
 ```
 
 Observeu que utilitzem el caràcter `/` per indicar que el patró és una expressió regular.
@@ -43,13 +43,13 @@ En aquesta secció veurem com podem utiltizar AWK per substituir algunes comande
 La comanda `cat` ens permet mostrar el contingut d'un fitxer. Per exemple, per mostrar el contingut del fitxer pokemon.csv:
 
 ```bash
-cat pokemon.csv
+$ cat pokemon.csv
 ```
 
 Podem fer servir **AWK** per fer el mateix. Per exemple, per mostrar el contingut del fitxer pokemon.csv:
 
 ```bash
-awk '{print}' pokemon.csv
+$ awk '{print}' pokemon.csv
 ```
 
 on `{print}` és l'acció que volem realitzar. En aquest cas, volem imprimir totes les línies del fitxer. Això és equivalent a la comanda `cat`.
@@ -57,7 +57,7 @@ on `{print}` és l'acció que volem realitzar. En aquest cas, volem imprimir tot
 AWK també ens permet acompanyar l'acció amb variables. Per exemple, la variable **$0** conté tota la línia. Per tant, podem utilitzar la variable **$0** per imprimir totes les línies del fitxer:
 
 ```bash
-awk '{print $0}' pokemon.csv
+$ awk '{print $0}' pokemon.csv
 ```
 
 **Nota**: AWK processa els fitxers línia per línia. Per cada línia del fitxer, **AWK** avalua l'acció. Es a dir, amb la comanda `awk '{print $0}' pokemon.csv` estem indicant que per cada línia del fitxer, imprimeixi la línia sencera. Per tant, aquesta comanda és equivalent a la comanda `cat`.
@@ -65,7 +65,7 @@ awk '{print $0}' pokemon.csv
 Podeu comparar les sortides de les comandes `cat` i `awk` per assegurar-vos que són les mateixes utilitzant la comanda `diff`:
 
 ```bash
-~diff <(cat pokemon.csv) <(awk '{print $0}' pokemon.csv)
+$ diff <(cat pokemon.csv) <(awk '{print $0}' pokemon.csv)
 ```
 
 ##### `grep`
@@ -73,13 +73,13 @@ Podeu comparar les sortides de les comandes `cat` i `awk` per assegurar-vos que 
 La comanda `grep` ens permet cercar patrons en un fitxer. Per exemple, per mostrar totes les línies que contenen la paraula "Char" al fitxer pokemon.csv:
 
 ```bash
-grep Char pokemon.csv
+$ grep Char pokemon.csv
 ```
 
 Podem fer servir **AWK** per fer el mateix. Per exemple, per mostrar totes les línies que contenen la paraula "Char" al fitxer pokemon.csv:
 
 ```bash
-awk '/Char/ {print}' pokemon.csv
+$ awk '/Char/ {print}' pokemon.csv
 ```
 
 on `/Char/` és el patró que volem cercar. Per tant, tenim un patró de cerca i una acció a realitzar. En aquest cas, estem cercant linia per linia la paraula "Char" i si la trobem, imprimim tota la línia. Això és equivalent a la comanda `grep`.
@@ -87,7 +87,7 @@ on `/Char/` és el patró que volem cercar. Per tant, tenim un patró de cerca i
 Una confusió  comuna es pensar que l'expressió `/Char/` indica que la línia comença per "Char". Això no és cert. L'expressió `/Char/` indica que la línia conté la paraula "Char". Per exemple, podem buscar totes les línies del fitxer pokemon.csv que contenen el patró "ois":
 
 ```bash
-~awk '/ois/ {print}' pokemon.csv
+$ awk '/ois/ {print}' pokemon.csv
 ```
 
 En la sortida, veureu que tant les paraules "poison" del tipus de figura com els diferents noms de figura que contenen la paraula "ois" són mostrats.
@@ -104,7 +104,7 @@ En la sortida, veureu que tant les paraules "poison" del tipus de figura com els
 Conteu quantes línies compleixen aquest patró, combinant **AWK** amb la comanda `wc`:
 
 ```bash
-~awk '/ois/ {print}' pokemon.csv | wc -l
+$ awk '/ois/ {print}' pokemon.csv | wc -l
 ```
 
 En aquest cas, hi ha 64 entrades que satisfan aquest patró.
@@ -114,13 +114,13 @@ En aquest cas, hi ha 64 entrades que satisfan aquest patró.
 La comanda `cut` ens permet extreure columnes d'un fitxer. Per exemple, per mostrar només la primera columna del fitxer pokemon.csv:
 
 ```bash
-cut -d, -f1 pokemon.csv
+$ cut -d, -f1 pokemon.csv
 ```
 
 on `-d,` indica que el separador de camps és la coma i `-f1` indica que volem la primera columna. Podem fer servir **AWK** per fer el mateix. Per exemple, per mostrar només la primera columna del fitxer pokemon.csv:
 
 ```bash
-awk -F, '{print $1}' pokemon.csv
+$ awk -F, '{print $1}' pokemon.csv
 ```
 
 on `-F,` indica que el separador de camps és la coma i `{print $1}` indica que volem la primera columna. Això és equivalent a la comanda `cut`.
@@ -130,13 +130,13 @@ Cada item separat pel separador de camps es denomina camp. Per exemple, en el fi
 Si intentem imprimir la tercera columna sense especificar el separador de camps, la sortida no serà correcta:
 
 ```bash
-awk '{print $3}' pokemon.csv
+$ awk '{print $3}' pokemon.csv
 ```
 
 Això és degut a que el separador de camps per defecte és l'espai en blanc i no la coma. Ara bé, si modifiquem el separador de camps a l'espai en blanc, enlloc de la coma, podem obtenir la sortida correcta:
 
 ```bash
-sed 's/,/ /g' pokemon.csv | awk '{print $3}'
+$ sed 's/,/ /g' pokemon.csv | awk '{print $3}'
 ```
 
 En aquest cas, estem substituint totes les comes per espais en blanc i després utilitzant **AWK** per imprimir la tercera columna.
@@ -163,7 +163,7 @@ Es pot utilitzar com a patró una expressió composta amb operadors i retornar *
 Per utilizar aquestes expressions, podem fer servir la següent sintaxi:
 
 ```bash
-awk 'patró { acció }' fitxer
+$ awk 'patró { acció }' fitxer
 ```
 
 on el patró és una expressió composta amb operadors lògics i l'acció és el que es vol fer amb les línies que compleixen el patró. Per exemple:
@@ -171,31 +171,31 @@ on el patró és una expressió composta amb operadors lògics i l'acció és el
 * Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7):
 
     ```bash
-    awk -F, '$7 > 100 {print}' pokemon.csv
+    $ awk -F, '$7 > 100 {print}' pokemon.csv
     ```
 
 * Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7) i són de la primera generació (valor de la columna 12):
 
     ```bash
-    awk -F, '$7 > 100 && $12 == 1 {print}' pokemon.csv
+    $ awk -F, '$7 > 100 && $12 == 1 {print}' pokemon.csv
     ```
 
 * Mostrar totes les figures que tenen més de 100 punts d'atac (valor de la columna 7) o són de la primera generació (valor de la columna 12):
 
     ```bash
-    awk -F, '$7 > 100 || $12 == 1 {print}' pokemon.csv
+    $ awk -F, '$7 > 100 || $12 == 1 {print}' pokemon.csv
     ```
 
 * Mostrar totes les figures que són Mega figures (contenen la paraula "Mega" a la columna 2):
 
     ```bash
-    awk -F, '$2 ~ /Mega/ {print}' pokemon.csv
+    $ awk -F, '$2 ~ /Mega/ {print}' pokemon.csv
     ```
 
 * Mostra totes les figures  que no són Mega figures (no contenen la paraula "Mega" a la columna 2):
 
     ```bash
-    awk -F, '$2 !~ /Mega/ {print}' pokemon.csv
+    $ awk -F, '$2 !~ /Mega/ {print}' pokemon.csv
     ```
 
 #### Exercicis Bàsics
@@ -213,7 +213,7 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     * En **AWK**:
 
     ```bash
-    ~awk -F, '/Fire/ {print $2,$3,$4}' pokemon.csv
+    $ awk -F, '/Fire/ {print $2,$3,$4}' pokemon.csv
     ```
 
 2. Implementeu una comanda que permeti imprimir totes les línies que continguin una **'b'** o una **'B'** seguida de **"ut"**. Mostra només el nom de la figura (columna 2).
@@ -221,13 +221,13 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     * En **AWk** podem fer servir l'expressió regular **[bB]ut**:
 
     ```bash
-    ~awk -F, '/[bB]ut/ {print $2}' pokemon.csv
+    $ awk -F, '/[bB]ut/ {print $2}' pokemon.csv
     ```
 
     * En bash podem fer servir la comanda **grep** amb l'argument **-i** per ignorar la diferència entre majúscules i minúscules:
 
     ```bash
-    ~grep -i "but" pokemon.csv | cut -d, -f2
+    $ grep -i "but" pokemon.csv | cut -d, -f2
     ```
 
 3. Implementeu una comanda que permeti imprimir totes les línies que comencin per un **"K"** majúscula. Mostra només el nom de la figura (columna 2).
@@ -235,13 +235,13 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
     * En **bash** podem fer servir la comanda **grep** amb el meta caràcter **^** per indicar que la línia comença per "K" majúscula:
 
     ```bash
-    ~grep "^K" pokemon.csv | cut -d, -f2
+    $ grep "^K" pokemon.csv | cut -d, -f2
     ```
 
     * En **AWK**:
 
     ```bash
-    ~awk -F, '$2 ~ /^K/ {print $2}' pokemon.csv
+    $ awk -F, '$2 ~ /^K/ {print $2}' pokemon.csv
     ```
 
     **!Compte:** Per defecte, les expressions regulars actuen sobre tota la línia **$0**. Si voleu aplicar l'expressió regular a una columna determinada, necessiteu l'operador (**~**). Si intenteu aplicar:
@@ -252,13 +252,13 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
    * En **AWK** podem fer servir l'operador **|** per combinar dos patrons:
 
     ```bash
-    ~awk -F, '/Fire|Fighting/ {print $2,$3,$4}' pokemon.csv
+    $ awk -F, '/Fire|Fighting/ {print $2,$3,$4}' pokemon.csv
     ```
 
     * En bash, podeu fer servir l'argument **-E** per utilitzar expressions regulars exteses amb la comanda **grep**:
 
     ```bash
-    ~grep -E "Fire|Fighting" pokemon.csv | cut -d, -f2,3,4
+    $ grep -E "Fire|Fighting" pokemon.csv | cut -d, -f2,3,4
     ```
 
 5. Imprimiu tots les figures que siguin del tipus foc i lluita. Imprimiu el nom, tipus 1 i tipus 2. Podeu fer servir l'operador **&&** per crear l'expressió regular.
@@ -266,29 +266,29 @@ Aquests exercicis estan resolts en bash i en **AWK**. Podeu provar-los en el vos
    * En **AWK** podem fer servir l'operador **&&** per combinar dos patrons:
 
     ```bash
-    ~awk -F, '/Fire/ && /Fighting/ {print $2,$3,$4}' pokemon.csv
+    $ awk -F, '/Fire/ && /Fighting/ {print $2,$3,$4}' pokemon.csv
     ```
 
    * En bash, podeu fer servir l'argument **-E** per utilitzar expressions regulars exteses amb la comanda **grep**:
 
     ```bash
-    ~grep -E "Fire.*Fighting|Fighting.*Fire" pokemon.csv | cut -d, -f2,3,4
+    $ grep -E "Fire.*Fighting|Fighting.*Fire" pokemon.csv | cut -d, -f2,3,4
     ```
 
-    En aquest cas no podem fer servir l'operador **&&** ja que **grep** no permet aquesta funcionalitat. Per tant, hem de fer servir l'operador **|** per combinar els dos patrons. A més, hem de fer servir l'expressió regular **Fire.*Fighting|Fighting.*Fire** per indicar que volem les línies que contenen "Fire" seguit de "Fighting" o "Fighting" seguit de "Fire".
+    En aquest cas no podem fer servir l'operador **&&** ja que **grep** no permet aquesta funcionalitat. Per tant, hem de fer servir l'operador **|** per combinar els dos patrons. A més, hem de fer servir l'expressió regular `Fire.*Fighting|Fighting.*Fire` per indicar que volem les línies que contenen "Fire" seguit de "Fighting" o "Fighting" seguit de "Fire".
 
 6. Imprimiu el nom de totes les figures de la primera generació que siguin llegendaris. Per fer-ho utilitzeu les columnes 12 i 13. La columna 12 indica la generació amb valors númerics (1,2,3,...) i la columna 13 indica si una figura és llegendària o no (0: No, 1: Sí).
 
     * En **AWK** podem fer servir l'operador **&&** per combinar dos patrons:
 
     ```bash
-    ~awk -F, '$12 == 1 && $13 == "True" {print $2}' pokemon.csv
+    $ awk -F, '$12 == 1 && $13 == "True" {print $2}' pokemon.csv
     ```
 
     * En bash, podem fer servir la comanda **grep** per filtrar les línies que contenen la primera generació i són llegendaris i la comanda **cut** per extreure la columna 2:
 
     ```bash
-    ~grep "1,True" pokemon.csv | cut -d, -f2
+    $ grep "1,True" pokemon.csv | cut -d, -f2
     ```
 
     Aquesta solució no és la més òptima, ja que es podria donar el cas que altres columnes continguessin la paraula "1,True". Per solucionar-ho podem fer un script més complex que comprovi que la columna 12 conté el valor 1 i la columna 13 conté la paraula "True".
