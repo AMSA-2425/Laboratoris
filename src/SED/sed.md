@@ -12,11 +12,9 @@
    ```
 
 - L’especificació de l’operació a realizar per la comanda sed té el format següent:
-	[ adreça[ , adreça ] ] comanda
-
 
     ```sh
-    $ awk [-F] '{acció-awk}' [ fitxer1 ... fitxerN ]
+    [ adreça[ , adreça ] ] comanda
     ```
 - Les adreces decideixen el rang de línies de text sobre les que s’aplicarà la comanda.
 - El rang de línies sobre les que es realitzarà el processament es pot especificar de dues formes:
@@ -28,10 +26,10 @@
 		
 Exemples:
 ```sh
-    $ sed ‘1,5d’ fich1  	# Elimina les cinc primeres línies de fich1
-    $ sed ‘$d’ fich1  	# Elimina l’última línia de fich1
+    $ sed ‘1,5d’ fich1  # Elimina les cinc primeres línies de fich1
+    $ sed ‘$d’ fich1  		# Elimina l’última línia de fich1
     $ sed ‘/^[1a]/d’ fich1  # Elimina totes les línies que comencen amb 1 o a
-			            # /^[1a]/  és una expressió regular
+			            	# /^[1a]/  és una expressió regular
 ```
  ## Comandes SED més importants
  
@@ -70,7 +68,7 @@ Exemples:
 	$ sed  's/*$//’ fic
 ```
 
-- Canvas totes les seqüències d’un o més zeros per un únic 0. La g permet múltiples substitucions en una mateixa línia:
+- Canvia totes les seqüències d’un o més zeros per un únic 0. La g permet múltiples substitucions en una mateixa línia:
 
 ```sh
 	$ sed  's/00*/0/g’ fic

@@ -1,7 +1,7 @@
 # Expressions Regulars
 
 \  suppress the special meaning of a character when matching. 
-	For example:\$ matches the character `$’.
+	For example: \\$ matches the character `$’.
 
 ^ matches the starting of a string, or the starting position of a line. For example: ^chapter matches `c’.
 

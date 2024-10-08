@@ -6,10 +6,10 @@
 El llenguatge **AWK** s'organitza amb duples de la forma `patró { acció }`. El patró pot ser una expressió regular o una condició lògica. L’acció és el que es vol realitzar amb les línies que compleixen el patró. Per tant, AWK processa els fitxers línia per línia. Per cada línia del fitxer, AWK avalua el patró. Si el patró és cert, executa l’acció. Si el patró és fals, passa a la següent línia.
 
 
-Per exemple, si volem imprimir totes les línies d'un fitxer (**acció**) que contenten una expressió regular definida a *regex* (**patró**), podem fer servir la següent sintaxi:
+Per exemple, si volem imprimir totes les línies d'un fitxer (**acció**) que contenten una expressió regular definida a *regex* (**ExpressióRegular**), podem fer servir la següent sintaxi:
 
 ```bash
-awk '/regex/ { print }' fitxer
+awk '/ExpressióRegular/ { print }' fitxer
 ```
 
 Observeu que utilitzem el caràcter `/` per indicar que el patró és una expressió regular.
@@ -27,7 +27,7 @@ Per exemple, si volem indicar que estem començant a processar un fitxer, podem 
 ```bash
 awk '
     BEGIN { print "Començant a processar el fitxer..." } 
-    /regex/ { print }
+    /ExpressióRegula/ { print }
     END { print "Finalitzant el processament del fitxer..." }
 ' fitxer
 ```
