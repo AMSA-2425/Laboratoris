@@ -7,7 +7,7 @@ El llenguatge de programació AWK ens permet definir variables i utilitzar-les e
 Per exemple, si volem comptar el nombre de línies que hi ha al fitxer pokemon.csv, podem fer servir una variable per a emmagatzemar el nombre de línies. A continuació, mostrem un exemple de com comptar el nombre de línies del fitxer pokemon.csv:
 
 ```bash
-awk 'BEGIN { n=0 } { ++n } END { print n }' pokemon.csv
+$ awk 'BEGIN { n=0 } { ++n } END { print n }' pokemon.csv
 ```
 
 On **n** és la variable que utilitzem per emmagatzemar el nombre de línies. Per començar, inicialitzem la variable **n** a 0 amb la clàusula **{BEGIN}**. Aquesta clausula és opcional, ja que les variables en **AWK** són dinàmiques i no necessiten ser declarades prèviament. Després, incrementem la variable **n** per a cada línia amb la clàusula **{++n}**. Finalment, utilitzem la clàusula **{END}** per imprimir el valor de la variable **n** després de processar totes les línies.
@@ -43,7 +43,7 @@ Charizard->Total=534==534
 * En **AWK**:
 
     ```bash
-    awk -F, '{ print $2"->Total="$5"=="($6+$7+$8+$9+$10+$11)}' pokemon.csv
+    $ awk -F, '{ print $2"->Total="$5"=="($6+$7+$8+$9+$10+$11)}' pokemon.csv
     ```
 
 * En bash:
@@ -75,19 +75,19 @@ Per exemple:
 * Utilitzeu la variable **NR** per simplificar la comanda per comptar el nombre de línies del fitxer pokemon.csv:
 
     ```bash
-    awk 'END{ print NR }' pokemon.csv
+  $ awk 'END{ print NR }' pokemon.csv
     ```
 
 * Traduïu la capçalera del fitxer pokemon.csv al catala. La capçalera és la següent: **# Name Type 1 Type 2 Total HP Attack Defense Sp. Atk Sp. Def Speed Generation Legendary**. La traducció és la següent: **# Nom Tipus 1 Tipus 2 Total HP Atac Defensa Atac Especial Defensa Especial Velocitat Generació Llegendari**. I després imprimiu la resta de línies del fitxer.
 
     ```bash
-    awk 'NR==1 { $1="#"; $2="Nom"; $3="Tipus 1"; $4="Tipus 2"; $5="Total"; $6="HP"; $7="Atac"; $8="Defensa"; $9="Atac Especial"; $10="Defensa Especial"; $11="Velocitat"; $12="Generació"; $13="Llegendari"; print $0 } NR>1 {print}' pokemon.csv
+ $ awk 'NR==1 { $1="#"; $2="Nom"; $3="Tipus 1"; $4="Tipus 2"; $5="Total"; $6="HP"; $7="Atac"; $8="Defensa"; $9="Atac Especial"; $10="Defensa Especial"; $11="Velocitat"; $12="Generació"; $13="Llegendari"; print $0 } NR>1 {print}' pokemon.csv
     ```
 
 * Implementeu una comanda que permeti detectar entrades incorrectes al fitxer pokemon.csv. Una entrada incorrecta és aquella que no té 13 valors per línia. En cas de detectar una entrada incorrecta, la eliminarem de la sortida i comptarem el nombre de línies eliminades per mostrar-ho al final.
 
     ```bash
-    awk 'NF != 13 { n++ } NF == 13 { print } END{ print "There are ", n, "incorrect entries." }' pokemon.csv
+ $ awk 'NF != 13 { n++ } NF == 13 { print } END{ print "There are ", n, "incorrect entries." }' pokemon.csv
     ```
 
 ### Condicionals
@@ -105,13 +105,13 @@ Charizard is a legendary pokemon.
 La condició per ser una figura llegendària és que la columna 13 sigui **True**.
 
 ```bash
-awk -F, '/Fire/ { if ($13 == "True") { print $2, "is a legendary pokemon." } else { print $2, "is a common pokemon." } }' pokemon.csv
+$ awk -F, '/Fire/ { if ($13 == "True") { print $2, "is a legendary pokemon." } else { print $2, "is a common pokemon." } }' pokemon.csv
 ```
 
-Es pot simplificar la comanda anterior amb l'ús de l'operador ternari **?:**:
+Es pot simplificar la comanda anterior amb l'ús de l'operador  `?`:
 
 ```bash
-awk -F, '/Fire/ { print $2, "is a", ($13 == "True" ? "legendary" : "common"), "pokemon." }' pokemon.csv
+$ awk -F, '/Fire/ { print $2, "is a", ($13 == "True" ? "legendary" : "common"), "pokemon." }' pokemon.csv
 ```
 
 ### Formatant la sortida
@@ -152,7 +152,7 @@ Per exemple:
         }  
     }  
 }  
-END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax)
+END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax)
 }' pokemon.csv 
 ```
 
@@ -180,7 +180,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
   * En **AWK**:
 
     ```bash
-    ~awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv
+    $ awk 'BEGIN { print "Counting pokemons..." } { ++n } END{ print "There are ", n-1, "pokemons." }' pokemon.csv
     ```
 
 * Implementeu un comptador per saber totes les figures de tipus foc de la primera generació descartant les Mega figures i que tingui la sortida següent:
@@ -203,7 +203,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
     * Per fer-ho en **AWK**, teniu el negador **!** per negar el patró:
 
     ```bash
-    ~awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first generation without Mega evolutions." }' pokemon.csv
+    $ awk -F, 'BEGIN { print "Counting pokemons..." } /Fire/ && !/Mega/ && $12 == 1 { ++n } END{ print "There are ", n, "fire type pokemons in the first generation without Mega evolutions." }' pokemon.csv
     ```
 
     En aquest exemple, hem utilitzat l'operador lògic **&&** per combinar dos patrons. Això significa que la línia ha de contenir el patró **Fire** i no ha de contenir el patró **Mega**. Això ens permet filtrar les Mega figures del nostre comptador. A més, hem utilitzat l'operador **!** per negar el patró **Mega**. Això significa que la línia no ha de contenir el patró **Mega**. Finalment, hem utilitzat la clàusula **{END}** per imprimir el resultat final.
@@ -227,7 +227,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
   * En **AWK** podem fer servir la variable **NR** per obtenir el número de línia actual. A més a més, podeu formatar la sortida amb `print cadena,variable,cadena,variable,...`:
 
     ```bash
-    ~awk -F, '/Fire/ {print "Line: ", NR, "\t" $2}' pokemon.csv
+   $ awk -F, '/Fire/ {print "Line: ", NR, "\t" $2}' pokemon.csv
     ```
 
   * En bash:
@@ -254,7 +254,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
   * En **AWK**:
 
     ```bash
-    ~awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" dragon "\nOthers:" others }' pokemon.csv
+   $ awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" dragon "\nOthers:" others }' pokemon.csv
     ```
 
   * En bash:
@@ -296,7 +296,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
   * En **AWK**:
 
     ```bash
-    ~awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
+   $ awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
     ```
 
   * En bash:
@@ -320,7 +320,7 @@ END{ printf("Avg(Attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
   * En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
 
     ```bash
-    ~awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
+   $ awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
     ```
 
   * En bash:
