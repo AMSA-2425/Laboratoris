@@ -5,7 +5,7 @@
 
 ^ matches the starting of a string, or the starting position of a line. For example: ^chapter matches `c’.
 
-$	matches the end of a string, or the end position of a line. For example: p$ matches a record that ends with a `p’.
+$	matches the end of a string, or the end position of a line or file. For example: p$ matches a record that ends with a `p’.
 
 .	The period, or dot, matches any single character. For example: .P matches any single character followed by a `P' in a string.
 
