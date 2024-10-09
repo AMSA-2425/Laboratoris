@@ -57,18 +57,16 @@
 ## Xarxa
  - [Configuració de la Xarxa](./Xarxa.md)
     
-## Sistema Logging - rsyslog
- - [Sistema Logging](./Logging.md)
+## Xarxa
+ - [Configuració de la Xarxa](./Xarxa.md)
 
-## Usuaris i Grups
- - [Usuaris i Grups](./Usuaris-Grups.md)
- 
- ## Kernel de Linux
-- [Kernel de Linux](./Kernel/main.md)
-  - [Analitzant les crides a sistema](./Kernel/syscalls.md)
-  - [Espiant el Kernel](./Kernel/kernel-spy.md)
-  - [Programació de mòduls](./Kernel/modules.md)
-  - [Compilant el Kernel](./Kernel/kernel.md)
-  - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
-  - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
+
+% ## Kernel de Linux
+%- [Kernel de Linux](./Kernel/main.md)
+%  - [Analitzant les crides a sistema](./Kernel/syscalls.md)
+%  - [Espiant el Kernel](./Kernel/kernel-spy.md)
+% - [Programació de mòduls](./Kernel/modules.md)
+%  - [Compilant el Kernel](./Kernel/kernel.md)
+%  - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
+%  - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
   
