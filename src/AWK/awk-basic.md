@@ -27,7 +27,7 @@ Per exemple, si volem indicar que estem començant a processar un fitxer, podem 
 ```bash
 awk '
     BEGIN { print "Començant a processar el fitxer..." } 
-    /ExpressióRegula/ { print }
+    /ExpressióRegular/ { print }
     END { print "Finalitzant el processament del fitxer..." }
 ' fitxer
 ```
