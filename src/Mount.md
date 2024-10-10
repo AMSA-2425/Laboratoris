@@ -31,6 +31,10 @@
 	# mount -a -t tipus_sf
 	```
 
+	Exemple:
+	
+	![Exemple Debian 12 (UTM)](./figs/fstab.png)
+
 ## Muntatge No Automàtic
 
 - Es correspòn al muntatge de s.f. que no estan definits en`/etc/fstab`
@@ -56,6 +60,13 @@
 	```bash
 	# mount 
 	```
+	Exemple (Debian 12 (UTM):
+	```bash
+	# mount | grep /dev/vda
+	/dev/vda2 on /           type ext4 (rw,relatime,errors=remount-ro)
+	/dev/vda1 on / boot/efi   type vfat  (rw,relatime,errors=remount-ro,utf8,.....)
+	```
+
 
 - Per desmuntar un dispositiu o s.f.: 
 
