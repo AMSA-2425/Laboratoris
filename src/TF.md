@@ -1,6 +1,6 @@
 # Tractament de Fitxers
 
--  En aquest capótol veurem formes avnaçades de tractament de fitxers.
+-  En aquest capítol veurem formes avnaçades de tractament de fitxers.
 
 ## Contingut
 
