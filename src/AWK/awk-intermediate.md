@@ -50,7 +50,8 @@ Charizard->Total=534==534
 
     ```bash
     #!/bin/bash
-    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+    while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 \
+    	col12 col13; do
     if [[ "$col5" == "$((col6+col7+col8+col9+col10+col11))" ]]; then
         echo "$col2->Total=$col5==$((col6+col7+col8+col9+col10+col11))"
     fi
@@ -263,8 +264,8 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 
 		```bash
    		$ awk -F, 'BEGIN{ fire=0; dragon=0; others=0 } /Fire/ { fire++ } /Dragon/ \
-  		 { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire "\nDragon:" \
-  		 dragon "\nOthers:" others }' pokemon.csv
+  		 { dragon++ } !/Fire|Dragon/ { others++ } END{ print "Fire:" fire \ 
+		 "\nDragon:" dragon "\nOthers:" others }' pokemon.csv
 		 ```
 
 	* En bash:
@@ -275,7 +276,8 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 		dragon=0
 		others=0
 		
-		while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+		while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 \
+			col12 col13; do
 		if [[ "$col3" == "Fire"  || "$col4" == "Fire" ]]; then
          		((fire++))
 		fi
@@ -284,7 +286,8 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
          		((dragon++))
 		fi
 		
-		if [[ "$col3" != "Fire"  && "$col4" != "Fire" && "$col3" != "Dragon"  && "$col4" != "Dragon" ]]; then
+		if [[ "$col3" != "Fire"  && "$col4" != "Fire" && "$col3" != "Dragon"  \
+		&& "$col4" != "Dragon" ]]; then
          		((others++))
 		fi
 		done < pokemon.csv
@@ -297,7 +300,8 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 * Imprimiu el fitxer pokemon.csv amb una nova columna que indiqui la mitjana aritmètica dels atributs de cada figura. La sortida ha de ser semblant a:
 
      ```bash
-    #,Name,Type 1,Type 2,Total,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,Generation,Legendary,Avg
+    #,Name,Type 1,Type 2,Total,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,
+    Generation,Legendary,Avg
     1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False,53
     2,Ivysaur,Grass,Poison,405,60,62,63,80,80,60,1,False,67.5
     3,Venusaur,Grass,Poison,525,80,82,83,100,100,80,1,False,87.5
@@ -306,19 +310,23 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 	* En **AWK**:
 
 	```bash
-	$ awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+$11)/6 }' pokemon.csv
+	$ awk -F, '{ if (NR==1) print $0",Avg"; else print $0","($6+$7+$8+$9+$10+\
+		$11)/6 }' pokemon.csv
 	```
 
 	* En bash:
 
 	```bash
 	#!/bin/bash
-	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 \
+		col12 col13; do
 	if [[ "$col1" == "#" ]]; then
-		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,Avg"
+		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,\
+			$col11,$col12,$col13,Avg"
 	else
 		avg=$((($col6+$col7+$col8+$col9+$col10+$col11)/6))
-		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,$col11,$col12,$col13,$avg"
+		echo "$col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10,\
+			$col11,$col12,$col13,$avg"
 	fi
 	done < pokemon.csv
 	```
@@ -331,8 +339,10 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 	* En **AWK**, assumiu que el valors de la columna 7 van de 0 a 100:
 
 	```bash
-	$ awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) { max=$7; pmax=$2 } \
-	if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin "\nStrongest: "pmax }' pokemon.csv
+	$ awk -F, 'BEGIN{ max=0; min=100 } /Fire/ && $12 == 1 { if ($7 > max) \
+		{ max=$7; pmax=$2 } \
+	if ($7 < min) { min=$7; pmin=$2 } } END{ print "Weakest: "pmin " \
+		\nStrongest: "pmax }' pokemon.csv
 	```
 
 	* En bash:
@@ -341,7 +351,8 @@ END{ printf("Avg(attack):%4.2f \nWeakest:%s \nStrongest:%s\n",attack/n,pmin,pmax
 	#!/bin/bash
 	max=0
 	min=100
-	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 col12 col13; do
+	while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col8 col9 col10 col11 \
+		 col12 col13; do
 	if [[ "$col3" == "Fire" ]] && [[ "$col12" == "1" ]]; then
 		if [[ "$col7" -gt "$max" ]]; then
 			max=$col7
