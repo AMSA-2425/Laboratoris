@@ -63,7 +63,7 @@
 	Exemple (Debian 12 (UTM):
 	```bash
 	# mount | grep /dev/vda
-	/dev/vda2 on /           type ext4 (rw,relatime,errors=remount-ro)
+	/dev/vda2 on /            type ext4 (rw,relatime,errors=remount-ro)
 	/dev/vda1 on / boot/efi   type vfat  (rw,relatime,errors=remount-ro,utf8,.....)
 	```
 
