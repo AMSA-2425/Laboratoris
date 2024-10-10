@@ -43,7 +43,7 @@
 	
 	Exemple:
 	```bash
-	# mount -t vfat /dev/hda1 /dos
+	# mount -t vfat /dev/hda1 /tmp
 	```
 
 
@@ -51,13 +51,13 @@
 
 ## Desmuntatge (Automàtic i no Automàtic)
 
-- Llistant els dispositius (s.f.) muntats: Ex.: 
+- Llistant els dispositius (s.f.) muntats:
 
 	```bash
 	# mount 
 	```
 
-- Per desmuntar dispositius (s.f.: 
+- Per desmuntar un dispositiu o s.f.: 
 
 	```bash
 	# umount [dispositiu | lloc]
@@ -66,3 +66,8 @@
 	```bash
 	# umount /dev/hda1
 	```
+	o bé (és equivalent):
+	```bash
+	# umount /tmp
+	```
+	
