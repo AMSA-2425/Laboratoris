@@ -63,10 +63,14 @@
 ## Usuaris i Grups
  - [Usuaris i Grups](./Usuaris-Grups.md)
 
-
 ## Muntatge de Sistemes de Fitxers
  - [Muntatge de Sistemes de Fitxers](./Mount.md)
-  
+ 
+ ## Prioritats
+  - [Prioritats](./Prioritats.md)
+  	- [Nice](./Prioritats/nice.md)
+	- [Real Time](./Prioritats/RealTime.md)
+ 
  ## Kernel de Linux
 - [Kernel de Linux](./Kernel/main.md)
   - [Analitzant les crides a sistema](./Kernel/syscalls.md)
