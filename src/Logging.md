@@ -1,6 +1,8 @@
 # Sistema Logging - rsyslog
 
-`rsyslog` està activat per defecte en Debian 12, i el seu fitxer de configuració principal és `/etc/rsyslog.conf`. 
+Sistema que recull totes les incidències que passa en el sistema.
+
+El sistema de logging (`rsyslog`), està activat per defecte en Debian 12, i el seu fitxer de configuració principal és `/etc/rsyslog.conf`. 
 
 ## Pasos per configurar-lo:
 
@@ -13,18 +15,16 @@
 
 2. Editar el fitxer de configuració principal: Obre el fitxer `/etc/rsyslog.conf`, i canviar les regles.
 
-3. Format regla:
+3. Format regla:	**selector  action**
 
-	**selector  action**
-
-	**selector format**: facility.priority
+	`selector` format : 	**facility.priority**
 
 		• facility keywords: auth, authpriv, cron, daemon, ftp, kern, lpr, mail, mark, 
 			news, security (same as auth), syslog, user, uucp, local0 → local7
 
 		• priority keywords (in ascending order): debug, info, notice, warning, warn 
 			(same as warning), err, error (same as err), crit, alert, emerg, 
-			panic (same as emerg), warn, error and panic are deprecated.
+			panic (same as emerg). warn, error and panic are deprecated.
 
 4. Special keywords 
 
@@ -40,7 +40,7 @@
 
 	`!` : 		ignore all that priorities and any higher priority
 
-	`-'` : 		omit syncing the file after every logging
+	`-` : 		omit syncing the file after every logging
 
 	`|` : 		pipe. Useful for debugging (to apply program filters)
 	
@@ -68,25 +68,25 @@
 	```
 
 
-	\# Logging for the mail system. info and higer priorities to var/log/mail.info
+	\# Logging for the mail system. 
 
 
 	```bash
-	mail.info 		-/var/log/mail.info 
+	mail.info  -/var/log/mail.info  %info and higer priorities to /var/log/mail.info
 
-	mail.warn 		-/var/log/mail.warn 
+	mail.warn  -/var/log/mail.warn 
 
-	mail.err 		/var/log/mail.err 
+	mail.err   /var/log/mail.err 
 	```
 
 	\# Logging for news system 
 
 	```bash
-	news.crit /var/log/news/news.crit 
+	news.crit 	/var/log/news/news.crit 
 
-	news.err /var/log/news/news.err 
+	news.err 	/var/log/news/news.err 
 
-	news.notice -/var/log/news/news.notice 
+	news.notice 	-/var/log/news/news.notice 
 	```
 
 
@@ -130,7 +130,7 @@
 
 7. Altres exemples
 
-	\# The following lines would log all messages of the facility mail except those with the priority info to the /usr/adm/mail file. And all messages from news.info (including) to news.crit (excluding) would be logged to the /usr/adm/news file.
+- The following lines would log all messages of the facility mail except those with the priority info to the /usr/adm/mail file. And all messages from news.info (including) to news.crit (excluding) would be logged to the /usr/adm/news file.
 
 	```bash
 	mail.*;mail.!=info /usr/adm/mail 
@@ -191,7 +191,13 @@
 		LOG_USER (default) generic user-level messages 
 		
 
-	`priority` determines the importance of the message:
+	Generating a log message
+
+	```bash
+	void syslog(int priority, const char *format, ...); 
+	```
+
+	`priority`  of the message:
 
 		LOG_EMERG system is unusable
 
@@ -210,17 +216,22 @@
 		LOG_DEBUG debug-level message
 
 
-	Generating a log message
-
-	```bash
-	void syslog(int priority, const char *format, ...); 
-	```
-
-
 	Closing the connection to the system logger for a program. 
 
 	```bash
 	void closelog(void);
 	```
-	 
 
+## Comandes importants
+
+- Per veure els missatges del nucli
+
+```bash
+$ dmesg
+```
+
+- Per veure tots missatges del sistema
+
+```bash
+$ journalctl
+```

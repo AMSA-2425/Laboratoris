@@ -9,6 +9,7 @@
 	• Fitxer de configuració de grups: 
 
 		/etc/group
+		/etc/gshadow
 
 
 
@@ -37,7 +38,7 @@
 
 
 
-## Fitxer `/etc/shadow`
+## Fitxer `/etc/shadow`  % read-only by users
 
 
 	• Camps (separats per “:”): 
@@ -82,11 +83,33 @@
 
 		.................................................
 
-		sudo:x:27:francesc, joan, sara
+		sudo:x:27:francesc, joan, pep
 
 		audio:x:29:francesc,pep
 
-		video:x:44:francesc
+		.................................................
+
+
+## Fitxer `/etc/gshadow`   % read-only by users
+
+
+	• Camps (separats per “:”): 
+
+		name of the group.
+
+		the (encrypted) group password.
+
+		administrator.
+
+		group member's user names, separated by commas. 
+
+	• Exemple:
+
+		.................................................
+
+		sudo:*:root:francesc,joan, pep
+
+		audio:Stdwue%&(((ffff4233&/(((()988:root:francesc,pep
 
 		.................................................
 

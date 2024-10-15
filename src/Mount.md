@@ -5,32 +5,45 @@
 ## Muntatge Automàtic
 
 - Es correspòn als sistemes de fitxers (s.f.) que es munten de forma automàtica en arrencar-se el sistema 
-	(degut a l'execució de la comanda `\# mount -a`) es defineixen en el fitxer `/etc/fstab`:
-  
+	(degut a l'execució de la comanda `# mount -a`) es defineixen en el fitxer `/etc/fstab`:
+	
+	- Exemple:
+	
+	![Exemple Debian 12 (UTM)](./figs/fstab.png)
+	
 	- Relaciona dispositius (particions) amb punts i opcions de muntatge. 
-
-  	- Columnes (camps) de `/etc/fstab`: 
+	
+	- Columnes (camps) de `/etc/fstab`: 
+	
 		dispositiu, 
+		
 		punt_de_muntatge, 
-		tipus de sistema de fitxers
+		
+		tipus de sistema de fitxers,
+		
 		opcions, 
+		
 		còpia (0 -no-, 1 -si-), 
+		
 		xequeig automàtic en muntar-se - `fsck` - (0 -no-, 1-si-).
 		
 - Opcions més importants:
 
 ```bash
- - async. All  I/O  to  the  filesystem  should be done asynchronously. Asynchronous write operations allow 
-	      the system to continue executing other tasks without waiting for the data to be physically written to the
-              storage device. 
+- async. All  I/O  to  the  filesystem  should be done asynchronously. 
+		Data are saved in the Data Cache. 
 
-- atime.  Do not use noatime feature, then the  inode  access time is controlled by kernel defaults. 
+-  sync.   All  I/O  to  the  filesystem  should  be done synchronously. 
+		Saved at disk inmediatelly.
 
 - noatime.   Do not update inode access times on this filesystem
- 
+
+- atime.  update inode  access times. 
+
 - auto.   Can be mounted with the -a option.
 
-- noauto. Can only be mounted explicitly (i.e., the -a option will not cause the filesystem to be mounted).
+- noauto. Can only be mounted explicitly (i.e., the -a option will not cause the 
+		filesystem to be mounted).
 
 - defaults. Use default options: rw,  suid,  dev,  exec,  auto, nouser, and async.
 
@@ -38,19 +51,19 @@
 
 - nodev.  Do not interpret character or block special devices on the file system.
 
-- diratime.  Update   directory   inode  access  times  on  this filesystem. This is the default.
+- diratime.  Update   directory   inode  access  times  on  this filesystem. 
+		This is the default.
 
 - nodiratime.   Do not update directory inode access times on  this filesystem.
 
-- dirsync.  All  directory updates within the filesystem should be done synchronously.  This affects the  following
-              system  calls: creat, link, unlink, symlink, mkdir, rmdir, mknod and rename.
+- dirsync.  All  directory updates within the filesystem should be done synchronously.  
 
 - exec.   Permit execution of binaries.
 
 - noexec. Do not allow direct execution of  any  binaries  on the  mounted  filesystem.  
 
-- group.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  if  one  of his groups matches the
-              group of  the  device.   
+- group.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  if  one  
+		of his groups matches the owner group of  the  device.   
 
 - encryption. Specifies  an encryption algorithm to use.  
 
@@ -64,10 +77,8 @@
 
 - netdev.  The filesystem resides on a  device  that  requires  network  access  
 
-- nofail Do not report errors for this device.
-
-- relatime   Access  time is only updated if the previous access time was earlier than  the  current
-              time.  
+- relatime   Access  time is only updated if the previous access time was earlier 
+		than  the  current time.  
 
 - norelatime.  Do not use relatime feature. 
 
@@ -87,15 +98,14 @@
 
 - loud.   Turn off the silent flag.
 
-- owner.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  if  he is the owner of the device.
+- owner.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  
+		if  he is the owner of the device.
  
 - remount.  Allows  remounting an  already-mounted  filesystem.
 
 - ro.     Mount the filesystem read-only.
 
 - rw.     Mount the filesystem read-write.
-
--  sync.   All  I/O  to  the  filesystem  should  be done synchronously. 
 
 - user.   Allow an ordinary user  to  mount  the  filesystem.
 
@@ -110,7 +120,7 @@
 	- Per muntar els dispositius que encara no estiguin muntats: 
 	
 	```bash
-	# mount -a    /* els munta tots */
+	# mount -a    /* munta tots els s.f. definits en /etc/fstab */
 	```
 
 	- Per muntar tots els sistemes de fitxers del tipus `tipus_sf`	
@@ -119,9 +129,6 @@
 	# mount -a -t tipus_sf
 	```
 
-	Exemple:
-	
-	![Exemple Debian 12 (UTM)](./figs/fstab.png)
 
 ## Muntatge No Automàtic
 
