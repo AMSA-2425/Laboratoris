@@ -63,10 +63,14 @@
 ## Usuaris i Grups
  - [Usuaris i Grups](./Usuaris-Grups.md)
 
-
 ## Muntatge de Sistemes de Fitxers
  - [Muntatge de Sistemes de Fitxers](./Mount.md)
-  
+ 
+ ## Prioritats
+  - [Prioritats](./Prioritats.md)
+  	- [Nice](./Prioritats/nice.md)
+	- [Real Time](./Prioritats/RealTime.md)
+ 
  ## Kernel de Linux
 - [Kernel de Linux](./Kernel/main.md)
   - [Analitzant les crides a sistema](./Kernel/syscalls.md)
@@ -76,10 +80,3 @@
   - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
   - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
   
-## Servidors
-   - [Desplegant un servidor web: Wordpress](./Servers/wordpress-mono/main.md)
-     - [Preparant el servidor](./Servers/wordpress-mono/preparant.md)
-     - [Instal·lant i configurant Apache](./Servers/wordpress-mono/apache.md)
-     - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
-     - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)
-     - [Instal·lant i configurant Wordpress](./Servers/wordpress-mono/wordpress.md)
