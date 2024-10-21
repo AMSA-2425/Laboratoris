@@ -4,7 +4,7 @@ Sistema que recull totes les incidències que passa en el sistema.
 
 El sistema de logging (`rsyslog`), està activat per defecte en Debian 12, i el seu fitxer de configuració principal és `/etc/rsyslog.conf`. 
 
-## Pasos per configurar-lo:
+## Passos per configurar-lo:
 
 1. Instal·lar rsyslog (si no està instal·lat):
 

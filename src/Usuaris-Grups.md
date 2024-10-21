@@ -16,19 +16,19 @@
 ## Fitxer `/etc/passwd`
 
 
-	• Camps (separats per “:”): \vskip -.5cm
+	• Camps (separats per “:”): 
 
-		Login name \vskip -.5cm
+		Login name 
 
-		Optional encrypted password \vskip -.5cm
+		Optional encrypted password 
 
-		Numerical user ID \vskip -.5cm
+		Numerical user ID 
 
-		Numerical group ID \vskip -.5cm
+		Numerical group ID 
 
-		User name or comment field \vskip -.5cm
+		User name or comment field 
 
-		User home directory \vskip -.5cm
+		User home directory 
 
 		User command interpreter 
 
@@ -124,8 +124,10 @@
 
 		poweroff: must be superuser
 
-		– El sistema ens indica que no tenim permisos suficients per executar la comanda poweroff
+		– El sistema ens indica que no tenim permisos suficients per executar la comanda 
+			poweroff
 
-	• La comanda sudo ens permet executar als usuaris normals aplicacions amb permisos de superusuari. Per exemple:
+	• La comanda sudo ens permet executar als usuaris normals aplicacions amb permisos 
+		de superusuari. Per exemple:
 
 		$ sudo poweroff

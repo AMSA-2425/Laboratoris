@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 ### Analitzant la sortida
 
 1. La primera línia ens mostra la crida a sistema `execve` que s'ha fet per executar el programa `hola`. Quan es crea un nou procés a Linux `fork()`, el fill és idèntic al pare. Llavors, `execv()` substitueix el procés actual (fill) pel programa `hola.c`. Aquest efecte s'anomena **recobriment**. Com veurem més endavant, aquesta crida a sistema és la que ens permet executar un nou programa.
-2. La segona línia ens mostra la crida a sistema `brk` que ens permet ajustar el límit superior de l'heap, permetent al programa sol·licitar més memòria dinàmica. L'adreça retornada marca el límit actual de l'heap.
+2. La segona línia ens mostra la crida a sistema `brk` que ens permet ajustar el límit superior del heap, permetent al programa sol·licitar més memòria dinàmica. L'adreça retornada marca el límit actual del heap.
 3. La tercera línia ens mostra la crida a sistema `mmap` que ens permet mapejar una regió de memòria. En aquest cas, el programa `hola` mapeja una regió de memòria de 8192 bytes amb permisos de lectura i escriptura. Aquesta memòria s'utilitza per emmagatzemar dades temporals durant l'execució del programa. Ens mostra l'adreça on s'ha mapejat la regió de memòria.
 4. La quarta línia ens mostra la crida a sistema `faccessat` que ens permet comprovar si un fitxer es pot llegir. En aquest cas, el programa `hola` intenta llegir el fitxer `/etc/ld.so.preload`, però com que no existeix, la crida retorna `ENOENT` (El fitxer o directori no existeix).
 
@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
 
 10. Les següents crides a sistema `mprotect` canvien els permisos a *PROT_READ* (només lectura) de diferents regions de memòria. La primera regió de memòria és de 16384 bytes, la segona de 4096 bytes i la tercera de 8192 bytes.
 11. La crida a sistema `newfstatat` ens permet obtenir informació sobre la sortida estàndard. Fixeu-vos que el descriptor de fitxer és 1. L'objectiu del programa en C es mostrar el missatge `HELLO` per la sortida estàndard.
-12. Les crides `brk(NULL)` i `brk(0xaaaadad16000)` primer obtenen l'adreça final de la pila i després ajusten el límit superior de l'heap. Es a dir, el programa augmenta la mida de l'heap per emmagatzemar la cadena `HELLO\n` abans d'escriure-la per la sortida estàndard.
+12. Les crides `brk(NULL)` i `brk(0xaaaadad16000)` primer obtenen l'adreça final de la pila i després ajusten el límit superior del heap. Es a dir, el programa augmenta la mida del heap per emmagatzemar la cadena `HELLO\n` abans d'escriure-la per la sortida estàndard.
 
     > Nota: Tot i que no s'utiltiza la memòria dinàmica de forma explícita, la crida a sistema `write(1, "HELLO\n", 6)` fa servir la memòria dinàmica per emmagatzemar la cadena `HELLO\n` abans d'escriure-la per la sortida estàndard. Podeu comprovar-ho si mirem la implementació de la funció `printf` de la llibreria `libc.so.6`.
   

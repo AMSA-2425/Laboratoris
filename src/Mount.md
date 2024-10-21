@@ -33,36 +33,36 @@
 - async. All  I/O  to  the  filesystem  should be done asynchronously. 
 		Data are saved in the Data Cache. 
 
--  sync.   All  I/O  to  the  filesystem  should  be done synchronously. 
+-  sync.  All  I/O  to  the  filesystem  should  be done synchronously. 
 		Saved at disk inmediatelly.
 
-- noatime.   Do not update inode access times on this filesystem
+- noatime. Do not update inode access times on this filesystem
 
-- atime.  update inode  access times. 
+- atime. Update inode  access times. 
 
-- auto.   Can be mounted with the -a option.
+- auto. Can be mounted with the -a option.
 
 - noauto. Can only be mounted explicitly (i.e., the -a option will not cause the 
 		filesystem to be mounted).
 
 - defaults. Use default options: rw,  suid,  dev,  exec,  auto, nouser, and async.
 
-- dev.   Interpret character or block special devices on the filesystem.
+- dev. Interpret character or block special devices on the filesystem.
 
-- nodev.  Do not interpret character or block special devices on the file system.
+- nodev. Do not interpret character or block special devices on the file system.
 
-- diratime.  Update   directory   inode  access  times  on  this filesystem. 
+- diratime. Update   directory   inode  access  times  on  this filesystem. 
 		This is the default.
 
-- nodiratime.   Do not update directory inode access times on  this filesystem.
+- nodiratime. Do not update directory inode access times on  this filesystem.
 
-- dirsync.  All  directory updates within the filesystem should be done synchronously.  
+- dirsync. All  directory updates within the filesystem should be done synchronously.  
 
-- exec.   Permit execution of binaries.
+- exec. Permit execution of binaries.
 
 - noexec. Do not allow direct execution of  any  binaries  on the  mounted  filesystem.  
 
-- group.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  if  one  
+- group. Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  if  one  
 		of his groups matches the owner group of  the  device.   
 
 - encryption. Specifies  an encryption algorithm to use.  
@@ -71,18 +71,18 @@
 
 - nofail. Do  not  report  errors
 
-- mand.  Allow mandatory locks on this filesystem.
+- mand. Allow mandatory locks on this filesystem.
       
 - nomand. Do not allow mandatory locks on this filesystem.
 
-- netdev.  The filesystem resides on a  device  that  requires  network  access  
+- netdev. The filesystem resides on a  device  that  requires  network  access  
 
-- relatime   Access  time is only updated if the previous access time was earlier 
+- relatime. Access  time is only updated if the previous access time was earlier 
 		than  the  current time.  
 
-- norelatime.  Do not use relatime feature. 
+- norelatime. Do not use relatime feature. 
 
-- suid.   Allow set-user-identifier  or  set-group-identifier bits to take effect. 
+- suid. Allow set-user-identifier  or  set-group-identifier bits to take effect. 
 		Setting uid:
              		# chmod u+s program  // setting bit setuid
 	     	 	# chmod u-s program  // deleting bit setuid
@@ -96,22 +96,25 @@
 - silent. Turn on the silent flag. Suppress the display of 
 	      certain (printk()) warning messages in the kernel log
 
-- loud.   Turn off the silent flag.
+- loud. Turn off the silent flag.
 
-- owner.  Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  
+- owner. Allow an ordinary (i.e., non-root)  user  to  mount the  filesystem  
 		if  he is the owner of the device.
  
 - remount.  Allows  remounting an  already-mounted  filesystem.
 
-- ro.     Mount the filesystem read-only.
+- ro. Mount the filesystem read-only.
 
-- rw.     Mount the filesystem read-write.
+- rw.  Mount the filesystem read-write.
 
-- user.   Allow an ordinary user  to  mount  the  filesystem.
+- user. Allow an ordinary user  to  mount  the  filesystem.
 
 - nouser. Forbid  an  ordinary (i.e., non-root) user to mount
               the filesystem.  This is the default.
+              
+- usrquota. Setting user quotas.
 
+- grpquota. Setting group quotas.
 ```
 
 

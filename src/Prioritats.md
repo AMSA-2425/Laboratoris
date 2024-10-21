@@ -5,4 +5,5 @@
 ## Contingut
 
 1. [Nice](./Prioritats/nice.md)
-2. [Real Time](./Prioritats/RealTime.md)
+2. [Temps Real](./Prioritats/TempsReal.md)
+

@@ -1,4 +1,4 @@
-## Real Time
+## Temps Real
 
 
 ###  Esquema Planificador de Linux

@@ -67,7 +67,34 @@
 ## Muntatge de Sistemes de Fitxers
  - [Muntatge de Sistemes de Fitxers](./Mount.md)
   
- ## Kernel de Linux
+
+## SWAP - DRAM
+ - [Swap - Dram](./SWAP-DRAM.md)
+
+## Quota
+ - [Quota](./Quota.md)
+ 
+ ## Cron
+ - [Cron](./Cron.md)
+  
+## Prioritats
+ - [Prioritats](./Prioritats.md)
+     - [Nice](./Prioritats/nice.md)
+     - [Temps Real](./Prioritats/TempsReal.md)
+ 
+ ## Nohup
+ - [Nohup](./Nohup.md)
+ 
+ 
+  ## Servidors
+   - [Desplegant un servidor web: Wordpress](./Servers/wordpress-mono/main.md)
+     - [Preparant el servidor](./Servers/wordpress-mono/preparant.md)
+     - [Instal·lant i configurant Apache](./Servers/wordpress-mono/apache.md)
+     - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
+     - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)
+     - [Instal·lant i configurant Wordpress](./Servers/wordpress-mono/wordpress.md)
+
+## Kernel de Linux
 - [Kernel de Linux](./Kernel/main.md)
   - [Analitzant les crides a sistema](./Kernel/syscalls.md)
   - [Espiant el Kernel](./Kernel/kernel-spy.md)
@@ -76,10 +103,3 @@
   - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
   - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
   
-## Servidors
-   - [Desplegant un servidor web: Wordpress](./Servers/wordpress-mono/main.md)
-     - [Preparant el servidor](./Servers/wordpress-mono/preparant.md)
-     - [Instal·lant i configurant Apache](./Servers/wordpress-mono/apache.md)
-     - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
-     - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)
-     - [Instal·lant i configurant Wordpress](./Servers/wordpress-mono/wordpress.md)
