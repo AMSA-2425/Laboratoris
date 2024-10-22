@@ -69,6 +69,8 @@
 ```bash
 #!/bin/bash
 
+# script SWAP
+
 ROOT_UID=0        # root té $UID = 0.
 
 FILE=/tmp/swap

@@ -18,6 +18,8 @@ Disc RAM: sistema de fitxers implementat en RAM. Exemple: sistema de fitxers /p
 ```bash
 #!/bin/bash 
 
+# script DRAM
+
 ROOTUSER_NAME=root
 
 MOUNTPT=/tmp/ramdisk
