@@ -72,7 +72,7 @@
  - [Swap](./SWAP.md)
  
  ## DRAM
- - [Disk Ram](./DRAM.md)
+ - [Disk Ram](./RAMDISC.md)
 
 ## Prioritats
  - [Prioritats](./Prioritats.md)

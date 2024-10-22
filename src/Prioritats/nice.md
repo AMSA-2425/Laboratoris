@@ -47,7 +47,7 @@ Executem:
 3.
 	```bash
 	$ nice -n -10 escriure & 
-	nice: no se puede establecer la prioridad: Permiso denegado
+	nice: no es pot establir la prioritat: Permís denegat
 	```
 
 
@@ -73,5 +73,5 @@ Executem:
 	$ top 
 	PID     PRI     NI     STAT    %CPU   TIME    COMMAND 
 	3840    15     -10      R      46.5   1:14    escriure1
-	3839   35       10      R      14.9   0:25    escriure 
+	3839    35      10      R      14.9   0:25    escriure 
 	```

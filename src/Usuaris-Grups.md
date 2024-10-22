@@ -1,23 +1,26 @@
 # Usuaris i Grups
 
-	• Fitxers de configuració d'usuaris: 
+- Fitxers de configuració d'usuaris: 
 
+```sh
 		/etc/passwd
-
 		/etc/shadow
+```
 
-	• Fitxer de configuració de grups: 
+- Fitxers de configuració de grups: 
 
+```sh
 		/etc/group
 		/etc/gshadow
-
+```
 
 
 ## Fitxer `/etc/passwd`
 
 
-	• Camps (separats per “:”): 
+- Camps (separats per “:”): 
 
+```sh
 		Login name 
 
 		Optional encrypted password 
@@ -31,18 +34,22 @@
 		User home directory 
 
 		User command interpreter 
+```
 
-	• Exemple:
+- Exemple:
 
+```sh
 		francesc:x:1000:1000:Francesc Solsona:/home/francesc:/bin/bash
+```
 
 
 
-## Fitxer `/etc/shadow`  % read-only by users
+## Fitxer `/etc/shadow`  (read-only by users)
 
 
-	• Camps (separats per “:”): 
+- Camps (separats per “:”): 
 
+```sh
 		Login name 
 
 		Encrypted password 
@@ -60,17 +67,21 @@
 		Days since Jan 1, 1970 that account is disabled 
 
 		Reserved field 
+```
 
-	• Exemple:
+- Exemple:
 
+```sh
 		francesc : $1$Me/cGKsG$5ui/abvo44aqeY9BF790c0 : 12430 : 0 : 99999:7 : : :
+```
 
 
 ## Fitxer `/etc/group`
 
 
-	• Camps (separats per “:”): 
+- Camps (separats per “:”): 
 
+```sh
 		name of the group.
 
 		the (encrypted) group password.
@@ -78,9 +89,11 @@
 		numerical group ID.
 
 		group member's user names, separated by commas. 
+```
 
-	• Exemple:
+- Exemple:
 
+```sh
 		.................................................
 
 		sudo:x:27:francesc, joan, pep
@@ -88,13 +101,15 @@
 		audio:x:29:francesc,pep
 
 		.................................................
+```
 
 
 ## Fitxer `/etc/gshadow`   % read-only by users
 
 
-	• Camps (separats per “:”): 
+- Camps (separats per “:”): 
 
+```sh
 		name of the group.
 
 		the (encrypted) group password.
@@ -102,32 +117,43 @@
 		administrator.
 
 		group member's user names, separated by commas. 
+```
 
-	• Exemple:
+- Exemple:
 
+```sh
 		.................................................
 
-		sudo:*:root:francesc,joan, pep
+		sudo:*:root:francesc,joan,pep
 
 		audio:Stdwue%&(((ffff4233&/(((()988:root:francesc,pep
 
 		.................................................
+```
 
+- El " * " vol dir que ningú pot accedir amb contrasenya a part dels usuaris ue són membres del grup.
 
 
 ### Possibles aplicacions (sudo)
 
 
-	• Si executem com un usuari normal:
+- Si executem com un usuari normal:
 
+```sh
 		$ poweroff
 
 		poweroff: must be superuser
+```
 
-		– El sistema ens indica que no tenim permisos suficients per executar la comanda 
+
+- El sistema ens indica que no tenim permisos suficients per executar la comanda 
 			poweroff
 
-	• La comanda sudo ens permet executar als usuaris normals aplicacions amb permisos 
+- La comanda sudo ens permet executar als usuaris normals aplicacions amb permisos 
 		de superusuari. Per exemple:
 
+```sh
+		$ whoami
+		francesc
 		$ sudo poweroff
+```

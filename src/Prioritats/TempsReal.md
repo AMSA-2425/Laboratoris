@@ -15,7 +15,7 @@
 - SCHED_OTHER: Round Robin però quan tots els processos han gastat 1 Quantum (210ms) es replanifica de nou tornant a donar a tots els processos 1 Quantum més d'execució. Assegura que cap procés entri en inanició.
 
 
-### Crides a sistema 
+### Crides a sistema (en llenguatge C)
 
 
 

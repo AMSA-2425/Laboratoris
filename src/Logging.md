@@ -146,7 +146,7 @@ El sistema de logging (`rsyslog`), està activat per defecte en Debian 12, i el 
 
 	Opening a connection to the system logger for a program. 
 
-	```bash
+	```c
 	#include <syslog.h>
 	void openlog(const char *ident, int option, int facility); 
 	```
@@ -193,7 +193,7 @@ El sistema de logging (`rsyslog`), està activat per defecte en Debian 12, i el 
 
 	Generating a log message
 
-	```bash
+	```c
 	void syslog(int priority, const char *format, ...); 
 	```
 
@@ -218,7 +218,7 @@ El sistema de logging (`rsyslog`), està activat per defecte en Debian 12, i el 
 
 	Closing the connection to the system logger for a program. 
 
-	```bash
+	```c
 	void closelog(void);
 	```
 

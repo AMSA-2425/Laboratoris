@@ -31,14 +31,21 @@
 
 ```bash
 - async. All  I/O  to  the  filesystem  should be done asynchronously. 
-		Data are saved in the Data Cache. 
+		Data are saved in the Buffer Cache. 
 
--  sync.  All  I/O  to  the  filesystem  should  be done synchronously. 
+- sync.  All  I/O  to  the  filesystem  should  be done synchronously. 
 		Saved at disk inmediatelly.
 
 - noatime. Do not update inode access times on this filesystem
 
 - atime. Update inode  access times. 
+
+- nodiratime. Do not update directory inode access times on  this filesystem.
+
+- diratime. Update   directory   inode  access  times  on  this filesystem. 
+		This is the default.
+
+- dirsync. All  directory updates within the filesystem should be done synchronously.  
 
 - auto. Can be mounted with the -a option.
 
@@ -50,13 +57,6 @@
 - dev. Interpret character or block special devices on the filesystem.
 
 - nodev. Do not interpret character or block special devices on the file system.
-
-- diratime. Update   directory   inode  access  times  on  this filesystem. 
-		This is the default.
-
-- nodiratime. Do not update directory inode access times on  this filesystem.
-
-- dirsync. All  directory updates within the filesystem should be done synchronously.  
 
 - exec. Permit execution of binaries.
 
@@ -158,7 +158,7 @@
 	```bash
 	# mount 
 	```
-	Exemple (Debian 12 (UTM):
+	Exemple (Debian 12 - UTM):
 	```bash
 	# mount | grep /dev/vda
 	/dev/vda2 on /            type ext4 (rw,relatime,errors=remount-ro)

@@ -40,22 +40,22 @@
 
 2.
 	```bash
-	# mkswap /dev/hda5     % crea una nova zona swap en /dev/hda5
+	# mkswap /dev/hda5     # crea una nova zona swap en /dev/hda5
 	```
 
 3.
 	```bash
-	# swapon /dev/hda5 % activa la nova zona swap (/dev/hda5)
+	# swapon /dev/hda5  	# activa la nova zona swap (/dev/hda5)
 	```
 
 4.
 	```bash
-	# swapoff /dev/hda5 %  desactiva la nova zona swap (/dev/hda5)
+	# swapoff /dev/hda5 		# desactiva la nova zona swap (/dev/hda5)
 	```
 
 5.
 	```bash
-	# free % per comprovar que s'hagi afegit correctament
+	# free 	# per comprovar que s'hagi afegit correctament
 	```
 
 - Per que el sistema, en arrencar-se, carregui correctament la nova zona de swap --> en `/etc/fstab` s'ha d'afegir: 
@@ -81,7 +81,7 @@ MINBLOCKS=40
 
 blocks=${1:-$MINBLOCKS}         #  default  40 blocs
 
-[ "$blocks" -lt $MINBLOCKS ]  && echo "blocks > $MINBLOCKS" && exit 2
+[ $blocks -lt $MINBLOCKS ]  && echo "blocks > $MINBLOCKS" && exit 2
 
 dd if=/dev/zero of=$FILE bs=$BLOCKSIZE count=$blocks
 
