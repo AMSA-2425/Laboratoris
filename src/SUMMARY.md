@@ -68,8 +68,11 @@
  - [Muntatge de Sistemes de Fitxers](./Mount.md)
   
 
-## SWAP - DRAM
- - [Swap - Dram](./SWAP-DRAM.md)
+## SWAP
+ - [Swap](./SWAP.md)
+ 
+ ## DRAM
+ - [Disk Ram](./DRAM.md)
 
 ## Prioritats
  - [Prioritats](./Prioritats.md)

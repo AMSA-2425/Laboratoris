@@ -21,32 +21,40 @@
 
 • Modificar la política i prioritat de planificació d'un procés: 
 
-```bash
-int sched_setscheduler(pid_t pid, int politica, const struct sched_param *p);
+```c
+	int sched_setscheduler(pid_t pid, int politica, const struct sched_param *p);
 ```
 
-• Obtenció de la política de planificació d'un procés: 
+on
 
-```bash
-int sched_getscheduler(pid_t pid); // retorna la política de planificació 
+```c
+	struct sched_param {
+	int sched_priority;
+	}
+```
+
+
+• Obtención de la política de planificació d'un procés: 
+
+```c
+	int sched_getscheduler(pid_t pid); // retorna la política de planificació 
 ```
 
 • Obtenció de la prioritat de planificació d'un procés:
 
-```bash
-int sched_getparam(pid_t pid, const struct_param *param); 
+```c
+	int sched_getparam(pid_t pid, struct sched_param *param); 
 ```
 
 • Obtenint la prioritat màxima i mínima d'una política de planificació: 
 
-```bash
-int sched_get_priority_max(int politica);
-
-int sched_get_priority_min(int politica); 
+```c
+	int sched_get_priority_max(int politica);
+	int sched_get_priority_min(int politica); 
 ```
 
 • Abandonar la CPU: 
 
-```bash
-int sched_yield(void);
+```c
+	int sched_yield(void);
 ```
