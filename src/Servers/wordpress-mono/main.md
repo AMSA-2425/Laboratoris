@@ -17,7 +17,7 @@ Per tant, haurem de preparar un servidor que compleixi aquests requeriments aban
 
 ## Requisits
 
-* Màquina virtual amb sistema operatiu **AlmaLinux**.
+* Màquina virtual amb sistema operatiu **Debia 12**.
 
 ## Objectius
 

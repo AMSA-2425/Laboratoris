@@ -71,12 +71,6 @@
 ## SWAP - DRAM
  - [Swap - Dram](./SWAP-DRAM.md)
 
-## Quota
- - [Quota](./Quota.md)
- 
- ## Cron
- - [Cron](./Cron.md)
-  
 ## Prioritats
  - [Prioritats](./Prioritats.md)
      - [Nice](./Prioritats/nice.md)
@@ -84,11 +78,15 @@
  
  ## Nohup
  - [Nohup](./Nohup.md)
+
+## Quota
+ - [Quota](./Quota.md)
  
+ ## Cron
+ - [Cron](./Cron.md) 
  
   ## Servidors
    - [Desplegant un servidor web: Wordpress](./Servers/wordpress-mono/main.md)
-     - [Preparant el servidor](./Servers/wordpress-mono/preparant.md)
      - [Instal·lant i configurant Apache](./Servers/wordpress-mono/apache.md)
      - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
      - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)

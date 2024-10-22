@@ -4,19 +4,19 @@ En aquesta secció aprendrem com administrar la memòria swap i com crear un dis
 
 ## SWAP
 
-Swap: Memòria d'intercanvi (en disc). 
+- Swap: Memòria d'intercanvi (en disc). 
 
-	Memòria Virtual (MV) = Memòria Principal + Swap
+		- Memòria Virtual (MV) = Memòria Principal + Swap
 
-- Si un procés esgota la MV \Longrightarrow el s.o. l'elimina
+- Si un procés esgota la MV --> el s.o. l'elimina.
 
-Solucions: 
+	Solucions: 
 
-1. Augmentar l'àrea (partició) de swap en disc 
+		1. Augmentar l'àrea (partició) de swap en disc 
 
-2. Crear una nova àrea (partició) de swap en disc.
+		2. Crear una nova àrea (partició) de swap en disc.
 
-3. Crear un fitxer swap (p.e. en la partició arrel).
+		3. Crear un fitxer swap (p.e. en la partició arrel).
 
 
 ### Modificar/Crear una nova partició swap
