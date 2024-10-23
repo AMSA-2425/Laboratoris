@@ -44,7 +44,7 @@
 
 
 
-## Fitxer `/etc/shadow`  (read-only by users)
+## Fitxer `/etc/shadow`  (Permission: rw-r-----)
 
 
 - Camps (separats per “:”): 
@@ -104,7 +104,7 @@
 ```
 
 
-## Fitxer `/etc/gshadow`   % read-only by users
+## Fitxer `/etc/gshadow`   (Permission: rw-r-----)
 
 
 - Camps (separats per “:”): 
