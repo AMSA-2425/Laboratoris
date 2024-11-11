@@ -79,17 +79,17 @@
      - [Nice](./Prioritats/nice.md)
      - [Temps Real](./Prioritats/TempsReal.md)
  
- ## Nohup
+## Nohup
  - [Nohup](./Nohup.md)
 
 ## Quota
  - [Quota](./Quota.md)
  
- ## Cron
+## Cron
  - [Cron](./Cron.md) 
- 
-  ## Servidors
-   - [Desplegant un servidor web: Wordpress](./Servers/wordpress-mono/main.md)
+  
+## Servidors
+   - [Desplegant un servidor web Wordpress](./Servers/wordpress-mono/main.md)
      - [Instal·lant i configurant Apache](./Servers/wordpress-mono/apache.md)
      - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
      - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)

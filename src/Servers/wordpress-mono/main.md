@@ -1,4 +1,4 @@
-# Desplegant un servidor web: Wordpress
+# Desplegant un servidor web Wordpress
 
 En aquest laboratori, desplegarem un servidor web senzill amb **WordPress**, una de les plataformes de gestió de continguts (CMS) més populars del món. WordPress permet crear i gestionar llocs web de manera intuïtiva i eficient, i és ideal per a projectes com blocs, botigues en línia, portals de notícies, i molt més.
 

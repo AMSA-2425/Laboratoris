@@ -1,7 +1,7 @@
 # Cron
 
 
-- Idea: daemon which executes commands periodically. P.e.: quotacheck
+- Idea: daemon which executes commands periodically. F.e.: quotacheck
 
 - File `/etc/crontab` (contains 8 fields):
 
@@ -30,6 +30,16 @@ cron.* are directories containing scripts to be executed hourly, daily, weekly o
 
 Note: run-parts execute all the scripts in a directory
 ```
+| #  | Description           | Range                |
+|----|-----------------------|----------------------|
+| 1  | Minute                | 0-59                 |
+| 2  | Hour                  | 0-23                 |
+| 3  | Day of Month          | 1-31                 |
+| 4  | Month                 | 1-12                 |
+| 5  | Day of Week           | 0-6 (0 or 6 for Sun) |
+| 6  | User                  |                      |
+| 7  | Reserved Word  run-parts or command       |  |
+| 8  | Scripting Directory  or empty        |  |
 
 
 
