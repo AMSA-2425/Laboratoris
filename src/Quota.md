@@ -136,16 +136,17 @@ fi
  |------------|--------|------|------|--------|------|------|
 ```
  
-- Note: "**# edquota**" takes me into the vi editor (change editor with the $EDITOR environment variable). "blocks" are in KB. There are 76 blocks and and 15 inodes assigned to user joan in hdb2.\vspace{-0.3cm}
+- Note: "**# edquota**" takes me into the vi editor (change editor with the $EDITOR environment variable). "blocks" are in KB. There are 76 blocks and and 15 inodes assigned to user joan in hdb2.
 
 
 ## Assigning quota for user arqui
 
 
 - One of both:
-
+ 
+	1.
 	```bash
-	1. # edquota -u arqui  
+	# edquota -u arqui  
 	Disk quotas for user arqui (uid 503): 
 	|------------|--------|------|------|--------|------|------|
 	| Filesystem | Blocks | Soft | Hard | Inodes | Soft | Hard |
@@ -155,11 +156,11 @@ fi
 	|------------|--------|------|------|--------|------|------|
 	```
 
+	2.
 	```bash
-	2. # edquota -p joan arqui [francesc ....]  
+	# edquota -p joan arqui francesc, pep, ...
 	Assigning joan's quota to the remaining users
-	```	
-
+	```
 	
 ## Assigning quota for group students
 
@@ -208,14 +209,13 @@ Disk quotas for user joan (uid 502):
 Note: inodes and files are equivalent terms
 
 ```bash
-# rep quota % printing quota information
 
 # repquota -u %  producing a summarized user quota information
 
 *** Report for user quotas on device /dev/hdb1 
 
 Block grace time: 7days; Inode grace time: 7days 
-                    Block limits                         File limits
+                   Block limits                 File limits
 | User  | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
 |-------|------|------|------|-------|------|------|------|-------|
 | root  | -    | -    | 16   | 0     | 0    | 2    | 0    | 0     |
@@ -226,25 +226,37 @@ Block grace time: 7days; Inode grace time: 7days
 *** Report for user quotas on device /dev/hdb2 
 
 Block grace time: 7days; Inode grace time: 7days 
-                    Block limits                         File limits
+                   Block limits                  File limits
 | User     | Used | Soft | Hard  | Grace | Used | Soft | Hard  | Grace |
 |----------|------|------|-------|-------|------|------|-------|-------|
 | root     | -    | -    | 16    | 0     | 0    | 2    | 0     | 0     |
 | students | -    | -    | 76    | 9500  | 10000| 15   | 0     | 0     |
-|-------|------|------|------|-------|------|------|------|-------|
+|----------|------|------|-------|-------|------|------|-------|-------|
 ```
 
 
-# repquota -g %  producing a summarized group quota information.
-
 ```bash
 
-*** Report for group quotas on device /dev/hdb1 
+# repquota -g %  producing a summarized group quota information
+
+*** Report for goup quotas on device /dev/hdb1 
 
 Block grace time: 7days; Inode grace time: 7days 
+                   Block limits                 File limits
+| Group    | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
+|----------|------|------|------|-------|------|------|------|-------|
+| root     | -    | -    | 16   | 0     | 0    | 2    | 0    | 0     |
+| students | -    | -    | 72   | 9500  | 10000| 14   | 0    | 0     |
+|----------|------|------|------|-------|------|------|------|-------|
 
 
 *** Report for group quotas on device /dev/hdb2 
 
 Block grace time: 7days; Inode grace time: 7days 
+                   Block limits                  File limits
+| User     | Used | Soft | Hard  | Grace | Used | Soft | Hard  | Grace |
+|----------|------|------|-------|-------|------|------|-------|-------|
+| root     | -    | -    | 16    | 0     | 0    | 2    | 0     | 0     |
+| students | -    | -    | 76    | 9500  | 10000| 15   | 0     | 0     |
+|----------|------|------|-------|-------|------|------|-------|-------|
 ```
