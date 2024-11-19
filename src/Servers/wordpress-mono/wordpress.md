@@ -4,8 +4,8 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 
 1. Instal·lem el paquet **wget**:
 
-    ```sh
-    dnf install wget -y
+    ```bash
+    apt install wget -y
     ```
 
 2. Descarreguem el paquet de **WordPress**:
@@ -22,39 +22,39 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 
    En resum, garanteix l'espai, la seguretat i la gestió adequats per a aquest tipus de fitxers, com és el cas de la descàrrega i descompressió de paquets com WordPress.
 
-    ```sh
+    ```bash
     cd /tmp
     wget https://wordpress.org/latest.tar.gz -O wordpress.tar.gz
     ```
 
 3. Després d'haver descarregat el paquet, el descomprimim amb la comanda `tar`:
 
-    ```sh
-    dnf install tar -y
+    ```bash
+    apt install tar -y
     tar -xvf wordpress.tar.gz
     ```
 
 4. Copiem els continguts a la carpeta del servidor **Apache**:
 
-    ```sh
+    ```bash
     cp -R wordpress /var/www/html/
     ```
 
 5. Assignem el ownership al usuari **apache**:
 
-    ```sh
+    ```bash
     chown -R apache:apache /var/www/html/wordpress
     ```
 
     El servei **Apache** s'executa amb l'usuari **apache** i el grup **apache** per defecte. Per tant, és important assegurar-se que els fitxers i directoris del lloc web tinguin el propietari i el grup correctes perquè el servidor web pugui accedir-hi i gestionar-los correctament. Aquesta informació la podeu trobar al fitxer de configuració del servidor web, normalment a */etc/httpd/conf/httpd.conf*.
 
-    ```sh
+    ```bash
     less /etc/httpd/conf/httpd.conf
     ```
 
 6. Donem permisos (rwx) a l'usuari **apache** i el seu grup i permisos rw per qualsevol altre usuari:
 
-    ```sh
+    ```bash
     chmod -R 775 /var/www/html/wordpress
     ```
 
@@ -62,8 +62,8 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 
 7. Reiniciem el servei **Apache**:
 
-    ```sh
-    systemctl restart httpd
+    ```bash
+    # systemctl restart httpd
     ```
 
 ## Instal·lació del Wordpress
@@ -82,36 +82,18 @@ Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'i
 
 En aquest punt, observareu el missatge d'error *Unable to write to wp-config.php file*  és típic d'un problema de permisos en el sistema de fitxers quan s'intenta escriure un fitxer com el **wp-config.php** durant la instal·lació de **WordPress**. 
 
-Ara bé, ja hem donat permisos a l'usuari **apache** perquè pugui escriure a la carpeta de **WordPress**. El problema resideix en els permisos de **SELinux**.
-
-SELinux és un sistema de seguretat que proporciona controls addicionals de seguretat basats en polítiques. Impedeix que els processos realitzin certes accions que no estan permeses per la política de seguretat. Ho podem comprovar amb la comanda:
-
-```sh
-getenforce
-```
-
-Aquesta comanda et mostrarà l'estat actual de SELinux, que pot ser **Enforcing**, **Permissive** o **Disabled**. 
-
-Una solució ràpida seria desactivar **SELinux** amb la comanda:
-
-```sh
-setenforce 0
-```
-
-No obstant això, és millor entendre com funciona i com gestionar-lo adequadament. Aquesta és la manera més segura de resoldre problemes relacionats amb permisos sense comprometre la seguretat del sistema. Quan es configuren les etiquetes **SELinux** correctes i es gestionen els permisos de fitxers de manera adequada, **SELinux** pot oferir una protecció addicional per al vostre sistema.
-
-Mes endavant al curs veurem com configurar **SELinux** de manera adequada. De moment us deixo la resolució del problema amb **SELinux**.
+**Passos**
 
 1. Instal·lem les eines de **SELinux** en cas de no tenir-les:
 
-    ```sh
-    dnf install policycoreutils-python-utils -y
+    ```bash
+    # apt install policycoreutils-python-utils -y
     ```
 
 2. Configurem les etiquetes **SELinux** per a la carpeta de **WordPress**:
 
-    ```sh
-    semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/wordpress(/.*)?'
+    ```bash
+    # semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/wordpress(/.*)?'
     ```
 
     on:
@@ -122,8 +104,8 @@ Mes endavant al curs veurem com configurar **SELinux** de manera adequada. De mo
 
 3. Aplicar les etiquetes **SELinux** configurades:
 
-    ```sh
-    restorecon -Rv /var/www/html/wordpress
+    ```bash
+    # restorecon -Rv /var/www/html/wordpress
     ```
 
     on:

@@ -1,6 +1,6 @@
 # Instal·lant i configurant MariaDB
 
-Per poder utilitzar el Wordpress necessitem d'una base de dades del tipus MariaDB o MySQL. El primer pas es revisar si el paquet **mariadb** està disponible amb la versió correcta. 
+Per poder utilitzar el Wordpress necessitem d'una base de dades del tipus MariaDB (MySQL). El primer pas es revisar si el paquet **mariadb** està disponible amb la versió correcta. 
 
 Instal·lació:
 
