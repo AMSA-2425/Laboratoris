@@ -4,19 +4,19 @@
 
 	- For entire disks: 
 		```bash
-		# pvcreate /dev/hdb
+		# pvcreate /dev/sdb
 		```
 
 	- For partitions: set the partition type to 0x8e using fdisk. Next: 
 		```bash
-		# pvcreate /dev/hdb1
-		pvcreate – physical volume "/dev/hdb1" successfully created
+		# pvcreate /dev/sdb1
+		pvcreate – physical volume "/dev/sdb1" successfully created
 		```
 
 - Creating a VG: 
 
 	```bash
-	# vgcreate my_VG /dev/hdb1 [/dev/hdc1] ... 
+	# vgcreate my_VG /dev/sdb1 [/dev/sdc1] ... 
 
 		vgcreate – INFO: using default physical extent size 4 MB (default) 
 
@@ -39,7 +39,7 @@
 	# vgchange -ay my_VG 
 	```
 
-	Note: in the startup script 
+	Note: it should be in the startup script 
 
 - Removing a VG:
 
@@ -77,7 +77,7 @@
 
 	-l LEs_Number number of LEs (LE size = PE size) for the new LV. 
 
-	-L LV_Size[kKmMgGtT] size for the new LV. K (kilobytes), M (megabytes), G (gigabytes) or T (terabytes). Default unit is megabytes. 
+	-L LV_Size[kKmMgGtT] size for the new LV. K (kilobytes), M (megabytes), G (gigabytes) or T (terabytes). Default: M. 
 
 	-n LV_Name 
 
@@ -106,8 +106,6 @@
 	VG Status available/resizable 
 
 	VG # 0 
-
-	MAX LV 256
 	
 	VG Size 1.95 GB
 	
@@ -133,21 +131,37 @@
 - Creating an ext4 file system on the LV
 
 	```bash
-	# mke2fs /dev/my_VG/my_LV
+	# mke4fs /dev/my_VG/my_LV
 	```
 
 - Mounting and Testing the File System
 
 	```bash
-	# mount -t auto /dev/my_VG/my_LV /mnt/LV1 
+	# mount /dev/my_VG/my_LV /mnt/LV1 
 	
 	# df
+	
+	|------------------|-----------|----------|-----------|------|------------|
+	| Filesystem       | 1k-blocks | Used     | Available | Use% | Mounted on |
+	|------------------|-----------|----------|-----------|------|------------|
+	| /dev/hda1        | 35886784  | 13360620 | 20703192  | 40%  | /          |
+	| /dev/my VG/my LV | 396672    | 13       | 376179    | 1%   | /mnt/LV1   |
+	|------------------|-----------|----------|-----------|------|------------|
 	```
 	
 - Obtaining LV information
 
 	```bash
-	# lvdisplay /dev/my_VG/my_LV (strip size 4KB)
+	# lvdisplay /dev/my_VG/my_LV
+	--- Logical volume ---
+	LV Path                /dev/myVG/myLV
+	LV Name                my_LV
+	VG Name                my_VG
+	LV UUID                6Jlbd5-Mpwe-68l7-98j7-P24S-WlLx-1A1b1b
+	LV Write Access        read/write
+	LV Creation host, time hostname, YYYY-MM-DD HH:MM:SS
+	LV Status              available
+	LV Size                50.00 GiB
 	```
 
 - Removing a LV
@@ -163,9 +177,9 @@
 
 # umount /dev/my_VG/my_LV
 
-# e2fsck -f /dev/my_VG/my_LV
+# e4fsck -f /dev/my_VG/my_LV
 
-# resize2fs /dev/my_VG/my_LV
+# resize4fs /dev/my_VG/my_LV
 
 # mount /dev/my_VG/my_LV /mnt/LV1
 ```
@@ -178,9 +192,9 @@
 
 # umount /mnt/LV1
 
-# e2fsck -f /dev/my_VG/my_LV
+# e4fsck -f /dev/my_VG/my_LV
 
-# resize2fs /dev/my_VG/my_LV
+# resize4fs /dev/my_VG/my_LV
 
 # mount /dev/my_VG/my_LV /mnt/LV1
 ```

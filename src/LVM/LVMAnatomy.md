@@ -1,5 +1,6 @@
 ## ANATOMY OF LVM
 
+
 ![LVM Anatomy](./LVM2.png)
 
 - VG (Volume Group): gathers together LVs and PVs into one administrative unit.
@@ -49,11 +50,11 @@
 ```bash
 # vgscan 
 
-vgscan – reading all physical volumes (this may take a while...) 
+	vgscan – reading all physical volumes (this may take a while...) 
 
-vgscan – "/etc/lvmtab" and "/etc/lvmtab.d" successfully created
+	vgscan – "/etc/lvmtab" and "/etc/lvmtab.d" successfully created
 
-vgscan – WARNING: This program does not do a VGDA backup of your volume group
+	vgscan – WARNING: This program does not do a VGDA backup of your volume group
 
 # vgchange -ay 
 
@@ -73,14 +74,14 @@ vgscan – WARNING: This program does not do a VGDA backup of your volume group
 case "$1" in
 
 	start)  /sbin/vgscan 
+	
+			/sbin/vgchange -ay ;; 
 
-		/sbin/vgchange -ay ;; 
-
-	stop)  /sbin/vgchange -an ;; 
+	stop)   /sbin/vgchange -an ;; 
 
 	restart|force-reload)
-
-		/sbin/vgchange -an && /sbin/vgscan && /sbin/vgchange -ay ;; 
+	
+			/sbin/vgchange -an && /sbin/vgscan && /sbin/vgchange -ay ;; 
 
 esac 
 
@@ -91,15 +92,15 @@ exit 0
 ##  LVM Files
 
 
-- /etc/lvmtab
+- `/etc/lvmtab`
 
 	Informs about the activated VGs
 
-- /proc/lvm/*
+- `/proc/lvm/*`
 
 	Inform about the VGs structure
 
-- /dev/my_VG[1-n]/*
+- `/dev/my_VG[1-n]/*`
 
 	LVM device files
 
