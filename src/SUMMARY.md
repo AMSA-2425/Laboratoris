@@ -78,9 +78,15 @@
  - [Prioritats](./Prioritats.md)
      - [Nice](./Prioritats/nice.md)
      - [Temps Real](./Prioritats/TempsReal.md)
- 
+     
 ## Nohup
  - [Nohup](./Nohup.md)
+
+ ## LVM 
+ - [LVM](./LVM.md)
+    - [Anatomy](./LVM/LVMAnatomy.md)
+    - [Commands](./LVM/LVMCommands.md)
+    - [Examples](./LVM/LVMExamples.md)
 
 ## Quota
  - [Quota](./Quota.md)
