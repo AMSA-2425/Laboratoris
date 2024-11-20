@@ -40,27 +40,13 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
     cp -R wordpress /var/www/html/
     ```
 
-5. Assignem el ownership al usuari **apache**:
-
-    ```bash
-    chown -R apache:apache /var/www/html/wordpress
-    ```
-
-    El servei **Apache** s'executa amb l'usuari **apache** i el grup **apache** per defecte. Per tant, és important assegurar-se que els fitxers i directoris del lloc web tinguin el propietari i el grup correctes perquè el servidor web pugui accedir-hi i gestionar-los correctament. Aquesta informació la podeu trobar al fitxer de configuració del servidor web, normalment a */etc/httpd/conf/httpd.conf*.
+5. Editem fitxer de configuració del servidor web, normalment a */etc/httpd/conf/httpd.conf*.
 
     ```bash
     less /etc/httpd/conf/httpd.conf
     ```
 
-6. Donem permisos (rwx) a l'usuari **apache** i el seu grup i permisos rw per qualsevol altre usuari:
-
-    ```bash
-    chmod -R 775 /var/www/html/wordpress
-    ```
-
-    Aquesta comanda estableix permisos de lectura, escriptura i execució per a l'usuari **apache** i el seu grup, i permisos de lectura i escriptura per a qualsevol altre usuari. Això permet que l'usuari **apache** pugui llegir, escriure i executar els fitxers i directoris del lloc web, mentre que altres usuaris poden llegir i escriure-hi. Aquesta configuració és adequada per a la majoria dels llocs web i proporciona un equilibri entre la seguretat i la facilitat d'ús. No obstant això, si teniu necessitats específiques de seguretat o de permisos, podeu ajustar aquests permisos segons les vostres necessitats. L'argument `-R` indica que els permisos s'aplicaran de manera recursiva a tots els fitxers i directoris dins de la carpeta especificada.
-
-7. Reiniciem el servei **Apache**:
+6. Reiniciem el servei **Apache**:
 
     ```bash
     # systemctl restart apache2
@@ -68,52 +54,18 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 
 ## Instal·lació del Wordpress
 
-Un cop hàgiu completat aquests passos, ja podeu accedir a la instal·lació web de **WordPress** navegant a [http://ip/wordpress/](http://ip/wordpress/). On *ip* és la ip del vostre servidor. En el nostre cas, la ip del servidor és **172.16.10.206**. Per tant: **http://172.16.10.206/wordpress/**. O bé podeu utilitzar el nom de domini si teniu un configurat.
+Un cop completat aquests passos, ja podeu accedir a la instal·lació web de **WordPress** navegant a [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/). On *192.168.64.11* és la ip del meu servidor. Canvieu-la per la vostra ip. 
 
 El primer pas serà completar un formulari amb la informació de la base de dades que hem creat anteriorment. Aquesta informació és necessària per connectar **WordPress** a la base de dades i emmagatzemar-hi la informació del lloc web.
 
 * **Nom de la base de dades**: `wordpress-db`
 * **Nom d'usuari de la base de dades**: `wordpress-user`
-* **Contrasenya de la base de dades**: `password`
+* **Contrasenya de la base de dades**: `amsa`
 * **Servidor de la base de dades**: `localhost`
 * **Prefix de la taula**: `wp_`
 
 Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'instal·lació de **WordPress**.
 
-En aquest punt, observareu el missatge d'error *Unable to write to wp-config.php file*  és típic d'un problema de permisos en el sistema de fitxers quan s'intenta escriure un fitxer com el **wp-config.php** durant la instal·lació de **WordPress**. 
-
-**Passos**
-
-1. Instal·lem les eines de **SELinux** en cas de no tenir-les:
-
-    ```bash
-    # apt install policycoreutils-python-utils -y
-    ```
-
-2. Configurem les etiquetes **SELinux** per a la carpeta de **WordPress**:
-
-    ```bash
-    # semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/wordpress(/.*)?'
-    ```
-
-    on:
-    * `-a`: Afegeix una nova regla.
-    * `-t httpd_sys_rw_content_t`: Estableix l'etiqueta **SELinux** per als fitxers i directoris de la carpeta de **WordPress**.
-    * `'/var/www/html/wordpress(/.*)?'`: Ruta de la carpeta de **WordPress**.
-
-
-3. Aplicar les etiquetes **SELinux** configurades:
-
-    ```bash
-    # restorecon -Rv /var/www/html/wordpress
-    ```
-
-    on:
-    * `-R`: Aplica els canvis de manera recursiva a tots els fitxers i directoris dins de la carpeta especificada.
-    * `-v`: Mostra la sortida detallada de les accions realitzades.
-    * `/var/www/html/wordpress`: Ruta de la carpeta de **WordPress**.
-
-Amb aquestes accions hem creat una política que permet als processos del servei **httpd** llegir i escriure a la carpeta de **WordPress**.
 
 1. Inici de la configuració:
 
