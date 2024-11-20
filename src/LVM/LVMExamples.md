@@ -2,7 +2,7 @@
 
 ## Setting up LVM on three SCSI disks (/dev/sda, /dev/sdb, and /dev/sdc) with striping   
 
-- Preparing the disk partitions
+- Preparing the disks
 
 	```bash
 	# pvcreate /dev/sda 

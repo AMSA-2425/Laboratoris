@@ -63,7 +63,7 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 7. Reiniciem el servei **Apache**:
 
     ```bash
-    # systemctl restart httpd
+    # systemctl restart apache2
     ```
 
 ## Instal·lació del Wordpress

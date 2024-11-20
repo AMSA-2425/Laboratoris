@@ -66,7 +66,7 @@ Instal·lació:
 8. Atorgueu tots els permisos a l'usuari per a la base de dades:
 
     ```sql
-    GRANT ALL ON wordpress_db.* TO 'francescr'@'debian';
+    GRANT ALL ON wordpress_db.* TO 'francesc'@'debian';
     ```
     Aquesta comanda atorga tots els permisos de la base de dades **wordpress_db** a l'usuari **francesc** al host **debia**.
 

@@ -2,24 +2,10 @@
 
 Actualment, la documentació oficial de WordPress recomana utilitzar PHP versió 7.4 o superior per a un funcionament òptim i segur del sistema. 
 
-1. Compovem si el paquet **php** està disponible:
+1. Instal·lem  PHP:
 
     ```bash
-    # apt search php
-    ```
-
-2. Comprovem les versions disponibles de PHP:
-
-    ```bash
-    # apt module list php
-    ```
-
-    Aquesta comanda mostra una llista de les versions del mòdul PHP disponibles. Et permetrà veure quines versions de PHP pots instal·lar mitjançant mòduls.
-
-3. Instal·lem la versió 8.1 de PHP:
-
-    ```bash
-    # apt module install php:8.1 -y
+    # apt  install php
     ```
 
    L'ús de versions més recents de PHP ofereix molts avantatges, com ara un millor rendiment, més seguretat i noves característiques. Les versions antigues de PHP poden ser més vulnerables a problemes de seguretat i tenir limitacions de rendiment. Per tant, és important seguir les recomanacions de la documentació oficial de **WordPress** quant a la versió de PHP que has d'utilitzar per a la teva instal·lació.
@@ -41,5 +27,5 @@ Actualment, la documentació oficial de WordPress recomana utilitzar PHP versió
 4. Per finalitzar, podem reiniciar el servei web (httpd).
 
     ```bash
-   # systemctl restart httpd
+   # systemctl restart apache2
     ```
