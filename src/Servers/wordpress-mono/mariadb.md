@@ -32,52 +32,85 @@ Instal·lació:
 
     ```sh
     # mysql -u root -p
+    MariaDB[(none)]>
     ```
 
 6. Creeu una base de dades per a Wordpress:
 
     ```sql
-    CREATE DATABASE wordpress_db;
+    MariaDB[(none)]> CREATE DATABASE wordpress_db;
     ```
 
-7. Creeu l'usuari per a la base de dades:
+7. Canvieu a la BBDD `wordpress_db`:
 
     ```sql
-    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'password';
+    MariaDB[(none)]> USE wordpress_db;
+    MariaDB[(wordpress_db)]> 
     ````
 
-    * **wordpress_user**: Nom de l'usuari de la base de dades.
-    * **password**: Contrasenya de l'usuari de la base de dades.
+8. Creeu l'usuari amb permisos d'accés per a la base de dades:
+
+    ```sql
+    MariaDB[(wordpress_db)]> CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'password';
+    ````
+
+    * **wordpress_user**: Nom de l'usuari de la base de dades (francesc).
+    * **password**: Contrasenya de l'usuari de la base de dades (amsa).
     * **localhost**: Nom de l'amfitrió on es connectarà l'usuari.
   
     En aquest cas, heu de substituir **wordpress_user** i **password** pels valors que vulgueu utilitzar. 
     
     Per exemple:
-    
-    ```bash
-    # hostname
-    debian
-    ```
 
     ```sql
-    CREATE USER 'francesc'@'debian' IDENTIFIED BY 'amsa';
+    MariaDB[(wordpress_db)]> CREATE USER 'francesc'@'localhost' IDENTIFIED BY 'amsa';
     ````
 
-8. Atorgueu tots els permisos a l'usuari per a la base de dades:
+   Si volem accedir a la BBDD des de un host `debian-1`, posarem:
+   
+    ```sql
+    MariaDB[(wordpress_db)]> CREATE USER 'francesc'@'debian-1' IDENTIFIED BY 'password';
+    ````
+   
+   Si volem accedir a la BBDD des d'un host am IP `192.168.64.11`, posarem:
+   
+    ```sql
+    MariaDB[(wordpress_db)]> CREATE USER 'francesc'@'192.168.64.11' IDENTIFIED BY 'password';
+    ````
+    
+   Si volem accedir a la BBDD des de qualsevol host, posarem:
+   
+    ```sql
+    MariaDB[(wordpress_db)]> CREATE USER 'francesc'@'%' IDENTIFIED BY 'password';
+    ````
+ 
+  
+9. Atorgueu tots els permisos a l'usuari `francesc`per accedir a la base de dades:
 
     ```sql
-    GRANT ALL ON wordpress_db.* TO 'francesc'@'debian';
+    MariaDB[(wordpress_db)]> GRANT ALL ON wordpress_db.* TO 'francesc'@'localhost';
     ```
-    Aquesta comanda atorga tots els permisos de la base de dades **wordpress_db** a l'usuari **francesc** al host **debia**.
+    Aquesta comanda atorga tots els permisos de la base de dades **wordpress_db** a l'usuari **francesc** al host **localhost**.
 
-9. Actualitzeu els permisos:
+10. Actualitzeu els permisos:
 
-    ```sql
-    FLUSH PRIVILEGES;
-    ```
+	```sql
+	MariaDB[(wordpress_db)]>  FLUSH PRIVILEGES;
+	```
 
-10. Sortiu de MariaDB:
+11. Sortiu de MariaDB:
 
-    ```sql
-    EXIT;
-    ```
+	```sql
+	MariaDB[(wordpress_db)]> EXIT;
+	```
+ 
+ 12. Per entrar a MariaDB a la BBDD wordpress_db:
+ 
+	 ```sql
+	 # mysql -u root -p wordpress_db
+	 MariaDB[(wordpress_db)]>
+	 ```
+ 
+ 
+    
+ **NOTA**: les comandes SQL també són vàides en minúscules.

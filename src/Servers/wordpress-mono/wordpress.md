@@ -74,10 +74,14 @@ Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'i
 2. Introdueix les dades de la base de dades:
 
     ![Configuració de la base de dades](../figures/wordpress-mono/wp2.png)
+    
+    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
 
 3. Realitza la instal·lació:
 
     ![Configuració del lloc web](../figures/wordpress-mono/wp3.png)
+    
+    - Si al prémer `Run de Installation` falla, això és degut a que no està ben configurat l'usuari que arrenca l'http (normalment, és un usuari anometant `apache2`. Llavors, copieu el que us apareix a la pantalla al fitxer `/var/www/html/wordpress/wp-config.php`.
 
 4. Configuració del lloc web:
 
@@ -85,10 +89,10 @@ Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'i
 
     on:
 
-    * **Site Title**: Títol del lloc.
-    * **Username**: Nom d'usuari per accedir al panell d'administració.
-    * **Password**: Contrasenya per accedir al panell d'administració.
-    * **Your Email**: Correu electrònic per a la recuperació de la contrasenya.
+    * **Site Title**: Títol del lloc (amsa).
+    * **Username**: Nom d'usuari per accedir al panell d'administració (francesc).
+    * **Password**: Contrasenya per accedir al panell d'administració (amsa).
+    * **Your Email**: Correu electrònic per a la recuperació de la contrasenya (francesc.solsona@udl.cat).
 
     Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'instal·lació de WordPress. Després d'instal·lar amb èxit WordPress, podreu iniciar la sessió al panell d'administració amb el nom d'usuari i la contrasenya que heu triat i començar a personalitzar i gestionar el vostre lloc web.
   
@@ -96,17 +100,26 @@ Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'i
 
     ![Inicia sessió](../figures/wordpress-mono/wp5.png)
 
+    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
+
 6. Panell d'administració:
 
     ![Panell d'administració](../figures/wordpress-mono/wp6.png)
 
+    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
+    
 7. Visualització del lloc web:
 
     ![Panell d'administració](../figures/wordpress-mono/wp7.png)
 
 En aquest punt tenim 2 accessos al nostre servidor web. Un és el panell d'administració de **WordPress** i l'altre és el lloc web en si mateix:
 
-* **Panell d'administració**: [http://ip/wordpress/wp-admin/](http://ip/wordpress/wp-admin/)
-* **Lloc web**: [http://ip/wordpress/](http://ip/wordpress/)
+* **Panell d'administració**: [http://ip/wordpress/wp-admin/](http://ip/wordpress/wp-admin/). En el nostre cas: [http://192.168.64.11/wordpress/wp-admin/](http:/192.168.64.11//wordpress/wp-admin/)
 
-On *ip* és la ip del vostre servidor o el vostre nom de domini si teniu un configurat.
+* **Lloc web**: [http://ip/wordpress/](http://ip/wordpress/). En el nostre cas: [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/)
+
+On *ip* és la ip del vostre servidor o el vostre nom de domini si teniu un configurat. Per obtenir la `ip`, fer:
+
+```bash
+# /sbin/ifconfig
+```
