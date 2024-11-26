@@ -2,9 +2,7 @@
 
 - Quota allows you to specify limits on two aspects of disk storage: 
 
-	- The number of disk blocks that may be allocated to a user or 
-
-		a group of users.
+	- The number of disk blocks that may be allocated to a user or  a group of users.
 
 	- The number of inodes a user or a group of users may possess.
 
@@ -97,6 +95,24 @@ then
 fi
 ```
 
+## Enabling user or group quota support - file /etc/fstab -
+
+- To enable user quota support on a file system, add "`usrquota`":
+
+| Dispositiu  | Punt de muntatge | Tipus | Opcions               | Dump | Pass |
+|-------------|------------------|-------|-----------------------|------|------|
+| /dev/hda2   | /                | ext2  | defaults              | 0    | 1    |
+| /dev/hdb1   | /home/arqui      | ext2  | defaults,usrquota     | 0    | 1    |
+| /dev/hdb2   | /home/joan       | ext2  | defaults,usrquota     | 0    | 1    |
+
+- To enable group quota support on a file system, add "`grquota`":
+
+| Dispositiu  | Punt de muntatge | Tipus | Opcions               | Dump | Pass |
+|-------------|------------------|-------|-----------------------|------|------|
+| /dev/hda2   | /                | ext2  | defaults              | 0    | 1    |
+| /dev/hdb    | /home            | ext2  | defaults,grpquota     | 0    | 1    |
+
+
 ## Soft and hard limits; grace period
 
 -  "**soft limit**" indicates the maximum amount of disk usage a quota user has on a partition. Combined with grace period, when passed (the soft limit), the user is informed with a quota violation warning.
@@ -124,9 +140,9 @@ fi
 ```bash
 # cd /home; touch aquota.user   % Creates the file /home/aquota.user
 
-# quotacheck -u % Edit quotas for joan [in a particular filesystem]
+# quotacheck -u % Updates user's quota accounting
 
-# edquota -u joan [-f /home/joan] 
+# edquota -u joan [-f /home/joan]  % Edit quotas for joan [in a particular filesystem]
  Disk quotas for user joan (uid 502): 
  |------------|--------|------|------|--------|------|------|
  | Filesystem | Blocks | Soft | Hard | Inodes | Soft | Hard |
