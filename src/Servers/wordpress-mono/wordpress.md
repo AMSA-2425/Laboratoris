@@ -5,7 +5,7 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 1. Instal·lem el paquet **wget**:
 
     ```bash
-    apt install wget -y
+    # apt install wget -y
     ```
 
 2. Descarreguem el paquet de **WordPress**:
@@ -23,27 +23,27 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
    En resum, garanteix l'espai, la seguretat i la gestió adequats per a aquest tipus de fitxers, com és el cas de la descàrrega i descompressió de paquets com WordPress.
 
     ```bash
-    cd /tmp
-    wget https://wordpress.org/latest.tar.gz -O wordpress.tar.gz
+    # cd /tmp
+    # wget https://wordpress.org/latest.tar.gz -O wordpress.tar.gz
     ```
 
 3. Després d'haver descarregat el paquet, el descomprimim amb la comanda `tar`:
 
     ```bash
-    apt install tar -y
-    tar -xvf wordpress.tar.gz
+    # apt install tar -y
+    # tar -xvf wordpress.tar.gz
     ```
 
 4. Copiem els continguts a la carpeta del servidor **Apache**:
 
     ```bash
-    cp -R wordpress /var/www/html/
+    # cp -R wordpress /var/www/html/
     ```
 
 5. Editem fitxer de configuració del servidor web, normalment a */etc/httpd/conf/httpd.conf*.
 
     ```bash
-    less /etc/httpd/conf/httpd.conf
+    # less /etc/httpd/conf/httpd.conf
     ```
 
 6. Reiniciem el servei **Apache**:
@@ -54,72 +54,66 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
 
 ## Instal·lació del Wordpress
 
-Un cop completat aquests passos, ja podeu accedir a la instal·lació web de **WordPress** navegant a [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/). On *192.168.64.11* és la ip del meu servidor. Canvieu-la per la vostra ip. 
+Accediu a la instal·lació web de **WordPress** navegant a [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/). On *192.168.64.11* és la ip del meu servidor. Canvieu-la per la vostra ip. 
 
-El primer pas serà completar un formulari amb la informació de la base de dades que hem creat anteriorment. Aquesta informació és necessària per connectar **WordPress** a la base de dades i emmagatzemar-hi la informació del lloc web.
-
-* **Nom de la base de dades**: `wordpress-db`
-* **Nom d'usuari de la base de dades**: `wordpress-user`
-* **Contrasenya de la base de dades**: `amsa`
-* **Servidor de la base de dades**: `localhost`
-* **Prefix de la taula**: `wp_`
-
-Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'instal·lació de **WordPress**.
-
-
-1. Inici de la configuració:
-
-    ![Click a Let's go](../figures/wordpress-mono/wp1.png)
-
-2. Introdueix les dades de la base de dades:
-
-    ![Configuració de la base de dades](../figures/wordpress-mono/wp2.png)
-    
-    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
-
-3. Realitza la instal·lació:
-
-    ![Configuració del lloc web](../figures/wordpress-mono/wp3.png)
-    
-    - Si al prémer `Run de Installation` falla, això és degut a que no està ben configurat l'usuari que arrenca l'http (normalment, és un usuari anometant `apache2`. Llavors, copieu el que us apareix a la pantalla al fitxer `/var/www/html/wordpress/wp-config.php`.
-
-4. Configuració del lloc web:
-
-    ![Configuració del lloc web](../figures/wordpress-mono/wp4.png)
-
-    on:
-
-    * **Site Title**: Títol del lloc (amsa).
-    * **Username**: Nom d'usuari per accedir al panell d'administració (francesc).
-    * **Password**: Contrasenya per accedir al panell d'administració (amsa).
-    * **Your Email**: Correu electrònic per a la recuperació de la contrasenya (francesc.solsona@udl.cat).
-
-    Un cop hàgiu introduït aquesta informació, podeu continuar amb el procés d'instal·lació de WordPress. Després d'instal·lar amb èxit WordPress, podreu iniciar la sessió al panell d'administració amb el nom d'usuari i la contrasenya que heu triat i començar a personalitzar i gestionar el vostre lloc web.
-  
-5. Inicia sessió amb les credencials creades:
-
-    ![Inicia sessió](../figures/wordpress-mono/wp5.png)
-
-    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
-
-6. Panell d'administració:
-
-    ![Panell d'administració](../figures/wordpress-mono/wp6.png)
-
-    - En el nostre cas, fer: `Username: francesc` i `Password: amsa`
-    
-7. Visualització del lloc web:
-
-    ![Panell d'administració](../figures/wordpress-mono/wp7.png)
-
-En aquest punt tenim 2 accessos al nostre servidor web. Un és el panell d'administració de **WordPress** i l'altre és el lloc web en si mateix:
-
-* **Panell d'administració**: [http://ip/wordpress/wp-admin/](http://ip/wordpress/wp-admin/). En el nostre cas: [http://192.168.64.11/wordpress/wp-admin/](http:/192.168.64.11//wordpress/wp-admin/)
-
-* **Lloc web**: [http://ip/wordpress/](http://ip/wordpress/). En el nostre cas: [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/)
-
-On *ip* és la ip del vostre servidor o el vostre nom de domini si teniu un configurat. Per obtenir la `ip`, fer:
+Per obtenir la `ip`, fer:
 
 ```bash
 # /sbin/ifconfig
 ```
+
+1. Inici de la configuració.
+
+    ![Click a Let's go](./Wordpress-Setup.png)
+
+- Premeu `Let's go!`
+
+2. Introdueix les dades de la base de dades.
+
+    ![Configuració de la base de dades](./Wordpress-Config-1.png)
+    
+- Premeu `Submit`
+    
+3.  Si al prémer `Submit` falla.
+Apareixerà una pantalla com aquesta:
+
+    ![Configuració de la base de dades](./Wordpress-Config-2.png)
+
+- Això és degut a que no està ben configurat l'usuari que arrenca l'http (normalment, és un usuari anometant `apache2`. 
+
+- Llavors:
+	- Copieu el que us apareix a la pantalla al fitxer `/var/www/html/wordpress/wp-config.php`.
+	- Premeu `Run the Installation`
+    
+4. Configuració del lloc web.
+
+    ![Configuració del lloc web](./Wordpress-Config-3.png)
+
+- Prémer `Install WordPress` per continuar amb la instal·lació
+  
+5. Inicia sessió amb les credencials creades.
+
+    ![Inicia sessió](./Wordpress-Config-4.png)
+
+- Prémer: `Log In`
+
+6. Panell d'administració.
+
+    ![Panell d'administració](./Wordpress-Config-5.png)
+
+- Prémer: `Log In``
+    
+7. Visualització del lloc web.
+
+   
+En aquest punt tenim 2 accessos al nostre servidor web. Un és el panell d'administració de **WordPress** i l'altre és el lloc web en si mateix:
+
+* **Panell d'administració**: [http://ip/wordpress/wp-admin/](http://ip/wordpress/wp-admin/). En el nostre cas: [http://192.168.64.11/wordpress/wp-admin/](http:/192.168.64.11//wordpress/wp-admin/)
+
+ ![Panell d'administració](./Wordpress-Config-6.png)
+
+* **Lloc web**: [http://ip/wordpress/](http://ip/wordpress/). En el nostre cas: [http://192.168.64.11/wordpress/](http://192.168.64.11/wordpress/)
+
+    ![Panell d'administració](./Wordpress-Config-7.png)
+
+- Intercanviarem el `Panell d'administració`i el `Lloc web`, prement `AMSA`.
