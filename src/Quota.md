@@ -234,8 +234,8 @@ Block grace time: 7days; Inode grace time: 7days
                    Block limits                 File limits
 | User  | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
 |-------|------|------|------|-------|------|------|------|-------|
-| root  | -    | -    | 16   | 0     | 0    | 2    | 0    | 0     |
-| arqui | -    | -    | 72   | 7000  | 8000 | 14   | 0    | 0     |
+| root  | 16   | 0    | 0    |       | 2    | 0    | 0    |       |
+| arqui | 72   | 7000 | 8000 |       | 14   | 0    | 0    |       |
 |-------|------|------|------|-------|------|------|------|-------|
 
 
@@ -243,11 +243,11 @@ Block grace time: 7days; Inode grace time: 7days
 
 Block grace time: 7days; Inode grace time: 7days 
                    Block limits                  File limits
-| User     | Used | Soft | Hard  | Grace | Used | Soft | Hard  | Grace |
-|----------|------|------|-------|-------|------|------|-------|-------|
-| root     | -    | -    | 16    | 0     | 0    | 2    | 0     | 0     |
-| students | -    | -    | 76    | 9500  | 10000| 15   | 0     | 0     |
-|----------|------|------|-------|-------|------|------|-------|-------|
+| User  | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
+|-------|------|------|------|-------|------|------|------|-------|
+| root  | 16   | 0    | 0    |       | 2    | 0    | 0    |       |
+| joan  | 76   | 8000 | 9600 |       | 15   | 0    | 0    |       |
+|-------|------|------|------|-------|------|------|------|-------|
 ```
 
 
@@ -261,18 +261,17 @@ Block grace time: 7days; Inode grace time: 7days
                    Block limits                 File limits
 | Group    | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
 |----------|------|------|------|-------|------|------|------|-------|
-| root     | -    | -    | 16   | 0     | 0    | 2    | 0    | 0     |
-| students | -    | -    | 72   | 9500  | 10000| 14   | 0    | 0     |
+| root     | 16   | 0    | 0    |       | 2    | 0    | 0    |       |
+| students | 72   | 9500 |10000 |       | 14   | 0    | 0    |       |
 |----------|------|------|------|-------|------|------|------|-------|
-
 
 *** Report for group quotas on device /dev/hdb2 
 
 Block grace time: 7days; Inode grace time: 7days 
                    Block limits                  File limits
-| User     | Used | Soft | Hard  | Grace | Used | Soft | Hard  | Grace |
-|----------|------|------|-------|-------|------|------|-------|-------|
-| root     | -    | -    | 16    | 0     | 0    | 2    | 0     | 0     |
-| students | -    | -    | 76    | 9500  | 10000| 15   | 0     | 0     |
-|----------|------|------|-------|-------|------|------|-------|-------|
+| Group    | Used | Soft | Hard | Grace | Used | Soft | Hard | Grace |
+|----------|------|------|------|-------|------|------|------|-------|
+| root     | 16   | 0    | 0    |       | 2    | 0    | 0    |       |
+| students | 76   | 9500 |10000 |       | 15   | 0    | 0    |       |
+|----------|------|------|------|-------|------|------|------|-------|
 ```

@@ -36,7 +36,7 @@ Note: run-parts execute all the scripts in a directory
 | 2  | Hour                  | 0-23                 |
 | 3  | Day of Month          | 1-31                 |
 | 4  | Month                 | 1-12                 |
-| 5  | Day of Week           | 0-6 (0 or 6 for Sun) |
+| 5  | Day of Week           | 0-6 (0 for Sun)      |
 | 6  | User                  |                      |
 | 7  | Reserved Word  run-parts or command       |  |
 | 8  | Scripting Directory  or empty        |  |
