@@ -7,7 +7,7 @@ En aquest laboratori us proposo utiltzar el programa `strace` per espiar el comp
 1. Accediu a la màquina virtual Debian i instal·leu el paquet `strace`:
 
     ```bash
-    su -c "apt install strace -y"
+    # apt install strace -y
     ```
 
 ## `strace`
@@ -21,10 +21,10 @@ En aquest laboratori us proposo utiltzar el programa `strace` per espiar el comp
 
 El seu funcionament es basa en la crida a sistema `ptrace`, que permet a un procés monitoritzar i controlar un altre procés.
 
-Per comenzar a utilitzar `strace`, simplement executa la comanda següent:
+Per començar a utilitzar `strace`, simplement executa la comanda següent:
 
 ```bash
-strace cat /dev/null
+# strace cat /dev/null
 ```
 
 Aquest exemple mostra totes les crides a sistema realitzades pel programa `cat`, que en aquest cas, no fa res perquè `/dev/null` és un fitxer buit.
@@ -32,7 +32,7 @@ Aquest exemple mostra totes les crides a sistema realitzades pel programa `cat`,
 Si volem filtrar per crides específiques, podem fer-ho així:
 
 ```bash
-strace -e trace=close cat /dev/null
+# strace -e trace=close cat /dev/null
 ```
 
 En aquest cas, només veurem les crides `close` que fa el programa `cat`.
@@ -40,7 +40,7 @@ En aquest cas, només veurem les crides `close` que fa el programa `cat`.
 Si volem filtrar per crides que comencin per un patró, podem fer-ho així:
 
 ```bash
-strace -e trace=/get* ls
+# strace -e trace=/get* ls
 ```
 
 Aquest exemple mostra totes les crides que comencin per `get` que fa el programa `ls`.
@@ -48,7 +48,7 @@ Aquest exemple mostra totes les crides que comencin per `get` que fa el programa
 Per guardar la sortida en un fitxer, podem fer-ho així:
 
 ```bash
-strace -o strace.log -e trace=open,close ls
+# strace -o strace.log -e trace=open,close ls
 ```
 
 Això desarà totes les crides `open` i `close` en un fitxer anomenat `strace.log`.
@@ -56,13 +56,13 @@ Això desarà totes les crides `open` i `close` en un fitxer anomenat `strace.lo
 Si necessitem excloure una crida a sistema en particular, com `gettimeofday`, podem fer-ho així:
 
 ```bash
-strace -o strace.log -e trace!=gettimeofday ls
+# strace -o strace.log -e trace!=gettimeofday ls
 ```
 
 Per filtrar per categories de crides a sistema, podem fer-ho així:
 
 ```bash
-strace -o strace.log -e trace=%{X} ls
+# strace -o strace.log -e trace=%{X} ls
 ```
 
 On `{X}` representa la categoria que t'interessa.
@@ -82,13 +82,13 @@ Els filtres a `strace` es poden classificar en diverses categories per facilitar
 Per exemple, si volem veure totes les crides a sistema relacionades amb la xarxa, podem fer-ho així:
 
 ```bash
-strace -o strace.log -e trace=%network ls
+# strace -o strace.log -e trace=%network ls
 ```
 
 Addicionalment, `strace` ens permet obtenir un resum de les crides a sistema que fa un programa. Per exemple, si volem veure un resum de les crides a sistema que fa `cat`, podem fer-ho així:
 
 ```bash
-strace -c cat /dev/null
+# strace -c cat /dev/null
 ```
 
 ## Exemple: `strace` amb un Hola Món
@@ -110,19 +110,19 @@ int main(int argc, char *argv[]) {
 1. Compileu el programa:
 
     ```bash
-    gcc hola.c -o hola 
+    # gcc hola.c -o hola 
     ```
 
 2. Executeu el programa amb `strace`:
 
     ```bash
-    strace -o hola.log ./hola
+    # strace -o hola.log ./hola
     ```
 
 3. Consulteu el fitxer `hola.log` per veure les crides a sistema que fa el programa `hola`.
 
     ```bash
-    less hola.log
+    # less hola.log
     ```
 
 ### Analitzant la sortida
@@ -189,19 +189,19 @@ int main(int argc, char *argv[]) {
 2. Compileu el programa:
 
     ```bash
-    gcc -o open open.c
+    # gcc -o open open.c
     ```
 
 3. Executeu el programa amb `strace`:
 
     ```bash
-    strace -o open_1.log ./open /etc/passwd
+    # strace -o open_1.log ./open /etc/passwd
     ```
 
 4. Executeu el programa amb `strace`:
 
     ```bash
-    strace -o open_2.log ./open /etc/shadow
+    # strace -o open_2.log ./open /etc/shadow
     ```
 
 Obriu els fitxers `open_1.log` i `open_2.log` amb un editor de text o amb la comanda `less` i analitzeu el seu comportament i les diferències entre ells. Escriu un informe amb llenguatge Markdown on expliqueu les diferències entre els dos fitxers de log i afegiu una taula resum amb el num de crides a sistema que fa cada programa. **Podeu utiltizar el fitxer open.md del repositori**.
