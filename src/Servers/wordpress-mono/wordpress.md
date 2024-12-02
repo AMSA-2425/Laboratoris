@@ -40,13 +40,7 @@ Per instal·lar **WordPress** ens hem de baixar el paquet de la web oficial. Per
     # cp -R wordpress /var/www/html/
     ```
 
-5. Editem fitxer de configuració del servidor web, normalment a */etc/httpd/conf/httpd.conf*.
-
-    ```bash
-    # less /etc/httpd/conf/httpd.conf
-    ```
-
-6. Reiniciem el servei **Apache**:
+5. Reiniciem el servei **Apache**:
 
     ```bash
     # systemctl restart apache2
@@ -60,6 +54,8 @@ Per obtenir la `ip`, fer:
 
 ```bash
 # /sbin/ifconfig
+enp0s1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
+		inet 192.168.64.11 netmask 255.255.255.0 broadcast 192.168.64.255
 ```
 
 1. Inici de la configuració.
@@ -79,7 +75,7 @@ Apareixerà una pantalla com aquesta:
 
     ![Configuració de la base de dades](./Wordpress-Config-2.png)
 
-- Això és degut a que no està ben configurat l'usuari que arrenca l'http (normalment, és un usuari anometant `apache2`. 
+- Això és degut a que no està ben configurat l'usuari que arrenca l'http (normalment, és un usuari anometant `apache2`). 
 
 - Llavors:
 	- Copieu el que us apareix a la pantalla al fitxer `/var/www/html/wordpress/wp-config.php`.

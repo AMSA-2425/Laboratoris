@@ -29,8 +29,8 @@ El primer pas per desplegar un servidor web amb **WordPress** és instal·lar i 
 5. Arranqueu i comproveu l'estat del servei:
 
     ```sh
-   #  systemctl start apache2
-    # systemctl status apache2
+   # systemctl start apache2
+   # systemctl status apache2
     ```
 
 Un cop aixecat el servei, podem comprovar que el servei està en marxa i funcionant correctament. Intenteu accedir al servidor web amb la vostra **IP** a través d'un navegador web. En el meu cas, la IP del servidor és **192.168.64.11**. Recordeu que per veure la IP del vostre servidor podeu utilitzar la comanda `ip a` o `/sbin/ifconfig`.

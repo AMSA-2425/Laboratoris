@@ -5,7 +5,7 @@ Actualment, la documentació oficial de WordPress recomana utilitzar PHP versió
 1. Instal·lem  PHP:
 
     ```bash
-    # apt  install php
+    # apt install php
     ```
 
    L'ús de versions més recents de PHP ofereix molts avantatges, com ara un millor rendiment, més seguretat i noves característiques. Les versions antigues de PHP poden ser més vulnerables a problemes de seguretat i tenir limitacions de rendiment. Per tant, és important seguir les recomanacions de la documentació oficial de **WordPress** quant a la versió de PHP que has d'utilitzar per a la teva instal·lació.
