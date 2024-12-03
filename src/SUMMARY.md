@@ -100,13 +100,16 @@
      - [Instal·lant i configurant MariaDB](./Servers/wordpress-mono/mariadb.md)
      - [Instal·lant i configurant PHP](./Servers/wordpress-mono/php.md)
      - [Instal·lant i configurant Wordpress](./Servers/wordpress-mono/wordpress.md)
+ 
+## BBDD
+  - [BBDD](./BBDD.md)
 
 ## Kernel de Linux
-- [Kernel de Linux](./Kernel/main.md)
-  - [Analitzant les crides a sistema](./Kernel/syscalls.md)
-  - [Espiant el Kernel](./Kernel/kernel-spy.md)
-  - [Programació de mòduls](./Kernel/modules.md)
-  - [Compilant el Kernel](./Kernel/kernel.md)
-  - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
-  - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
+  - [Kernel de Linux](./Kernel/main.md)
+    - [Analitzant les crides a sistema](./Kernel/syscalls.md)
+    - [Espiant el Kernel](./Kernel/kernel-spy.md)
+    - [Programació de mòduls](./Kernel/modules.md)
+    - [Compilant el Kernel](./Kernel/kernel.md)
+    - [Crides a sistema personalitzades](./Kernel/add-syscalls.md)
+    - [Rootkit: Escalada de Privilegis](./Kernel/rootkit.md)
   
