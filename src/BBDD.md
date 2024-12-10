@@ -191,52 +191,60 @@ llibres> SELECT nom,titol FROM llibre;
  ```sql
 llibres> SHOW DATABASES;
 |------|----------------|
-| Database             |
+| Database              |
 |------|----------------|
 | llibres               |
 |------|----------------|
 ```
 
+• Per veure tots els usuaris:
+
+d'un host: 
+
+ ```sql
+ llibres>  SELECT USER,'194.168.64.15' FROM mysql.user;
+ ```
+ o bé tots els usuaris
+
+ ```sql
+ llibres>  SELECT USER FROM mysql.user;
+ ```
+
+• Per esborrar un usuari:
+
+ ```sql
+ llibres>  DROP USER 'amsa'@'194.168.64.15';
+ ```
+ 
 • Les sentències SQL serveixen tant per MySQL com Postgres
 
 
 ## Connexió a un BBDD MySQL remota mitjançant ssh
 
-1. Primerament, en el servidor (`192.168.178.58`) de mysql, cal permetre acceptar conexions remotes editant el fitxer de configuració (`/etc/mysql/mysql.conf.d/mysqld.cnf`), afegint la línia següent:
-	```bash
-	bind-address = 0.0.0.0
-	```
-
-2. Reiniciem el servei per a que s’apliquin els canvis:
-
-	```bash
-	# systemctl restart mysql
-	```
-
-3. Entrem en MySQL, creem un usuari `amsa`al qual assignarem la IP de la maquinavirtual que fa de client (`192.168.178.60`) i li donem tots els permisos:
+1. Entrem en MySQL, creem un usuari `amsa`al qual assignarem la IP de la maquina
+virtual que fa de client (`192.168.64.13`) i li donem tots els permisos:
 
 	```sql
 	# mysql
-	mysql> CREATE USER 'amsa'@'192.168.178.60' IDENTIFIED BY '1234';
-	GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD 
-	on *.* TO ''amsa'@'192.168.178.60' WITH GRANT OPTION;
+	mysql> CREATE USER 'amsa'@'192.168.64.15' IDENTIFIED BY '1234';
+	mysql> GRANT ALL ON *.* TO 'amsa'@'192.168.64.15';
 	mysql>  FLUSH PRIVILEGES;
 	```
 
-4. Permetem connexions al port 3306 (per defecte de MySQL) des de la IP de la màquina client:
-
+2. Permetem connexions al port 3306 (per defecte de MySQL) des de la IP de la màquina client:
+	
 	```bash
-	# ufw allow from 192.168.178.60 to any port 3306
+	# sbin/iptables -A INPUT -p tcp -s 192.168.64.15 --dport 3306 -j ACCEPT
 	```
 
-
-5. Des del client (`192.168.178.60`) fem la connexió remota al servidor (`192.168.178.58`) amb l’usuari que hem creat per aquest fi (`amsa`), introduim la contrasenya (`123`):
+3. Des del client (`192.168.64.15`) fem la connexió remota al servidor (`192.168.64.11`) amb l’usuari que hem creat per aquest fi (`amsa`), introduim la contrasenya (`1234`):
 
 	```bash
-	# mysql -u amsa -h 192.168.178.58 -p
-	> 123
+	# mysql -u amsa -h 192.168.64.15 -p
+	> 1234
 	```
-6. Entraria'm a la BBDD:
+
+4. Entraria'm a la BBDD:
 
 	```sql
 	mysql>
