@@ -222,7 +222,7 @@ d'un host:
 ## Connexió a un BBDD MySQL remota mitjançant ssh
 
 1. Entrem en MySQL, creem un usuari `amsa`al qual assignarem la IP de la maquina
-virtual que fa de client (`192.168.64.13`) i li donem tots els permisos:
+virtual que fa de client (`192.168.64.15`) i li donem tots els permisos:
 
 	```sql
 	# mysql
@@ -240,7 +240,7 @@ virtual que fa de client (`192.168.64.13`) i li donem tots els permisos:
 3. Des del client (`192.168.64.15`) fem la connexió remota al servidor (`192.168.64.11`) amb l’usuari que hem creat per aquest fi (`amsa`), introduim la contrasenya (`1234`):
 
 	```bash
-	# mysql -u amsa -h 192.168.64.15 -p
+	# mysql -u amsa -h 192.168.64.11 -p
 	> 1234
 	```
 
