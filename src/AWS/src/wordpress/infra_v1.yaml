@@ -1,0 +1,321 @@
+Resources:
+  # VPC
+  AMSAVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Name
+          Value: AMSA-VPC
+
+  # Subnets
+  AMSAFront01:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.0.1.0/24
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-01
+
+  AMSAFront02:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 10.0.2.0/24
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-02
+
+  AMSAData:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1c
+      CidrBlock: 10.0.3.0/24
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Data
+
+  # Internet Gateway
+  AMSAIGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: AMSA-IGW
+
+  # Attach Internet Gateway
+  AMSAIGWAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref AMSAVPC
+      InternetGatewayId: !Ref AMSAIGW
+
+  # Route Tables
+  AMSAFront01RT:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-01-RT
+
+  AMSAFront02RT:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-02-RT
+
+  AMSADataRT:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref AMSAVPC
+      Tags:
+        - Key: Name
+          Value: AMSA-Data-RT
+
+  # Route Table Associations
+  AMSAFront01RTA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref AMSAFront01
+      RouteTableId: !Ref AMSAFront01RT
+
+  AMSAFront02RTA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref AMSAFront02
+      RouteTableId: !Ref AMSAFront02RT
+
+  AMSADataRTA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref AMSAData
+      RouteTableId: !Ref AMSADataRT
+
+  # Route Table Routes
+  AMSAFront01Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref AMSAFront01RT
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AMSAIGW
+
+  AMSAFront02Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref AMSAFront02RT
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AMSAIGW
+
+  ## Security Groups
+
+  AMSAWebSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP and SSH access
+      VpcId: !Ref AMSAVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: AMSA-Web-SG
+
+  AMSADataSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable MySQL access
+      VpcId: !Ref AMSAVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          SourceSecurityGroupId: !GetAtt AMSAWebSG.GroupId
+      Tags:
+        - Key: Name
+          Value: AMSA-Data-SG
+    DependsOn: AMSAWebSG
+
+  AMSADBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group for AMSA RDS
+      SubnetIds:
+        - !Ref AMSAData
+        - !Ref AMSAFront01
+        - !Ref AMSAFront02
+      Tags:
+        - Key: Name
+          Value: AMSA-DB-Subnet-Group
+
+  # RDS (MariaDB)
+  AMSADataDB:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: '20'
+      DBInstanceIdentifier: AMSA-DB
+      DBInstanceClass: db.t4g.micro
+      Engine: mariadb
+      EngineVersion: 10.11.9
+      MasterUsername: admin
+      MasterUserPassword: h0dc?r00t?p4ssw0rd
+      VPCSecurityGroups:
+        - !GetAtt AMSADataSG.GroupId
+      DBSubnetGroupName: !Ref AMSADBSubnetGroup
+      MultiAZ: false
+      PubliclyAccessible: false
+      Tags:
+        - Key: Name
+          Value: AMSA-Data-DB
+    DependsOn:
+      - AMSADataSG
+      - AMSADBSubnetGroup
+
+  # EC2 instance to configure the WordPress Database (RDS)
+
+  AMSADataEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-063d43db0594b521b
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: '0'
+          GroupSet:
+            - !Ref AMSAWebSG
+          SubnetId: !Ref AMSAFront01
+      UserData: !Base64
+        Fn::Sub: |
+          #!/bin/bash
+          dnf install -y mariadb105
+          # Define variables
+          DB_HOST=${AMSADataDB.Endpoint.Address}
+          ROOT_PASSWORD="h0dc?r00t?p4ssw0rd"
+          DB_NAME="wordpress"
+          DB_USER="amsa-wordpress-user"
+          DB_USER_PASSWORD="h0dc-w0rdpr3ss-p4ssw0rd"
+          # Create the WordPress database
+          mysql -h "$DB_HOST" -u admin -p"$ROOT_PASSWORD" -e "CREATE DATABASE $DB_NAME;"
+          # Create a user and grant privileges
+          mysql -h "$DB_HOST" -u admin -p"$ROOT_PASSWORD" -e "CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_USER_PASSWORD';"
+          mysql -h "$DB_HOST" -u admin -p"$ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
+          mysql -h "$DB_HOST" -u admin -p"$ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
+      Tags:
+        - Key: Name
+          Value: AMSA-Data-EC2
+    DependsOn: AMSAWebSG
+
+  # Launch Template
+  AMSAWSWPLT01:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: AMSA-WS-WP-LT01
+      LaunchTemplateData:
+        ImageId: ami-063d43db0594b521b
+        InstanceType: t2.micro
+        NetworkInterfaces:
+          - DeviceIndex: 0
+            AssociatePublicIpAddress: true
+            SubnetId: !Ref AMSAFront01
+            Groups:
+              - !Ref AMSAWebSG
+        UserData: !Base64
+          Fn::Sub: |
+            #!/bin/bash
+            dnf install -y wget php-mysqlnd httpd php-fpm php-mysqli php-json php php-devel php-gd expect
+            cd /tmp
+            wget https://wordpress.org/latest.tar.gz
+            tar -xzf latest.tar.gz
+            cp wordpress/wp-config-sample.php wordpress/wp-config.php
+            sed -i "s/database_name_here/wordpress/g" wordpress/wp-config.php
+            sed -i "s/username_here/amsa-wordpress-user/g" wordpress/wp-config.php
+            sed -i "s/password_here/h0dc-w0rdpr3ss-p4ssw0rd/g" wordpress/wp-config.php
+            sed -i "s/localhost/${AMSADataDB.Endpoint.Address}/g" wordpress/wp-config.php
+            cp -r wordpress/* /var/www/html/
+            sed -i 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
+            chown -R apache:apache /var/www
+            chmod 2775 /var/www
+            systemctl enable httpd
+            systemctl restart httpd
+      TagSpecifications:
+        - ResourceType: launch-template
+          Tags:
+            - Key: Name
+              Value: AMSA-WS-WP-LT01
+    DependsOn: AMSAWebSG
+
+  AMSAWSWPLT02:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: AMSA-WS-WP-LT02
+      LaunchTemplateData:
+        ImageId: ami-063d43db0594b521b
+        InstanceType: t2.micro
+        NetworkInterfaces:
+          - DeviceIndex: 0
+            AssociatePublicIpAddress: true
+            SubnetId: !Ref AMSAFront02
+            Groups:
+              - !Ref AMSAWebSG
+        UserData: !Base64
+          Fn::Sub: |
+            #!/bin/bash
+            dnf install -y wget php-mysqlnd httpd php-fpm php-mysqli php-json php php-devel php-gd expect
+            cd /tmp
+            wget https://wordpress.org/latest.tar.gz
+            tar -xzf latest.tar.gz
+            cp wordpress/wp-config-sample.php wordpress/wp-config.php
+            sed -i "s/database_name_here/wordpress/g" wordpress/wp-config.php
+            sed -i "s/username_here/amsa-wordpress-user/g" wordpress/wp-config.php
+            sed -i "s/password_here/h0dc-w0rdpr3ss-p4ssw0rd/g" wordpress/wp-config.php
+            sed -i "s/localhost/${AMSADataDB.Endpoint.Address}/g" wordpress/wp-config.php
+            cp -r wordpress/* /var/www/html/
+            sed -i 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
+            chown -R apache:apache /var/www
+            chmod 2775 /var/www
+            systemctl enable httpd
+            systemctl restart httpd
+      TagSpecifications:
+        - ResourceType: launch-template
+          Tags:
+            - Key: Name
+              Value: AMSA-WS-WP-LT02
+    DependsOn: AMSAWebSG
+
+  ## EC2 Instances
+
+  ## Front01 - WP Instance
+  AMSAFront01WP01:
+    Type: AWS::EC2::Instance
+    Properties:
+      LaunchTemplate:
+        LaunchTemplateName: AMSA-WS-WP-LT01
+        Version: '1'
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-01-WP-01
+    DependsOn: AMSAWSWPLT01
+
+  ## Front02 - WP Instance
+  AMSAFront02WP02:
+    Type: AWS::EC2::Instance
+    Properties:
+      LaunchTemplate:
+        LaunchTemplateName: AMSA-WS-WP-LT02
+        Version: '1'
+      Tags:
+        - Key: Name
+          Value: AMSA-Front-02-WP-02
+    DependsOn: AMSAWSWPLT02

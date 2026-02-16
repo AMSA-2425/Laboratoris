@@ -1,0 +1,118 @@
+Resources:
+  # VPC
+  AMSATestVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Name
+          Value: amsa-test-vpc
+
+  # Subnet 1 (Amb accés a Internet)
+  AMSATestSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref AMSATestVPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: us-east-1a
+      Tags:
+        - Key: Name
+          Value: amsa-test-subnet-1
+
+  # Subnet 2 (Sense accés a Internet)
+  AMSATestSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref AMSATestVPC
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: us-east-1a
+      Tags:
+        - Key: Name
+          Value: amsa-test-subnet-2
+
+  # Internet Gateway
+  AMSATestInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: amsa-test-internet-gateway
+
+  # Attach Internet Gateway to VPC
+  AMSATestAttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref AMSATestVPC
+      InternetGatewayId: !Ref AMSATestInternetGateway
+
+  # Route Table
+  AMSATestRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref AMSATestVPC
+      Tags:
+        - Key: Name
+          Value: amsa-test-route-table
+
+  # Route to Internet (for Subnet 1)
+  AMSATestRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref AMSATestRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AMSATestInternetGateway
+
+  # Associate Route Table with Subnet 1
+  AMSATestSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref AMSATestSubnet1
+      RouteTableId: !Ref AMSATestRouteTable
+
+  # Security Group (allows SSH and HTTP access)
+  AMSATestSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for AMSA Test EC2 instances
+      VpcId: !Ref AMSATestVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: amsa-test-security-group
+
+  # EC2 Instance in Subnet 1 (with Internet access)
+  AMSATestInstance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: 0
+          SubnetId: !Ref AMSATestSubnet1
+          GroupSet:
+            - !Ref AMSATestSecurityGroup
+      ImageId: ami-063d43db0594b521b  # Amazon Linux 2023
+      Tags:
+        - Key: Name
+          Value: amsa-test-instance-1
+
+  # EC2 Instance in Subnet 2 (without Internet access)
+  AMSATestInstance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      SubnetId: !Ref AMSATestSubnet2
+      SecurityGroupIds:
+        - !Ref AMSATestSecurityGroup
+      ImageId: ami-063d43db0594b521b  # Amazon Linux 2023
+      Tags:
+        - Key: Name
+          Value: amsa-test-instance-2
