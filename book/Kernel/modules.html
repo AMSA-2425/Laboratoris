@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="ca" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Programació de mòduls - Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../Install/main.html"><strong aria-hidden="true">1.</strong> Instal·lació d'una màquina virtual</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Install/debian.html"><strong aria-hidden="true">1.1.</strong> Instal·lació d'una màquina virtual amb Debian 12.5</a></li><li class="chapter-item expanded "><a href="../Install/hostname.html"><strong aria-hidden="true">1.2.</strong> Hostname</a></li><li class="chapter-item expanded "><a href="../Install/hosts.html"><strong aria-hidden="true">1.3.</strong> Hosts</a></li><li class="chapter-item expanded "><a href="../Install/ssh-sftp.html"><strong aria-hidden="true">1.4.</strong> SSH i SFTP</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/main.html"><strong aria-hidden="true">2.</strong> Booting</a></li><li class="chapter-item expanded "><a href="../Booting/uefi.html"><strong aria-hidden="true">3.</strong> UEFI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/uefi/inciant.html"><strong aria-hidden="true">3.1.</strong> Inciant la consola UEFI</a></li><li class="chapter-item expanded "><a href="../Booting/uefi/observant.html"><strong aria-hidden="true">3.2.</strong> Observant els Dispositius Disponibles</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/GestorsArrancada.html"><strong aria-hidden="true">4.</strong> Gestors d'arrancada</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/lilo.html"><strong aria-hidden="true">4.1.</strong> LILO</a></li><li class="chapter-item expanded "><a href="../Booting/grub/modificacio.html"><strong aria-hidden="true">4.2.</strong> GRUB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/grub/acces.html"><strong aria-hidden="true">4.2.1.</strong> Canvi del password de root a través del GRUB</a></li><li class="chapter-item expanded "><a href="../Booting/grub/actualitzant.html"><strong aria-hidden="true">4.2.2.</strong> Actualitzant el GRUB</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/IniciServeis.html"><strong aria-hidden="true">5.</strong> Sistema d'inicialització</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/Init.html"><strong aria-hidden="true">5.1.</strong> SysVInit (Init)</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/analitzant.html"><strong aria-hidden="true">5.2.</strong> Systemd</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/systemd/servei.html"><strong aria-hidden="true">5.2.1.</strong> Creant i Gestionant serveis</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/programats.html"><strong aria-hidden="true">5.2.2.</strong> Serveis programats</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/logs.html"><strong aria-hidden="true">5.2.3.</strong> Anàlisi de logs</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/journalctl-dmesg.html"><strong aria-hidden="true">5.2.4.</strong> journalctl versus dmesg</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/inici.html"><strong aria-hidden="true">5.2.5.</strong> Afegint informació d'inici</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/initramfs.html"><strong aria-hidden="true">6.</strong> initramfs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/initramfs/examinant.html"><strong aria-hidden="true">6.1.</strong> Examinant la initramfs</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/carregant.html"><strong aria-hidden="true">6.2.</strong> Carregant un mòdul addicional</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/personalitzar.html"><strong aria-hidden="true">6.3.</strong> Personalitzar la initramfs</a></li></ol></li><li class="chapter-item expanded "><a href="../PROC/PROC.html"><strong aria-hidden="true">7.</strong> PROC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Processos.html"><strong aria-hidden="true">7.1.</strong> Informadió de Procesos</a></li><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Sistema.html"><strong aria-hidden="true">7.2.</strong> Informadió del Sistema</a></li></ol></li><li class="chapter-item expanded "><a href="../TF.html"><strong aria-hidden="true">8.</strong> Tractament de fitxers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../SED/sed.html"><strong aria-hidden="true">8.1.</strong> SED</a></li><li class="chapter-item expanded "><a href="../AWK/awk.html"><strong aria-hidden="true">8.2.</strong> AWK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../AWK/awk-basic.html"><strong aria-hidden="true">8.2.1.</strong> Awk - Bàsic</a></li><li class="chapter-item expanded "><a href="../AWK/awk-intermediate.html"><strong aria-hidden="true">8.2.2.</strong> Awk - Intermedi</a></li><li class="chapter-item expanded "><a href="../AWK/awk-altres-exemples.html"><strong aria-hidden="true">8.2.3.</strong> Awk - Altres Exemples</a></li></ol></li><li class="chapter-item expanded "><a href="../ExpressionsRegulars/ExpressionsRegulars.html"><strong aria-hidden="true">8.3.</strong> Expressions Regulars</a></li></ol></li><li class="chapter-item expanded "><a href="../Xarxa.html"><strong aria-hidden="true">9.</strong> Configuració de la Xarxa</a></li><li class="chapter-item expanded "><a href="../Logging.html"><strong aria-hidden="true">10.</strong> Sistema Logging</a></li><li class="chapter-item expanded "><a href="../Usuaris-Grups.html"><strong aria-hidden="true">11.</strong> Usuaris i Grups</a></li><li class="chapter-item expanded "><a href="../Mount.html"><strong aria-hidden="true">12.</strong> Muntatge de Sistemes de Fitxers</a></li><li class="chapter-item expanded "><a href="../Kernel/main.html"><strong aria-hidden="true">13.</strong> Kernel de Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Kernel/syscalls.html"><strong aria-hidden="true">13.1.</strong> Analitzant les crides a sistema</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel-spy.html"><strong aria-hidden="true">13.2.</strong> Espiant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/modules.html" class="active"><strong aria-hidden="true">13.3.</strong> Programació de mòduls</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel.html"><strong aria-hidden="true">13.4.</strong> Compilant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/add-syscalls.html"><strong aria-hidden="true">13.5.</strong> Crides a sistema personalitzades</a></li><li class="chapter-item expanded "><a href="../Kernel/rootkit.html"><strong aria-hidden="true">13.6.</strong> Rootkit: Escalada de Privilegis</a></li></ol></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/main.html"><strong aria-hidden="true">14.</strong> Desplegant un servidor web: Wordpress</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/preparant.html"><strong aria-hidden="true">14.1.</strong> Preparant el servidor</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/apache.html"><strong aria-hidden="true">14.2.</strong> Instal·lant i configurant Apache</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/mariadb.html"><strong aria-hidden="true">14.3.</strong> Instal·lant i configurant MariaDB</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/php.html"><strong aria-hidden="true">14.4.</strong> Instal·lant i configurant PHP</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/wordpress.html"><strong aria-hidden="true">14.5.</strong> Instal·lant i configurant Wordpress</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/AMSA-2425/Laboratoris" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="programació-de-mòduls"><a class="header" href="#programació-de-mòduls">Programació de mòduls</a></h1>
+<p>En aquest laboratori aprendrem a programar mòduls per al kernel de Linux. Aquesta és una de les tasques més complexes que es poden fer en el món de la programació de sistemes. Per això, realitzarem uns exemples senzills per a entendre com es programen els mòduls i com es poden integrar al kernel.</p>
+<h2 id="requisits-previs"><a class="header" href="#requisits-previs">Requisits previs</a></h2>
+<p>Per a realitzar aquest laboratori, necessitarem tenir instal·lat un sistema Debian amb els paquets necessaris per a la construcció de programari. Aquests paquets són els linux-headers corresponents a la versió del kernel:</p>
+<pre><code class="language-bash">su -c "apt install linux-headers-$(uname -r) -y"
+</code></pre>
+<ul>
+<li><strong>libncurses-dev</strong>: Biblioteca de desenvolupament per a la creació d'aplicacions amb interfície de text.</li>
+<li><strong>bison</strong>: Generador d'anàlisi sintàctica.</li>
+<li><strong>flex</strong>: Generador d'anàlisi lèxica.</li>
+<li><strong>kmod</strong>: Eina per a la gestió de mòduls del kernel.</li>
+</ul>
+<h2 id="mòduls-del-kernel"><a class="header" href="#mòduls-del-kernel">Mòduls del Kernel</a></h2>
+<p>Els <strong>mòduls</strong> són fragments de codi que es poden carregar i descarregar al nucli de forma dinàmica. Ens permeten ampliar la funcionalitat del nucli sense necessitat de reiniciar el sistema.</p>
+<blockquote>
+<p><strong>Nota</strong>: Sense mòduls, hauríem de construir nuclis <strong>monolítics</strong> i afegir noves funcionalitats directament a la imatge del nucli. A més de tenir nuclis més grans, amb l'inconvenient d'exigir reconstruir i reiniciar el nucli cada vegada que volem una nova funcionalitat.</p>
+</blockquote>
+<ol>
+<li>
+<p>Obtenir informació sobre la versió del kernel actual:</p>
+<pre><code class="language-bash">uname -r
+</code></pre>
+<p>En el meu cas, la versió del kernel és <code>6.1.0-25-arm64</code>.</p>
+</li>
+<li>
+<p>Per veure els mòduls carregats al kernel, podem fer servir la comanda <code>lsmod</code>:</p>
+<pre><code class="language-bash">su -c "lsmod"
+</code></pre>
+<p>També podem fer servir la comanda <code>cat</code> per llegir el fitxer <code>/proc/modules</code>:</p>
+<pre><code class="language-bash">su -c "cat /proc/modules"
+</code></pre>
+<p>Si volem filtrar un mòdul concret, podem fer servir la comanda <code>grep</code>:</p>
+<pre><code class="language-bash">su -c "lsmod | grep fat"
+</code></pre>
+</li>
+</ol>
+<p>Els moduls del kernel registren la informació de log en una consola, però per defecte no la podreu veure per la sortida estàndard (sdtout) o la sortida d'error (stderr). Per veure aquesta informació, necessitarem fer servir la comanda <code>dmesg</code>.</p>
+<p>Per exemple, si volem veure els últims missatges del kernel, podem fer servir la comanda:</p>
+<pre><code class="language-bash">su -c "dmesg | tail -n 10"
+</code></pre>
+<p>Aquest missatge provenen dels mòduls del kernel que utilitzen la funció <code>printk</code> per imprimir informació de log. Aquesta funció permet especificar el nivell de log  i el mòdul que genera el missatge. Per canviar el nivell de log, podem fer servir la comanda <code>dmesg</code> amb l'opció <code>-n</code>:</p>
+<pre><code class="language-bash">su -c "dmesg -n 4"
+</code></pre>
+<p>En aquest cas, el nivell de log és 4, que correspon a <code>WARNING</code>. Això significa que només es mostraran els missatges de log amb nivell <code>WARNING</code> o superior.</p>
+<p>Nivells de log disponibles:</p>
+<ul>
+<li>0: <code>KERN_EMERG</code>: Missatges d'emergència.</li>
+<li>1: <code>KERN_ALERT</code>: Missatges d'alerta.</li>
+<li>2: <code>KERN_CRIT</code>: Missatges crítics.</li>
+<li>3: <code>KERN_ERR</code>: Missatges d'error.</li>
+<li>4: <code>KERN_WARNING</code>: Missatges d'avís.</li>
+<li>5: <code>KERN_NOTICE</code>: Missatges de notificació.</li>
+<li>6: <code>KERN_INFO</code>: Missatges d'informació.</li>
+<li>7: <code>KERN_DEBUG</code>: Missatges de depuració.</li>
+<li>8: <code>KERN_DEFAULT</code>: Nivell per defecte.</li>
+</ul>
+<h2 id="programant-un-mòdul"><a class="header" href="#programant-un-mòdul">Programant un mòdul</a></h2>
+<p>En aquesta secció, programarem un mòdul senzill per al kernel de Linux. Aquest mòdul imprimirà un missatge d'inici i un missatge de finalització quan es carregui i descarregui al kernel.</p>
+<ol>
+<li>
+<p>Creem un directori per al nostre mòdul:</p>
+<pre><code class="language-bash">mkdir -p $HOME/kernel
+cd $HOME/kernel
+</code></pre>
+</li>
+<li>
+<p>Creem un fitxer anomenat <code>hello.c</code> amb el següent contingut:</p>
+<pre><code class="language-c">#include &lt;linux/kernel.h&gt;
+#include &lt;linux/module.h&gt; 
+
+MODULE_LICENSE("GPL");
+
+int init_module(void) {
+    printk(KERN_INFO "Hello, world!\n");
+    return 0;
+}
+
+void cleanup_module(void) {
+    printk(KERN_INFO "Goodbye, world!\n");
+}
+</code></pre>
+</li>
+<li>
+<p>Crearem un fitxer <code>Makefile</code> per compilar el nostre mòdul amb el següent contingut:</p>
+<pre><code class="language-makefile">CONFIG_MODULE_SIG=n
+obj-m += hello.o
+
+all:
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+</code></pre>
+<blockquote>
+<p><strong>Nota</strong>:</p>
+<ul>
+<li>El fitxer <code>Makefile</code> és sensible a la indentació. Assegureu-vos que utilitzeu tabuladors en lloc d'espais.</li>
+<li>La variable <code>obj-m</code> indica quin és el mòdul que volem compilar.</li>
+<li>La variable <code>PWD</code> conté la ruta del directori actual.</li>
+<li><code>$(shell uname -r)</code> retorna la versió del kernel actual.</li>
+<li><code>CONFIG_MODULE_SIG=n</code> desactiva la verificació de la signatura del mòdul.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Compil·lem el nostre mòdul amb la comanda <code>make</code>:</p>
+<pre><code class="language-bash">make
+</code></pre>
+<blockquote>
+<p><strong>Troubleshooting</strong>:</p>
+<ul>
+<li>Si obteniu un error de <code>missing separator</code>, assegureu-vos que utilitzeu tabuladors en lloc d'espais.</li>
+<li>Si obteniu un error de <code>/lib/modules/</code>, assegureu-vos que teniu instal·lat el paquet <code>linux-headers</code>.</li>
+<li>Si obteniu un error de <code>missing MODULE_LICENSE()</code>, podeu afegir la següent línia al vostre fitxer <code>hello.c</code>:</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Carreguem el nostre mòdul amb la comanda <code>insmod</code>:</p>
+<pre><code class="language-bash">su -
+insmod /home/jordi/laboratoris/lab2-kernel/kernel-modules/hello.ko
+</code></pre>
+<blockquote>
+<p><strong>Nota</strong>: Si teniu errors assegureu-vos que esteu executant la comanda com a <code>root</code>. Quan canviem a l'usuari <code>root</code>, la variable <code>$HOME</code> canvia a <code>/root</code>. Per tant, assegureu-vos d'apuntar a la ruta correcta.</p>
+</blockquote>
+</li>
+<li>
+<p>Comprovem que el mòdul s'ha carregat correctament amb la comanda <code>lsmod</code>:</p>
+<pre><code class="language-bash">lsmod | grep hello
+</code></pre>
+<p>Si el mòdul s'ha carregat correctament, veureu una sortida similar a aquesta:</p>
+<pre><code class="language-bash">hello                 16384  0
+</code></pre>
+</li>
+<li>
+<p>Comprovem els missatges del kernel amb la comanda <code>dmesg</code>:</p>
+<pre><code class="language-bash">su -c "dmesg"
+</code></pre>
+<p>Si tot ha anat bé, veureu els missatges <code>Hello, world!</code> al final de la sortida.</p>
+</li>
+<li>
+<p>Descarreguem el mòdul amb la comanda <code>rmmod</code>:</p>
+<pre><code class="language-bash">rmmod hello
+</code></pre>
+</li>
+<li>
+<p>Comprovem que el mòdul s'ha descarregat correctament amb la comanda <code>lsmod</code>:</p>
+<pre><code class="language-bash">lsmod | grep hello
+</code></pre>
+<p>Si el mòdul s'ha descarregat correctament, hauríeu de veure el missatge <code>Goodbye, world!</code> al final de la sortida de <code>dmesg</code>.</p>
+</li>
+</ol>
+<p>Es poden fer diferents millores i moduls més complexos, però aquest és un exemple senzill per a començar a programar mòduls per al kernel de Linux. Per exemple, podeu afegir més informació al mòdul com llicència, autor, descripció i versió. També podeu utilitzar les macros <code>__init</code> i <code>__exit</code> per optimitzar el mòdul i reduir la memòria utilitzada.</p>
+<p>Per exemple, aquí teniu un exemple millorat del mòdul <code>hello.c</code>:</p>
+<pre><code class="language-c">#include &lt;linux/init.h&gt;
+#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Jordi Mateo");
+MODULE_DESCRIPTION("Hello World OS Kernel Module");
+MODULE_VERSION("0.1");
+
+static int __init hello_init(void) {
+    printk(KERN_INFO "WOW I AM A KERNEL HACKER!!!\n");
+    return 0;
+}
+
+static void __exit hello_cleanup(void) {
+    printk(KERN_INFO "I am dead.\n");
+}
+
+module_init(hello_init);
+module_exit(hello_cleanup);
+</code></pre>
+<h2 id="exercicis"><a class="header" href="#exercicis">Exercicis</a></h2>
+<ol>
+<li>
+<p>Creeu un mòdul que imprimeixi la informació sobre el procés actual. Podeu fer servir la <code>task_struct</code> per obtenir la informació del procés actual. Podeu imprimir la informació del PID, el nom del procés, i la memòria utilitzada.</p>
+<pre><code class="language-c">#include &lt;linux/init.h&gt;
+#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/sched.h&gt;
+
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("Process Info Kernel Module");
+MODULE_VERSION("0.1");
+
+static int __init process_info_init(void) {
+   
+
+    return 0;
+}
+
+static void __exit process_info_cleanup(void) {
+    printk(KERN_INFO "Process Info module unloaded.\n");
+}
+
+module_init(process_info_init);
+module_exit(process_info_cleanup);
+</code></pre>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Kernel/kernel-spy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Kernel/kernel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Kernel/kernel-spy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Kernel/kernel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

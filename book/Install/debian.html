@@ -1,0 +1,459 @@
+<!DOCTYPE HTML>
+<html lang="ca" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Instal·lació d&#x27;una màquina virtual amb Debian 12.5 - Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../Install/main.html"><strong aria-hidden="true">1.</strong> Instal·lació d'una màquina virtual</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Install/debian.html" class="active"><strong aria-hidden="true">1.1.</strong> Instal·lació d'una màquina virtual amb Debian 12.5</a></li><li class="chapter-item expanded "><a href="../Install/hostname.html"><strong aria-hidden="true">1.2.</strong> Hostname</a></li><li class="chapter-item expanded "><a href="../Install/hosts.html"><strong aria-hidden="true">1.3.</strong> Hosts</a></li><li class="chapter-item expanded "><a href="../Install/ssh-sftp.html"><strong aria-hidden="true">1.4.</strong> SSH i SFTP</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/main.html"><strong aria-hidden="true">2.</strong> Booting</a></li><li class="chapter-item expanded "><a href="../Booting/uefi.html"><strong aria-hidden="true">3.</strong> UEFI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/uefi/inciant.html"><strong aria-hidden="true">3.1.</strong> Inciant la consola UEFI</a></li><li class="chapter-item expanded "><a href="../Booting/uefi/observant.html"><strong aria-hidden="true">3.2.</strong> Observant els Dispositius Disponibles</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/GestorsArrancada.html"><strong aria-hidden="true">4.</strong> Gestors d'arrancada</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/lilo.html"><strong aria-hidden="true">4.1.</strong> LILO</a></li><li class="chapter-item expanded "><a href="../Booting/grub/modificacio.html"><strong aria-hidden="true">4.2.</strong> GRUB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/grub/acces.html"><strong aria-hidden="true">4.2.1.</strong> Canvi del password de root a través del GRUB</a></li><li class="chapter-item expanded "><a href="../Booting/grub/actualitzant.html"><strong aria-hidden="true">4.2.2.</strong> Actualitzant el GRUB</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/IniciServeis.html"><strong aria-hidden="true">5.</strong> Sistema d'inicialització</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/Init.html"><strong aria-hidden="true">5.1.</strong> SysVInit (Init)</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/analitzant.html"><strong aria-hidden="true">5.2.</strong> Systemd</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/systemd/servei.html"><strong aria-hidden="true">5.2.1.</strong> Creant i Gestionant serveis</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/programats.html"><strong aria-hidden="true">5.2.2.</strong> Serveis programats</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/logs.html"><strong aria-hidden="true">5.2.3.</strong> Anàlisi de logs</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/journalctl-dmesg.html"><strong aria-hidden="true">5.2.4.</strong> journalctl versus dmesg</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/inici.html"><strong aria-hidden="true">5.2.5.</strong> Afegint informació d'inici</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/initramfs.html"><strong aria-hidden="true">6.</strong> initramfs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/initramfs/examinant.html"><strong aria-hidden="true">6.1.</strong> Examinant la initramfs</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/carregant.html"><strong aria-hidden="true">6.2.</strong> Carregant un mòdul addicional</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/personalitzar.html"><strong aria-hidden="true">6.3.</strong> Personalitzar la initramfs</a></li></ol></li><li class="chapter-item expanded "><a href="../PROC/PROC.html"><strong aria-hidden="true">7.</strong> PROC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Processos.html"><strong aria-hidden="true">7.1.</strong> Informadió de Procesos</a></li><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Sistema.html"><strong aria-hidden="true">7.2.</strong> Informadió del Sistema</a></li></ol></li><li class="chapter-item expanded "><a href="../TF.html"><strong aria-hidden="true">8.</strong> Tractament de fitxers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../SED/sed.html"><strong aria-hidden="true">8.1.</strong> SED</a></li><li class="chapter-item expanded "><a href="../AWK/awk.html"><strong aria-hidden="true">8.2.</strong> AWK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../AWK/awk-basic.html"><strong aria-hidden="true">8.2.1.</strong> Awk - Bàsic</a></li><li class="chapter-item expanded "><a href="../AWK/awk-intermediate.html"><strong aria-hidden="true">8.2.2.</strong> Awk - Intermedi</a></li><li class="chapter-item expanded "><a href="../AWK/awk-altres-exemples.html"><strong aria-hidden="true">8.2.3.</strong> Awk - Altres Exemples</a></li></ol></li><li class="chapter-item expanded "><a href="../ExpressionsRegulars/ExpressionsRegulars.html"><strong aria-hidden="true">8.3.</strong> Expressions Regulars</a></li></ol></li><li class="chapter-item expanded "><a href="../Xarxa.html"><strong aria-hidden="true">9.</strong> Configuració de la Xarxa</a></li><li class="chapter-item expanded "><a href="../Logging.html"><strong aria-hidden="true">10.</strong> Sistema Logging</a></li><li class="chapter-item expanded "><a href="../Usuaris-Grups.html"><strong aria-hidden="true">11.</strong> Usuaris i Grups</a></li><li class="chapter-item expanded "><a href="../Mount.html"><strong aria-hidden="true">12.</strong> Muntatge de Sistemes de Fitxers</a></li><li class="chapter-item expanded "><a href="../Kernel/main.html"><strong aria-hidden="true">13.</strong> Kernel de Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Kernel/syscalls.html"><strong aria-hidden="true">13.1.</strong> Analitzant les crides a sistema</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel-spy.html"><strong aria-hidden="true">13.2.</strong> Espiant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/modules.html"><strong aria-hidden="true">13.3.</strong> Programació de mòduls</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel.html"><strong aria-hidden="true">13.4.</strong> Compilant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/add-syscalls.html"><strong aria-hidden="true">13.5.</strong> Crides a sistema personalitzades</a></li><li class="chapter-item expanded "><a href="../Kernel/rootkit.html"><strong aria-hidden="true">13.6.</strong> Rootkit: Escalada de Privilegis</a></li></ol></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/main.html"><strong aria-hidden="true">14.</strong> Desplegant un servidor web: Wordpress</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/preparant.html"><strong aria-hidden="true">14.1.</strong> Preparant el servidor</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/apache.html"><strong aria-hidden="true">14.2.</strong> Instal·lant i configurant Apache</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/mariadb.html"><strong aria-hidden="true">14.3.</strong> Instal·lant i configurant MariaDB</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/php.html"><strong aria-hidden="true">14.4.</strong> Instal·lant i configurant PHP</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/wordpress.html"><strong aria-hidden="true">14.5.</strong> Instal·lant i configurant Wordpress</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/AMSA-2425/Laboratoris" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="installació-duna-màquina-virtual-amb-el-sistema-operatiu-debian-125"><a class="header" href="#installació-duna-màquina-virtual-amb-el-sistema-operatiu-debian-125">Instal·lació d'una màquina virtual amb el sistema operatiu Debian 12.5</a></h1>
+<p>En aquest laboratori, instal·larem el sistema operatiu Debian 12 en una màquina virtual i descriurem els components principals del sistema operatiu. Aquesta instal·lació és la base per a tots els laboratoris que realitzarem en aquest curs. En alguns, us demanaré que modifiqueu alguns paràmetres de configuració per adaptar-los a les necessitats del laboratori.</p>
+<h2 id="configuració-de-la-màquina-virtual-amb-vmware"><a class="header" href="#configuració-de-la-màquina-virtual-amb-vmware">Configuració de la màquina virtual amb VMWare</a></h2>
+<ol>
+<li>Selecciona l’opció <code>Create a New Virtual Machine</code> a VMWare Workstation Player o VMWare Fusion.</li>
+<li>Selecciona <em>Install from disc or image</em>.
+<img src="./figures/debian12/install-01.png" alt="Install from disc or image" /></li>
+<li>Selecciona la imatge ISO de Debian 12.
+<img src="./figures/debian12/install-02.png" alt="Select ISO" /></li>
+<li>Configura els recursos de la màquina virtual.
+<img src="./figures/debian12/install-03.png" alt="Configuració" /></li>
+</ol>
+<h2 id="installació-del-sistema-operatiu"><a class="header" href="#installació-del-sistema-operatiu">Instal·lació del sistema operatiu</a></h2>
+<ol>
+<li>
+<p>Un cop iniciada la màquina virtual, podeu seleccionar la opció <strong>Install</strong> o bé <strong>Graphical install</strong>.
+<img src="./figures/debian12/install-04.png" alt="Install Debian" /></p>
+<p>En aquest tutoriral, seleccionarem la opció <strong>Graphical install</strong> per a una instal·lació més amigable. La principal diferència entre les dues opcions és l'entorn gràfic.</p>
+</li>
+<li>
+<p>Selecciona l'idioma d'instal·lació.
+<img src="./figures/debian12/install-05.png" alt="Select Language" /></p>
+<p>Podeu seleccionar l'idioma que vulgueu per a la instal·lació. En aquest cas, seleccionarem l'idioma <strong>Català</strong>.</p>
+</li>
+<li>
+<p>Selecciona la ubicació geogràfica.
+<img src="./figures/debian12/install-06.png" alt="Select Location" /></p>
+<p>En aquest cas, seleccionarem la ubicació <strong>Espanya</strong>.</p>
+</li>
+<li>
+<p>Selecciona la disposició del teclat.
+<img src="./figures/debian12/install-07.png" alt="Select Keyboard Layout" /></p>
+<p>En aquest cas, seleccionarem la disposició de teclat <strong>Català</strong>. Això ens asegurarà un mapeig correcte del teclat.</p>
+</li>
+<li>
+<p>Espereu que el sistema carregui els components necessaris.
+<img src="./figures/debian12/install-08.png" alt="Loading Components" /></p>
+</li>
+<li>
+<p>Configura la xarxa.</p>
+<ul>
+<li>El primer pas és configurar el nom d'amfitrió o <strong>hostname</strong>. Aquest nom permet identificar de forma única el vostre sistema. Podeu deixar el nom per defecte o canviar-lo al vostre gust.</li>
+</ul>
+<p><img src="./figures/debian12/install-09.png" alt="Hostname" /></p>
+<p>En aquest cas, hem canviat el nom d'amfitrió a <code>lab00-debian</code>.</p>
+<blockquote>
+<p>🚀 <strong>Consell</strong>:</p>
+<p>Els administradors de sistemes acostumen a administrar múltiples servidors i dispositius. Per tant, és important identificar cada dispositiu amb un nom únic per facilitar la gestió i la comunicació entre ells. Per tant, us recomano que utilitzeu un nom d'amfitrió significatiu per identificar-lo fàcilment.</p>
+</blockquote>
+<p>Us recomano un cop instal·lat el sistema que doneu una ullada a l'apartat <a href="./hostname.html">Hostname</a> per obtenir més informació sobre com gestionar el nom d'amfitrió.</p>
+<ul>
+<li>El segon pas és configurar el domini de la xarxa. Aquest pas el podeu deixar en blanc si no teniu un domini específic. O bé, podem utilitzar <code>.local</code> com a domini local per identicar que el servidor pertany a la xarxa local.</li>
+</ul>
+<p><img src="./figures/debian12/install-10.png" alt="Domain" /></p>
+<blockquote>
+<p>💡 <strong>Nota</strong>:</p>
+<p>En un domini empresarial, normalment s'utilitza el nom de domini de l'empresa. Imagina que aquesta màquina virtual és el servidor d'una base de dades mysql de l'empresa <code>acme.com</code>. En aquest cas, el domini seria <code>acme.com</code>. I el nom d'amfitrió podria ser <code>mysql01.acme.com</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Configura l'usuari administrador.</p>
+<p>En aquest punt, heu de tenir en compte que si no poseu cap contrasenya, es crearà l'usuari normal amb permisos de <code>sudo</code> i això us permetra executar comandes amb privilegis d'administrador.</p>
+</li>
+<li>
+<p>Configura un usuari normal.</p>
+<ul>
+<li>Nom complet: Podeu posar el vostre nom complet o el que vulgueu.</li>
+</ul>
+<p><img src="./figures/debian12/install-12.png" alt="Normal User" /></p>
+<ul>
+<li>Nom d'usuari: Podeu posar el vostre nom d'usuari o el que vulgueu.</li>
+</ul>
+<p><img src="./figures/debian12/install-13.png" alt="Normal User" /></p>
+<ul>
+<li>Contrasenya: El mateix que per l'usuari <code>root</code>.</li>
+</ul>
+<p><img src="./figures/debian12/install-14.png" alt="Normal User" /></p>
+</li>
+<li>
+<p>Configura la zona horària.</p>
+<p><img src="./figures/debian12/install-15.png" alt="Timezone" /></p>
+<p>En aquest cas, seleccionarem la zona horària de <strong>Madrid</strong>.</p>
+</li>
+<li>
+<p>Configura el disc dur.</p>
+<ul>
+<li>Particionament: Durant el curs apendreu a realitzar particionament manual i, també discutirem sobre LV (Logical Volumes) i LVM (Logical Volume Manager). Però, per a una instal·lació senzilla, de moment, seleccionarem la primera opció (<strong>Guiat - utilitzar tot el disc</strong>).</li>
+</ul>
+<p><img src="./figures/debian12/install-16.png" alt="Partitioning" /></p>
+<ul>
+<li>Selecciona el disc on instal·lar el sistema. En el meu cas, només tinc un disc virtual amb l'etiqueta <code>/dev/nvme0n1</code>. L'etiqueta indica el tipus de disc (NVMe) i el número de disc (1). Es possible tenir altres etiquetes com <code>/dev/sda</code> per discos SATA o <code>/dev/vda</code> per discos virtuals.</li>
+</ul>
+<p><img src="./figures/debian12/install-17.png" alt="Partitioning" /></p>
+<ul>
+<li>Particions: Durant el curs apendreu les avantatges i com gestionar sistemes amb particions separades. Però, de moment, seleccionarem la primera opció (<strong>Totes les dades en una sola partició</strong>).</li>
+</ul>
+<p><img src="./figures/debian12/install-18.png" alt="Partitioning" /></p>
+<ul>
+<li>Confirmeu els canvis. En aquest punt, el sistema crearà les particions necessàries:
+<ul>
+<li>La primera partició serà la partició <code>/boot</code> on es guardaran els fitxers de boot.</li>
+<li>La segona partició serà la partició <code>/</code> on es guardaran els fitxers del sistema.</li>
+<li>La tercera partició serà la partició de swap on es guardaran les dades de la memòria virtual.</li>
+</ul>
+</li>
+</ul>
+<p><img src="./figures/debian12/install-19.png" alt="Partitioning" /></p>
+<blockquote>
+<p>👁️ <strong>Observació</strong>:</p>
+<p>En aquest punt es poden fer moltes personalitzacions com ara:</p>
+<ul>
+<li>Configurar un sistema RAID.</li>
+<li>Configurar un sistema LVM.
+Ho veurem més endavant en el curs.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Escriu els canvis al disc.</li>
+</ul>
+<p><img src="./figures/debian12/install-20.png" alt="Write Changes" /></p>
+</li>
+<li>
+<p>Espera que s'instal·li el sistema.</p>
+<p><img src="./figures/debian12/install-21.png" alt="Install" /></p>
+</li>
+<li>
+<p>Configura el gestor de paquets.</p>
+<ul>
+<li>Analitzar els discos de la instal·lació. Aquest pas permet seleccionar els discos on es troben els paquets d'instal·lació. Normalment, aquest pas no cal modificar-lo.</li>
+</ul>
+<p><img src="./figures/debian12/install-22.png" alt="Package Manager" /></p>
+<ul>
+<li>
+<p>Configura el gestor de paquets. En aquest cas, seleccionarem el servidor de paquets més proper a la nostra ubicació.</p>
+<ul>
+<li>
+<p>Filtrar els servidors de paquets per ubicació.
+<img src="./figures/debian12/install-23.png" alt="Package Manager" /></p>
+</li>
+<li>
+<p>Seleccionar el servidor de paquets.
+<img src="./figures/debian12/install-24.png" alt="Package Manager" /></p>
+</li>
+</ul>
+<blockquote>
+<p>👀 <strong>Nota</strong>:</p>
+<p>A vegades, els servidors de paquets poden estar saturats o no funcionar correctament. En aquest cas, podeu seleccionar un servidor alternatiu o provar més tard.</p>
+</blockquote>
+</li>
+<li>
+<p>Configura el proxy. Si esteu darrere d'un proxy, podeu configurar-lo en aquest pas.</p>
+<p><img src="./figures/debian12/install-25.png" alt="Package Manager" /></p>
+<blockquote>
+<p>ℹ️ <strong>Què és un proxy?</strong></p>
+<p>Un proxy és un servidor intermediari entre el vostre sistema i Internet. Aquest servidor pot ser utilitzat per controlar l'accés a Internet, per protegir la vostra privacitat o per accelerar la connexió a Internet. Les peticions de connexió a Internet es fan a través del servidor proxy, que actua com a intermediari i reenvia les peticions al servidor de destinació. Per exemple, en una empresa, el proxy pot ser utilitzat per controlar l'accés a Internet dels empleats i protegir la xarxa interna de possibles amenaces.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Espera que s'instal·lin els paquets.</p>
+<p><img src="./figures/debian12/install-26.png" alt="Install" /></p>
+</li>
+<li>
+<p>Configura el paquet <code>popularity-contest</code>.</p>
+<ul>
+<li>Aquest paquet permet enviar informació anònima sobre els paquets instal·lats al servidor de Debian per millorar la selecció de paquets i la qualitat dels paquets. Podeu seleccionar si voleu participar en aquest programa o no.</li>
+</ul>
+<p><img src="./figures/debian12/install-27.png" alt="Popularity Contest" /></p>
+</li>
+<li>
+<p>Selecció de programari. En aquest punt podeu seleccionar si voleu un servidor en mode text o amb interfície gràfica. També us permet seleccionar si voleu instal·lar els serveis web i ssh al servidor i finalment si voleu les utilitats estàndard del sistema. Aquestes opcions les anirem modifciant en funció dels laboratoris que realitzarem. Per defecte, seleccionarem el servidor en mode text, el servei SSH activat i les utilitats estàndard del sistema.</p>
+<p><img src="./figures/debian12/install-28.png" alt="Software Selection" /></p>
+<blockquote>
+<p>ℹ️ <strong>Què és un servidor en mode text?</strong></p>
+<p>Un servidor en mode text és un servidor que no té una interfície gràfica. Això significa que tota la interacció amb el servidor es fa a través de la línia de comandes. Aquest tipus de servidor és molt comú en entorns de producció, ja que consumeix menys recursos i és més segur que un servidor amb interfície gràfica.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>ℹ️ <strong>Què és el servei SSH?</strong></p>
+<p>El servei SSH (Secure Shell) és un protocol de xifratament que permet connectar-se de forma segura a un servidor remot. Aquest servei és molt utilitzat per administrar servidors a distància, ja que permet accedir al servidor de forma segura i xifratada.</p>
+</blockquote>
+</li>
+<li>
+<p>Espera que s'instal·li el programari.</p>
+<p><img src="./figures/debian12/install-29.png" alt="Install" /></p>
+</li>
+<li>
+<p>Instal·lació acabada. Un cop finalitzada la instal·lació, el sistema es reiniciarà i podreu accedir al GRUB per seleccionar el sistema operatiu.
+<img src="./figures/debian12/install-30.png" alt="Finish" /></p>
+</li>
+<li>
+<p>El GRUB us permet accedir al sistema operatiu. En aquest cas, seleccionarem Debian GNU/Linux. La resta d'opcions les veurem més endavant en el curs.</p>
+<p><img src="./figures/debian12/install-31.png" alt="GRUB" /></p>
+<blockquote>
+<p>ℹ️ Què és el GRUB?</p>
+<p>Com veurem al capítol de Booting, el GRUB és un gestor d'arrencada que permet seleccionar el sistema operatiu que volem iniciar. Aquest gestor és molt útil en sistemes amb múltiples sistemes operatius o múltiples versions del mateix sistema operatiu.</p>
+</blockquote>
+</li>
+<li>
+<p>Inicieu sessió amb l'usuari i la contrasenya que heu configurat durant la instal·lació.</p>
+<p><img src="./figures/debian12/install-32.png" alt="Login" /></p>
+</li>
+<li>
+<p>Tanqueu la sessió amb la comanda <code>exit</code>.</p>
+</li>
+<li>
+<p>Inicieu sessió amb l'usuari <code>root</code> i la contrasenya que heu configurat durant la instal·lació.</p>
+<p><img src="./figures/debian12/install-33.png" alt="Login" /></p>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Install/main.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Install/hostname.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Install/main.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Install/hostname.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

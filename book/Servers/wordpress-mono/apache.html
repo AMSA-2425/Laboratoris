@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html lang="ca" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Instal·lant i configurant Apache - Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../Install/main.html"><strong aria-hidden="true">1.</strong> Instal·lació d'una màquina virtual</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Install/debian.html"><strong aria-hidden="true">1.1.</strong> Instal·lació d'una màquina virtual amb Debian 12.5</a></li><li class="chapter-item expanded "><a href="../../Install/hostname.html"><strong aria-hidden="true">1.2.</strong> Hostname</a></li><li class="chapter-item expanded "><a href="../../Install/hosts.html"><strong aria-hidden="true">1.3.</strong> Hosts</a></li><li class="chapter-item expanded "><a href="../../Install/ssh-sftp.html"><strong aria-hidden="true">1.4.</strong> SSH i SFTP</a></li></ol></li><li class="chapter-item expanded "><a href="../../Booting/main.html"><strong aria-hidden="true">2.</strong> Booting</a></li><li class="chapter-item expanded "><a href="../../Booting/uefi.html"><strong aria-hidden="true">3.</strong> UEFI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/uefi/inciant.html"><strong aria-hidden="true">3.1.</strong> Inciant la consola UEFI</a></li><li class="chapter-item expanded "><a href="../../Booting/uefi/observant.html"><strong aria-hidden="true">3.2.</strong> Observant els Dispositius Disponibles</a></li></ol></li><li class="chapter-item expanded "><a href="../../Booting/GestorsArrancada.html"><strong aria-hidden="true">4.</strong> Gestors d'arrancada</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/lilo.html"><strong aria-hidden="true">4.1.</strong> LILO</a></li><li class="chapter-item expanded "><a href="../../Booting/grub/modificacio.html"><strong aria-hidden="true">4.2.</strong> GRUB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/grub/acces.html"><strong aria-hidden="true">4.2.1.</strong> Canvi del password de root a través del GRUB</a></li><li class="chapter-item expanded "><a href="../../Booting/grub/actualitzant.html"><strong aria-hidden="true">4.2.2.</strong> Actualitzant el GRUB</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Booting/IniciServeis.html"><strong aria-hidden="true">5.</strong> Sistema d'inicialització</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/Init.html"><strong aria-hidden="true">5.1.</strong> SysVInit (Init)</a></li><li class="chapter-item expanded "><a href="../../Booting/systemd/analitzant.html"><strong aria-hidden="true">5.2.</strong> Systemd</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/systemd/servei.html"><strong aria-hidden="true">5.2.1.</strong> Creant i Gestionant serveis</a></li><li class="chapter-item expanded "><a href="../../Booting/systemd/programats.html"><strong aria-hidden="true">5.2.2.</strong> Serveis programats</a></li><li class="chapter-item expanded "><a href="../../Booting/systemd/logs.html"><strong aria-hidden="true">5.2.3.</strong> Anàlisi de logs</a></li><li class="chapter-item expanded "><a href="../../Booting/systemd/journalctl-dmesg.html"><strong aria-hidden="true">5.2.4.</strong> journalctl versus dmesg</a></li><li class="chapter-item expanded "><a href="../../Booting/systemd/inici.html"><strong aria-hidden="true">5.2.5.</strong> Afegint informació d'inici</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Booting/initramfs.html"><strong aria-hidden="true">6.</strong> initramfs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Booting/initramfs/examinant.html"><strong aria-hidden="true">6.1.</strong> Examinant la initramfs</a></li><li class="chapter-item expanded "><a href="../../Booting/initramfs/carregant.html"><strong aria-hidden="true">6.2.</strong> Carregant un mòdul addicional</a></li><li class="chapter-item expanded "><a href="../../Booting/initramfs/personalitzar.html"><strong aria-hidden="true">6.3.</strong> Personalitzar la initramfs</a></li></ol></li><li class="chapter-item expanded "><a href="../../PROC/PROC.html"><strong aria-hidden="true">7.</strong> PROC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../PROC/PROC-Info-Processos.html"><strong aria-hidden="true">7.1.</strong> Informadió de Procesos</a></li><li class="chapter-item expanded "><a href="../../PROC/PROC-Info-Sistema.html"><strong aria-hidden="true">7.2.</strong> Informadió del Sistema</a></li></ol></li><li class="chapter-item expanded "><a href="../../TF.html"><strong aria-hidden="true">8.</strong> Tractament de fitxers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../SED/sed.html"><strong aria-hidden="true">8.1.</strong> SED</a></li><li class="chapter-item expanded "><a href="../../AWK/awk.html"><strong aria-hidden="true">8.2.</strong> AWK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../AWK/awk-basic.html"><strong aria-hidden="true">8.2.1.</strong> Awk - Bàsic</a></li><li class="chapter-item expanded "><a href="../../AWK/awk-intermediate.html"><strong aria-hidden="true">8.2.2.</strong> Awk - Intermedi</a></li><li class="chapter-item expanded "><a href="../../AWK/awk-altres-exemples.html"><strong aria-hidden="true">8.2.3.</strong> Awk - Altres Exemples</a></li></ol></li><li class="chapter-item expanded "><a href="../../ExpressionsRegulars/ExpressionsRegulars.html"><strong aria-hidden="true">8.3.</strong> Expressions Regulars</a></li></ol></li><li class="chapter-item expanded "><a href="../../Xarxa.html"><strong aria-hidden="true">9.</strong> Configuració de la Xarxa</a></li><li class="chapter-item expanded "><a href="../../Logging.html"><strong aria-hidden="true">10.</strong> Sistema Logging</a></li><li class="chapter-item expanded "><a href="../../Usuaris-Grups.html"><strong aria-hidden="true">11.</strong> Usuaris i Grups</a></li><li class="chapter-item expanded "><a href="../../Mount.html"><strong aria-hidden="true">12.</strong> Muntatge de Sistemes de Fitxers</a></li><li class="chapter-item expanded "><a href="../../Kernel/main.html"><strong aria-hidden="true">13.</strong> Kernel de Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Kernel/syscalls.html"><strong aria-hidden="true">13.1.</strong> Analitzant les crides a sistema</a></li><li class="chapter-item expanded "><a href="../../Kernel/kernel-spy.html"><strong aria-hidden="true">13.2.</strong> Espiant el Kernel</a></li><li class="chapter-item expanded "><a href="../../Kernel/modules.html"><strong aria-hidden="true">13.3.</strong> Programació de mòduls</a></li><li class="chapter-item expanded "><a href="../../Kernel/kernel.html"><strong aria-hidden="true">13.4.</strong> Compilant el Kernel</a></li><li class="chapter-item expanded "><a href="../../Kernel/add-syscalls.html"><strong aria-hidden="true">13.5.</strong> Crides a sistema personalitzades</a></li><li class="chapter-item expanded "><a href="../../Kernel/rootkit.html"><strong aria-hidden="true">13.6.</strong> Rootkit: Escalada de Privilegis</a></li></ol></li><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/main.html"><strong aria-hidden="true">14.</strong> Desplegant un servidor web: Wordpress</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/preparant.html"><strong aria-hidden="true">14.1.</strong> Preparant el servidor</a></li><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/apache.html" class="active"><strong aria-hidden="true">14.2.</strong> Instal·lant i configurant Apache</a></li><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/mariadb.html"><strong aria-hidden="true">14.3.</strong> Instal·lant i configurant MariaDB</a></li><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/php.html"><strong aria-hidden="true">14.4.</strong> Instal·lant i configurant PHP</a></li><li class="chapter-item expanded "><a href="../../Servers/wordpress-mono/wordpress.html"><strong aria-hidden="true">14.5.</strong> Instal·lant i configurant Wordpress</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/AMSA-2425/Laboratoris" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="installant-i-configurant-apache"><a class="header" href="#installant-i-configurant-apache">Instal·lant i configurant Apache</a></h1>
+<p>El primer pas per desplegar un servidor web amb <strong>WordPress</strong> és instal·lar i configurar un servidor web. Necessitem la versió 2.4 o superior d'<strong>Apache</strong> per a la nostra instal·lació.</p>
+<ol>
+<li>
+<p>Comprovem si el paquet <strong>httpd</strong> està disponible:</p>
+<pre><code class="language-sh">dnf search httpd
+</code></pre>
+<p>La sortida hauria de mostrar el paquet <strong>httpd</strong> i les seves dependències.</p>
+<pre><code class="language-text">Last metadata expiration check: 0:00:00 ago on Tue 15 Feb 2022 09:00:00 PM UTC.
+============== Name Exactly Matched: httpd ==============
+httpd.x86_64 : Apache HTTP Server
+</code></pre>
+<p>Si el paquet esta disponible, primer revisarem la informació del paquet amb la comanda <code>dnf info httpd</code>.</p>
+<pre><code class="language-text">Installed Packages
+Name         : httpd
+Version      : 2.4.57
+Release      : 11.el9_4.1
+Architecture : aarch64
+Size         : 155 k
+Source       : httpd-2.4.57-11.el9_4.1.src.rpm
+Repository   : @System
+From repo    : appstream
+Summary      : Apache HTTP Server
+URL          : https://httpd.apache.org/
+License      : ASL 2.0
+Description  : The Apache HTTP Server is a powerful, efficient, and extensible
+            : web server.
+</code></pre>
+<p>Un cop ens assegurem que el paquet està disponible amb la versió correcta, procedirem a la instal·lació.</p>
+</li>
+<li>
+<p>Instal·lem el dimoni httpd:</p>
+<pre><code class="language-sh">dnf install httpd -y
+</code></pre>
+</li>
+<li>
+<p>Comprovem l'estat del servei amb <code>systemctl</code>:</p>
+<pre><code class="language-sh">systemctl status httpd
+</code></pre>
+</li>
+<li>
+<p>Visualitzem els fitxers de configuració del servei <em>httpd</em>:</p>
+<pre><code class="language-sh">less /usr/lib/systemd/system/httpd.service
+</code></pre>
+<pre><code class="language-text">[Unit]
+Description=The Apache HTTP Server
+Wants=httpd-init.service
+After=network.target remote-fs.target nss-lookup.target httpd-init.service
+Documentation=man:httpd.service(8)
+
+[Service]
+Type=notify
+Environment=LANG=C
+
+ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND
+ExecReload=/usr/sbin/httpd $OPTIONS -k graceful
+# Send SIGWINCH for graceful stop
+KillSignal=SIGWINCH
+KillMode=mixed
+PrivateTmp=true
+OOMPolicy=continue
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Aquest fitxer de configuració conté instruccions com:</p>
+<ul>
+<li><code>ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND</code>: Defineix la comanda que s'utilitza per iniciar el servei. El mode foreground permet veure la sortida al terminal, útil per a la depuració.</li>
+<li><code>ExecReload=/usr/sbin/httpd $OPTIONS -k graceful</code>: Permet recarregar la configuració del servidor sense interrompre les connexions actives, garantint que els canvis es puguin aplicar de manera controlada.</li>
+<li><code>KillSignal=SIGWINCH</code>: El senyal que s'envia per aturar el servei, assegurant una parada segura.</li>
+<li><code>PrivateTmp=true</code>: Millora la seguretat creant un sistema de fitxers temporal privat per al servei.</li>
+<li><code>OOMPolicy=continue</code>: Defineix el comportament del sistema en cas de manca de memòria, permetent que el servei continuï executant-se.</li>
+</ul>
+</li>
+<li>
+<p>Habiliteu el servei per iniciar cada cop que el sistema arranqui:</p>
+<pre><code class="language-sh">systemctl enable httpd
+</code></pre>
+</li>
+<li>
+<p>Arranqueu i comproveu l'estat del servei:</p>
+<pre><code class="language-sh">systemctl start httpd
+systemctl status httpd
+</code></pre>
+</li>
+</ol>
+<p>Un cop aixecat el servei, podem comprovar que el servei està en marxa i funcionant correctament. Intenteu accedir al servidor web amb la vostra <strong>IP</strong> a través d'un navegador web. En el meu cas, la IP del servidor és <strong>:127.16.10.206</strong>. Recordeu que per veure la IP del vostre servidor podeu utilitzar la comanda <code>ip a</code>.</p>
+<p><img src="../figures/wordpress-mono/apache-err.png.png" alt="Apache" /></p>
+<p>Observareu que no és possible accedir-hi i rebeu un missatge d'error <strong>ERR_CONNECTION_REFUSED</strong>. Això és normal, ja que AlmaLinux té un firewall activat per defecte que bloqueja el tràfic al port 80, que és el port per defecte del servidor web Apache.</p>
+<pre><code class="language-sh">systemctl status firewalld
+</code></pre>
+<pre><code class="language-text">● firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2022-02-15 21:00:00 UTC; 1h 30min ago
+</code></pre>
+<p>Si desactiveu el servei de <strong>firewalld</strong>, podreu accedir al servidor web Apache. No obstant això, això no és una pràctica segura, ja que el <strong>firewall</strong> és una capa de seguretat important per protegir el vostre servidor.</p>
+<pre><code class="language-sh">systemctl stop firewalld
+</code></pre>
+<p><img src="../figures/wordpress-mono/apache.png" alt="Apache" /></p>
+<p>En aquest punt, podeu comprovar que el servidor web Apache està funcionant correctament.</p>
+<h2 id="configuració-del-firewall"><a class="header" href="#configuració-del-firewall">Configuració del firewall</a></h2>
+<p>El firewall és un servei o programa que protegeix la xarxa del vostre servidor control·lant el tràfic de xarxa que entra i surt del servidor. Això és important per garantir que el vostre servidor sigui segur i protegit contra atacs maliciosos. Permetre només el tràfic necessari i bloquejar el tràfic no desitjat és una pràctica de seguretat recomanada per mantenir el vostre servidor segur. En aquest cas, necessitem permetre el tràfic HTTP (port 80) perquè el servidor web Apache sigui accessible des de l'exterior però bloquejar altres ports i serveis no necessaris.</p>
+<p>En tots els sistmes linux el firewall es configura utilitzant les <code>iptables</code>. En el nostre cas, podem veure les regles amb la comanda <code>iptables -L</code>. Permetre el tràfic HTTP (port 80) amb les <code>iptables</code> seria:</p>
+<pre><code class="language-sh">iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+</code></pre>
+<p>on:</p>
+<ul>
+<li><code>-A INPUT</code>: Afegeix una regla a la cadena INPUT (paquets que entren al servidor).</li>
+<li><code>-m state --state NEW</code>: Només s'aplica a paquets nous.</li>
+<li><code>-m tcp -p tcp</code>: Només s'aplica a paquets TCP.</li>
+<li><code>-M udp -p udp</code>: Només s'aplica a paquets UDP.</li>
+<li><code>--dport 80</code>: Només s'aplica als paquets que arriben al port 80.</li>
+<li><code>-j ACCEPT</code>: Accepta els paquets que compleixen les condicions anteriors.</li>
+</ul>
+<p>Però, tenim eines que ens faciliten la tasca com <code>firewalld</code> o <code>ufw</code>. En aquest cas, utilitzarem <code>firewalld</code>. Firewalld és un firewall dinàmic per a sistemes Linux que proporciona una interfície de línia de comandes i una interfície gràfica per gestionar les regles del firewall. Firewalld té un programa de comandament anomenat <code>firewall-cmd</code> que us permet gestionar les regles del firewall de manera senzilla i eficaç. Per permetre el tràfic HTTP (port 80) amb <code>firewalld</code>, podeu utilitzar la comanda següent:</p>
+<pre><code class="language-sh">firewall-cmd --add-service=http --permanent
+</code></pre>
+<p>on:</p>
+<ul>
+<li><code>--add-service=http</code>: Afegeix una regla per permetre el tràfic HTTP.</li>
+<li><code>--permanent</code>: Afegeix la regla de manera permanent, la qual cosa significa que es mantindrà després de reiniciar el sistema.</li>
+</ul>
+<p>Per aplicar els canvis, cal recarregar el <strong>firewall</strong> amb la comanda següent:</p>
+<pre><code class="language-sh">firewall-cmd --reload
+</code></pre>
+<p>Amb aquesta configuració, el vostre <strong>firewall</strong> està configurat per permetre el tràfic <em>HTTP (port 80)</em> al vostre servidor. Per verificar que la configuració del <strong>firewall</strong> s'ha aplicat correctament i que el servei HTTP està habilitat, podeu utilitzar la següent comanda:</p>
+<pre><code class="language-sh">firewall-cmd --list-all
+</code></pre>
+<p>Aquesta comanda mostrarà la sortida amb informació detallada sobre la configuració actual del <strong>firewall</strong>. Per identificar si el servei HTTP està habilitat, busqueu la secció services i verifiqueu que aparegui el servei http com a un dels serveis habilitats.</p>
+<p>La sortida hauria de semblar-se així:</p>
+<pre><code class="language-yaml">public
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources:
+  services: cockpit dhcpv6-client http ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+</code></pre>
+<p>En aquest exemple, podeu veure que el servei HTTP està habilitat, la qual cosa significa que el tràfic HTTP hauria de ser permès a través del firewall. A més a més, podeu veure altres serveis com el servei SSH, el servei DHCPv6-client i el servei Cockpit que també estan habilitats. Aquests serveis són necessaris per a la gestió del servidor i per a la connectivitat de xarxa.</p>
+<p>Com deshabilitareu la regla per bloquejar el tràfic?</p>
+<pre><code class="language-sh">firewall-cmd --remove-service=http --permanent
+firewall-cmd --reload
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Servers/wordpress-mono/preparant.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Servers/wordpress-mono/mariadb.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Servers/wordpress-mono/preparant.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Servers/wordpress-mono/mariadb.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

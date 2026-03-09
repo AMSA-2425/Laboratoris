@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<html lang="ca" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Crides a sistema personalitzades - Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../Install/main.html"><strong aria-hidden="true">1.</strong> Instal·lació d'una màquina virtual</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Install/debian.html"><strong aria-hidden="true">1.1.</strong> Instal·lació d'una màquina virtual amb Debian 12.5</a></li><li class="chapter-item expanded "><a href="../Install/hostname.html"><strong aria-hidden="true">1.2.</strong> Hostname</a></li><li class="chapter-item expanded "><a href="../Install/hosts.html"><strong aria-hidden="true">1.3.</strong> Hosts</a></li><li class="chapter-item expanded "><a href="../Install/ssh-sftp.html"><strong aria-hidden="true">1.4.</strong> SSH i SFTP</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/main.html"><strong aria-hidden="true">2.</strong> Booting</a></li><li class="chapter-item expanded "><a href="../Booting/uefi.html"><strong aria-hidden="true">3.</strong> UEFI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/uefi/inciant.html"><strong aria-hidden="true">3.1.</strong> Inciant la consola UEFI</a></li><li class="chapter-item expanded "><a href="../Booting/uefi/observant.html"><strong aria-hidden="true">3.2.</strong> Observant els Dispositius Disponibles</a></li></ol></li><li class="chapter-item expanded "><a href="../Booting/GestorsArrancada.html"><strong aria-hidden="true">4.</strong> Gestors d'arrancada</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/lilo.html"><strong aria-hidden="true">4.1.</strong> LILO</a></li><li class="chapter-item expanded "><a href="../Booting/grub/modificacio.html"><strong aria-hidden="true">4.2.</strong> GRUB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/grub/acces.html"><strong aria-hidden="true">4.2.1.</strong> Canvi del password de root a través del GRUB</a></li><li class="chapter-item expanded "><a href="../Booting/grub/actualitzant.html"><strong aria-hidden="true">4.2.2.</strong> Actualitzant el GRUB</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/IniciServeis.html"><strong aria-hidden="true">5.</strong> Sistema d'inicialització</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/Init.html"><strong aria-hidden="true">5.1.</strong> SysVInit (Init)</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/analitzant.html"><strong aria-hidden="true">5.2.</strong> Systemd</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/systemd/servei.html"><strong aria-hidden="true">5.2.1.</strong> Creant i Gestionant serveis</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/programats.html"><strong aria-hidden="true">5.2.2.</strong> Serveis programats</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/logs.html"><strong aria-hidden="true">5.2.3.</strong> Anàlisi de logs</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/journalctl-dmesg.html"><strong aria-hidden="true">5.2.4.</strong> journalctl versus dmesg</a></li><li class="chapter-item expanded "><a href="../Booting/systemd/inici.html"><strong aria-hidden="true">5.2.5.</strong> Afegint informació d'inici</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Booting/initramfs.html"><strong aria-hidden="true">6.</strong> initramfs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Booting/initramfs/examinant.html"><strong aria-hidden="true">6.1.</strong> Examinant la initramfs</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/carregant.html"><strong aria-hidden="true">6.2.</strong> Carregant un mòdul addicional</a></li><li class="chapter-item expanded "><a href="../Booting/initramfs/personalitzar.html"><strong aria-hidden="true">6.3.</strong> Personalitzar la initramfs</a></li></ol></li><li class="chapter-item expanded "><a href="../PROC/PROC.html"><strong aria-hidden="true">7.</strong> PROC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Processos.html"><strong aria-hidden="true">7.1.</strong> Informadió de Procesos</a></li><li class="chapter-item expanded "><a href="../PROC/PROC-Info-Sistema.html"><strong aria-hidden="true">7.2.</strong> Informadió del Sistema</a></li></ol></li><li class="chapter-item expanded "><a href="../TF.html"><strong aria-hidden="true">8.</strong> Tractament de fitxers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../SED/sed.html"><strong aria-hidden="true">8.1.</strong> SED</a></li><li class="chapter-item expanded "><a href="../AWK/awk.html"><strong aria-hidden="true">8.2.</strong> AWK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../AWK/awk-basic.html"><strong aria-hidden="true">8.2.1.</strong> Awk - Bàsic</a></li><li class="chapter-item expanded "><a href="../AWK/awk-intermediate.html"><strong aria-hidden="true">8.2.2.</strong> Awk - Intermedi</a></li><li class="chapter-item expanded "><a href="../AWK/awk-altres-exemples.html"><strong aria-hidden="true">8.2.3.</strong> Awk - Altres Exemples</a></li></ol></li><li class="chapter-item expanded "><a href="../ExpressionsRegulars/ExpressionsRegulars.html"><strong aria-hidden="true">8.3.</strong> Expressions Regulars</a></li></ol></li><li class="chapter-item expanded "><a href="../Xarxa.html"><strong aria-hidden="true">9.</strong> Configuració de la Xarxa</a></li><li class="chapter-item expanded "><a href="../Logging.html"><strong aria-hidden="true">10.</strong> Sistema Logging</a></li><li class="chapter-item expanded "><a href="../Usuaris-Grups.html"><strong aria-hidden="true">11.</strong> Usuaris i Grups</a></li><li class="chapter-item expanded "><a href="../Mount.html"><strong aria-hidden="true">12.</strong> Muntatge de Sistemes de Fitxers</a></li><li class="chapter-item expanded "><a href="../Kernel/main.html"><strong aria-hidden="true">13.</strong> Kernel de Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Kernel/syscalls.html"><strong aria-hidden="true">13.1.</strong> Analitzant les crides a sistema</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel-spy.html"><strong aria-hidden="true">13.2.</strong> Espiant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/modules.html"><strong aria-hidden="true">13.3.</strong> Programació de mòduls</a></li><li class="chapter-item expanded "><a href="../Kernel/kernel.html"><strong aria-hidden="true">13.4.</strong> Compilant el Kernel</a></li><li class="chapter-item expanded "><a href="../Kernel/add-syscalls.html" class="active"><strong aria-hidden="true">13.5.</strong> Crides a sistema personalitzades</a></li><li class="chapter-item expanded "><a href="../Kernel/rootkit.html"><strong aria-hidden="true">13.6.</strong> Rootkit: Escalada de Privilegis</a></li></ol></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/main.html"><strong aria-hidden="true">14.</strong> Desplegant un servidor web: Wordpress</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/preparant.html"><strong aria-hidden="true">14.1.</strong> Preparant el servidor</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/apache.html"><strong aria-hidden="true">14.2.</strong> Instal·lant i configurant Apache</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/mariadb.html"><strong aria-hidden="true">14.3.</strong> Instal·lant i configurant MariaDB</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/php.html"><strong aria-hidden="true">14.4.</strong> Instal·lant i configurant PHP</a></li><li class="chapter-item expanded "><a href="../Servers/wordpress-mono/wordpress.html"><strong aria-hidden="true">14.5.</strong> Instal·lant i configurant Wordpress</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Laboratoris d&#x27;Administració i Manteniment de Sistemes i Aplicacions</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/AMSA-2425/Laboratoris" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="afegint-una-crida-a-sistema"><a class="header" href="#afegint-una-crida-a-sistema">Afegint una crida a sistema</a></h1>
+<p>Per afegir una nova crida a sistema, cal configurar la <strong>taula de crides a sistema</strong>. Aquesta taula és una estructura de dades que relaciona els números de crida al sistema amb les funcions de controlador de sistema corresponents. Quan un programa realitza una crida a sistema, s'utilitza aquesta taula per determinar quina funció de controlador s'ha d'executar.</p>
+<p>La taula de crides a sistema es troba normalment a un fitxer anomenat <em>syscall_ARCH.tbl</em>, en aquest cas <strong>syscall_64.tbl</strong> per a l'arquitectura <em>x86</em>, a la ruta <em>arch/x86/entry/syscalls/</em>.</p>
+<pre><code class="language-sh">less /root/linux-6.11.1/arch/x86/entry/syscalls/syscall_64.tbl
+</code></pre>
+<p>Aquest fitxer enumera totes les crides a sistema disponibles, assignant un número únic a cadascuna. Per exemple, la crida a sistema associada amb <strong>write</strong> té el número 1 i <strong>fork</strong> té el número 57.</p>
+<pre><code class="language-sh">grep -i "write" /root/linux-6.11.1/arch/x86/include/generated/asm/syscalls_64.h
+
+grep -i "fork" /root/linux-6.11.1/arch/x86/include/generated/asm/syscalls_64.h
+</code></pre>
+<p>Aquesta numeració és essencial per garantir la coherència entre l'espai d'adreces d'usuari i l'espai d'adreces del kernel. La UAPI (User-space API) fa referència a un sistema per mantenir aquesta coherència, assegurant que els números de crida al sistema a l'espai d'adreces de l'usuari coincideixin amb els del kernel.</p>
+<p>Diferents arquitectures poden utilitzar diferents números de crida al sistema per a la mateixa funcionalitat. Per exemple, el número de crida a sistema per a <strong>fork</strong> és 2 en arquitectures Intel x86 de 32 bits, mentre que és 57 en arquitectures Intel x86 de 64 bits.</p>
+<p>Un cop es realitza una crida a sistema en un nucli en execució, el nucli cerca la funció de controlador d'aquesta crida al sistema a la taula de crides del sistema. Aquesta taula és una matriu on l'índex és el número de crida al sistema i el valor és el punter a la funció de controlador corresponent (<em>sys_call_ptr_t</em>).</p>
+<p>A la nostra configuració, el codi font de la taula de crides del sistema és la matriu anomenada <strong>sys_call_table</strong> definida a <em>arch/x86/entry/syscall_64.c</em>. Aquest fitxer s'inicialitza des del fitxer <em>arch/x86/include/generated/asm/syscalls_64.h</em>, que es genera automàticament mitjançant <strong>syscall_64.tbl</strong> quan es recompila el nucli.</p>
+<pre><code class="language-sh">less /root/linux-6.11.1/arch/x86/entry/syscall_64.c
+</code></pre>
+<p>La taula de crides a sistema es troba a <em>arch/x86/entry/syscalls/syscall_64.tbl</em>. Aquest fitxer conté una llista de totes les crides a sistema disponibles. Aquest fitxer no és codi font C, però s'utilitza per produir fitxers de codi font C <strong>generats</strong> com ara <em>arch/x86/include/generated/asm/syscalls_64.h</em> durant el procés de recompilar del nucli.</p>
+<pre><code class="language-sh">less /root/linux-6.11.1/arch/x86/include/generated/asm/syscalls_64.h
+</code></pre>
+<p>A continuació, es mostra un exemple per afegir una crida a sistema anomenada <em>sys_getdummymul</em>. Aquesta crida a sistema donats dos números enters en mode usuari els passarà a mode nucli i els multiplicarà en el nucli. Un cop acabada l'operació, ens retornarà el seu resultat en mode usuari.</p>
+<ol>
+<li>
+<p>Actualitzar la taula de crides a sistema. Per fer-ho, afegirem una nova entrada a <strong>syscall_64.tbl</strong> amb el número de la nova crida a sistema i el seu nom, com ara <em>sys_getdummymul</em>. El número de la nsotra crida serà el següent enter disponible a la taula de crides a sistema.</p>
+<p>Per exemples si l'última crida a sistema té l'índex 451, la nostra crida tindrà l'índex 452.</p>
+<pre><code class="language-sh">vim /root/linux-6.11.1/arch/x86/entry/syscalls/syscall_64.tbl
+</code></pre>
+<p>En aquest fitxer cerqueu el final de la secció <em>common</em> i afegiu la vostra crida a sistema. El format és el següent:</p>
+<pre><code class="language-sh">&lt;index&gt; &lt;abi&gt; &lt;name&gt; &lt;entry point&gt;
+</code></pre>
+<p>Per tant, en el nostre cas:</p>
+<pre><code class="language-sh">452 common getdummymul sys_getdummymul
+</code></pre>
+<p>Un cop modificat el fitxer, deseu-lo i tanqueu-lo.</p>
+</li>
+<li>
+<p>Definir la funció del controlador. Ara definirem el contracte de la nostra funció de controlador. Aquesta funció s'ha de definir a <em>kernel/sys.c</em>.</p>
+<pre><code class="language-sh">vim /root/linux-6.11.1/include/linux/syscalls.h
+</code></pre>
+<p>Afegiu la següent línia al final del fitxer. Recordeu prement (<em>majuscula + G</em>) podeu anar al final del fitxer.</p>
+<pre><code class="language-sh">asmlinkage long sys_getdummymul(int num1, int num2, int* resultat);
+</code></pre>
+<p>Aquesta funció rep dos enters i un punter a un enter. Els dos enters són els dos números que volem multiplicar i el punter a enter és on volem que es guardi el resultat de la multiplicació.</p>
+</li>
+<li>
+<p>Implementar la funció del controlador. Ara implementarem la funció de controlador. Aquesta funció s'ha de definir a <em>kernel/sys.c</em>.</p>
+<pre><code class="language-sh">vim /root/linux-6.11.1/kernel/sys.c
+</code></pre>
+<p>Afegiu al final del fitxer el codi C:</p>
+<pre><code class="language-c">SYSCALL_DEFINE3(getdummymul,int, num1, int ,num2, int*, resultat){
+    printk("Estic al kernel executant getdummymul syscall!\n");
+    int res = num1 * num2;
+    printk("El resultat de multiplicar num1=%d i num2=%d es res=%d (Mode kernel)\n", num1,num2,res);
+    copy_to_user(resultat, &amp;res, sizeof(int));
+    return 0;
+}
+</code></pre>
+<p>Aquesta funció utilitza <strong>printk</strong> per escriure un missatge al registre del nucli. Aquest missatge el podrem recuperar en mode usuari per monitoritzar la correcta execució de la funció en mode nucle. A continuació, multiplica els dos enters i utilitza <strong>copy_to_user</strong> per copiar el resultat al punter a enter que li hem passat com a paràmetre. Finalment, retorna 0.</p>
+<p>Es molt important utilitzar el <strong>copy_to_user</strong> per copiar el resultat al punter a enter que li hem passat com a paràmetre. Si no ho fem així, el resultat de la multiplicació no es copiarà a l'espai d'adreces de l'usuari i no podrem recuperar el resultat de la multiplicació.</p>
+<p>Recordeu que l'espai d'adreçes del nucli i del usuari són diferents, per tant la informació s'ha de copiar de l'espai d'adreces del nucli a l'espai d'adreces de l'usuari i viceversa. Compte, quan l'usuari passa un punter com a parametre les funcions del nucli sempre han de comprovar que apunti a una regió vàlida de l'espai d'adreces de l'usuari.</p>
+</li>
+<li>
+<p>Actualitzar l'espai d'adreces de l'usuari. En aquest pas, ens hem d'assegurar que en l'espai d'adreces de l'usuari hi ha una definició de la crida que acabem d'implementar. Per fer-ho editarem <em>/root/linux-6.11.1/include/uapi/asm-generic/unistd.h</em>.</p>
+<pre><code class="language-sh">vim /root/linux-6.11.1/include/uapi/asm-generic/unistd.h
+</code></pre>
+<p>Cerca la línia: __NR_syscalls (quasi al final del fitxer)</p>
+<pre><code class="language-c">//Editeu la línia augmentant en 1 el valor que tingueu. En el meu cas 449 -&gt; 450:
+#define __NR_syscalls 452
+
+//Just damunt de la línia anterior -&gt; afegim:
+#define __NR_getdummymul 453
+__SYSCALL(__NR_getdummymul, sys_getdummymul)
+</code></pre>
+<p>Deseu i tanqueu el fitxer.</p>
+<p>En aquesta modificació hem actualitzat el nº de criada a sistema i hem afegit la nostra crida a sistema en l'espai d'adreçament de l'usuari.</p>
+</li>
+<li>
+<p>Per acabar recompileu el kernel i reinicieu la màquina virtual.</p>
+<pre><code class="language-sh">make -j `nproc` &amp;&amp; make modules_install -j `nproc` &amp;&amp; make install -j `nproc`
+reboot
+</code></pre>
+</li>
+</ol>
+<p>Per comprovar que la nostra crida a sistema funciona, crearem un programa amb C que faci anar la nostra crida a sistema:</p>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include&lt;sys/syscall.h&gt;
+// Posar el nº de crida a sistema que hem definit a syscall_64.tbl
+#define __NR_getdummymul ???
+
+int main(){
+    int num1 = 4;
+    int num2 = 3; 
+    int resultat;
+    syscall(__NR_getdummymul, num1,num2, &amp;resultat);
+    printf("(Mode usuari) El resultat de la multiplicacio es: %d\n", resultat);    
+}
+</code></pre>
+<p>Compilem el programa i l'executem:</p>
+<pre><code class="language-sh">gcc getdummymul.c -o getdummymul
+./getdummymul
+</code></pre>
+<p>Podem utiltizar la comanda <strong>strace</strong> per veure les crides a sistema que fa el nostre programa:</p>
+<pre><code class="language-sh">stracte ./getdummymul   
+</code></pre>
+<h2 id="activitats-de-seguiment"><a class="header" href="#activitats-de-seguiment">Activitats de seguiment</a></h2>
+<ol>
+<li>Genereu un document en format markdown amb les captures de pantalla per demostrar el funcionament de la nova crida a sistema. <strong>Podeu editar add-syscall.md del repositori</strong>.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Kernel/kernel.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Kernel/rootkit.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Kernel/kernel.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Kernel/rootkit.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
